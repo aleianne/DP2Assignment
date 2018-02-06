@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD  for the first assignment -->
+<!-- root element in the document -->
+<!ELEMENT nfv (VNFcatalog, nf-fg, inf-net)>
+
+
+<!-- declaration of the model for NF-FG -->
+<!ELEMENT nf-fg (node+)>
+<!ATTLIST nf-fg 
+		name 			ID 		#REQUIRED 
+		deploy_time		CDATA	#REQUIRED
+>
+
+<!ELEMENT node (func_type, link+, host_ref)>
+<!ATTLIST node 
+		name 			ID		#REQUIRED
+>
+
+<!ELEMENT host_ref EMPTY> 
+<!ATTLIST host_ref
+		hostname		IDREF	#REQUIRED
+>
+		
+
+<!ELEMENT func_type EMPTY>
+<!ATTLIST func_type 
+		function 	IDREF	#REQUIRED
+>
+
+<!ELEMENT link EMPTY>
+<!ATTLIST link
+			outboundNode	IDREF		#REQUIRED
+			inboundNode		IDREF		#REQUIRED
+			latency 		NMTOKEN 	#IMPLIED 
+			throughput		NMTOKEN 	#IMPLIED	
+>
+
+<!ELEMENT VNFcatalog (VNFunction+)>
+
+<!ELEMENT VNFunction EMPTY>
+<!ATTLIST VNFunction
+			func_id			ID 		#REQUIRED
+			type (CACHE | DPI | FW | MAIL_CLIENT | MAIL_SERVER | NAT | SPAM | VPN | WEB_CLIENT | WEB_SERVER) #REQUIRED
+			requiredMemory 		CDATA #REQUIRED
+			requiredStorage 	CDATA #REQUIRED
+>
+
+
+<!-- infrastructure network model -->
+<!ELEMENT inf-net (host-group, connection-group)>
+<!ATTLIST inf-net
+			name 		ID 			#REQUIRED
+>
+
+<!ELEMENT host-group (host+)>
+<!ELEMENT connection-group (connection+)>
+
+<!ELEMENT host EMPTY>
+<!ATTLIST host 
+			hostname 			ID 			#REQUIRED
+			availableRAM		CDATA		#REQUIRED
+			availableDiskMem	CDATA 		#REQUIRED
+			maxVNF				CDATA 		#REQUIRED	
+>
+
+<!ELEMENT connection EMPTY>
+<!ATTLIST connection 
+			name 				ID 			#IMPLIED
+			hostname1 			IDREF		#IMPLIED
+			hostname2 			IDREF 		#IMPLIED
+			latency 			CDATA 		#IMPLIED
+			throughput			CDATA		#IMPLIED
+>
+
+<!ELEMENT node_ref EMPTY>
+<!ATTLIST node_ref
+			node	IDREF 		#REQUIRED
+>
+	

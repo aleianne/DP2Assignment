@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<NFV xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsd:SchemaLocation="nfvInfo.xsd">
+
+	<!--  Declaration of the VNF catalog used inside the system -->
+    <catalog>
+        <function name="ThunderBird" type="MAIL_CLIENT" requiredStorage="900" requiredMemory="38"/>
+        <function name="GoogleChrome" type="WEB_CLIENT" requiredStorage="670" requiredMemory="97"/>
+        <function name="PostFixMailServer" type="MAIL_SERVER" requiredStorage="700" requiredMemory="330"/>
+        <function name="TomcatWebServer" type="WEB_SERVER" requiredStorage="7600" requiredMemory="150"/>
+        <function name="SquidCacheServer" type="CACHE" requiredStorage="470" requiredMemory="31"/>
+        <function name="SpamTitan" type="SPAM" requiredStorage="580" requiredMemory="29"/>
+    </catalog>
+    
+    <!-- Declaration of the graph that are deployed into the system -->
+    
+    <nf-fg name="Nffg-1" deploy-time="2016-09-26T10:50:20.000+02:00">
+        <node name="ThunderBird-Nffg-1" VNF="ThunderBird" hostname="H2" nf-fg="Nffg4">
+            <link link-name="Link2" outboundNode="SpamTitan-Nffg-1" inboundNode="ThunderBird-Nffg-1"/>
+        </node>
+        <node name="Chrome-Nffg-1" VNF="GoogleChrome" hostname="H1" nf-fg="Nffg4">
+            <link link-name="Link0" outboundNode="Squid-Nffg-1" inboundNode="Chrome-Nffg-1"/>
+            <link link-name="Link6" outboundNode="SpamTitan-Nffg-1" inboundNode="Chrome-Nffg-1"/>
+        </node>
+        <node name="Squid-Nffg-1" VNF="SquidCacheServer" hostname="H0" nf-fg="Nffg4">
+            <link link-name="Link1" outboundNode="Chrome-Nffg-1" inboundNode="Squid-Nffg-1"/>
+            <link link-name="Link5" outboundNode="Tomcat-Nffg-1" inboundNode="Squid-Nffg-1"/>
+        </node>
+        <node name="Tomcat-Nffg-1" VNF="TomcatWebServer" hostname="H3" nf-fg="Nffg4">
+            <link link-name="Link4" outboundNode="Squid-Nffg-1" inboundNode="Tomcat-Nffg-1"/>
+        </node>
+        <node name="SpamTitan-Nffg-1" VNF="SpamTitan" hostname="H4" nf-fg="Nffg4">
+            <link link-name="Link3" outboundNode="ThunderBird-Nffg-1" inboundNode="SpamTitan-Nffg-1"/>
+        </node>
+    </nf-fg>
+    
+    <nf-fg name="Nffg-2" deploy-time="2016-09-27T16:28:20.000+02:00">
+        <node name="Tomcat-Nffg-2" VNF="TomcatWebServer" hostname="H0" nf-fg="Nffg3">
+            <link link-name="Link16" outboundNode="SpamTitan-2-Nffg-2" inboundNode="Tomcat-Nffg-2"/>
+            <link link-name="Link2" outboundNode="Squid-1-Nffg-2" inboundNode="Tomcat-Nffg-2"/>
+        </node>
+        <node name="Squid-Nffg-2" VNF="SquidCacheServer" hostname="H4" nf-fg="Nffg3">
+            <link link-name="Link10" outboundNode="Chrome-Nffg-2" inboundNode="Squid-Nffg-2"/>
+        </node>
+        <node name="Thunderbird-Nffg-2" VNF="PostFixMailServer" hostname="H0" nf-fg="Nffg3">
+            <link link-name="Link4" outboundNode="SpamTitan-1-Nffg-2" inboundNode="Thunderbird-Nffg-2"/>
+            <link link-name="Link7" outboundNode="Squid-1-Nffg-2" inboundNode="Thunderbird-Nffg-2"/>
+        </node>
+        <node name="SpamTitan-1-Nffg-2" VNF="SpamTitan" hostname="H0" nf-fg="Nffg3">
+            <link link-name="Link12" outboundNode="Squid-3-Nffg-2" inboundNode="SpamTitan-1-Nffg-2"/>
+            <link link-name="Link11" outboundNode="Squid-Nffg-2" inboundNode="SpamTitan-1-Nffg-2"/>
+            <link link-name="Link5" outboundNode="Thunderbird-Nffg-2" inboundNode="SpamTitan-1-Nffg-2"/>
+        </node>
+        <node name="Squid-1-Nffg-2" VNF="SquidCacheServer" hostname="H0" nf-fg="Nffg3">
+            <link link-name="Link13" outboundNode="SpamTitan-1-Nffg-2" inboundNode="Squid-1-Nffg-2"/>
+            <link link-name="Link3" outboundNode="Tomcat-Nffg-2" inboundNode="Squid-1-Nffg-2"/>
+        </node>
+        <node name="Squid-2-Nffg-2" VNF="SquidCacheServer" hostname="H2" nf-fg="Nffg3">
+            <link link-name="Link8" outboundNode="Squid-1-Nffg-2" inboundNode="Squid-2-Nffg-2"/>
+            <link link-name="Link9" outboundNode="Chrome-Nffg-2" inboundNode="Squid-2-Nffg-2"/>
+        </node>
+        <node name="Squid-3-Nffg-2" VNF="SquidCacheServer" hostname="H3" nf-fg="Nffg3">
+            <link link-name="Link15" outboundNode="Tomcat-Nffg-2" inboundNode="Squid-3-Nffg-2"/>
+            <link link-name="Link1" outboundNode="Chrome-Nffg-2" inboundNode="Squid-3-Nffg-2"/>
+        </node>
+        <node name="SpamTitan-2-Nffg-2" VNF="SpamTitan" hostname="H1" nf-fg="Nffg3">
+            <link link-name="Link14" outboundNode="Squid-1-Nffg-2" inboundNode="SpamTitan-2-Nffg-2"/>
+        </node>
+        <node name="Chrome-Nffg-2" VNF="GoogleChrome" hostname="H4" nf-fg="Nffg3">
+            <link link-name="Link0" outboundNode="Squid-3-Nffg-2" inboundNode="Chrome-Nffg-2"/>
+            <link link-name="Link6" outboundNode="Squid-Nffg-2" inboundNode="Chrome-Nffg-2"/>
+        </node>
+    </nf-fg>
+    
+    <!--  Declaration of the Infrastructure network of the system, inside this element are located all the physical host that are available 
+    	  and the relative connection between them.  -->
+    
+    <inf-net>
+        <host-group>
+            <host availableMemory="7400" availableStorage="99000" maxVNF="13" hostname="H0">
+                <deployed-node node-name="Tomcat-Nffg-2"/>
+                <deployed-node node-name="Thunderbird-Nffg-2"/>
+                <deployed-node node-name="SpamTitan-1-Nffg-2"/>
+                <deployed-node node-name="Squid-1-Nffg-2"/>
+                <deployed-node node-name="Squid-Nffg-1"/>
+            </host>
+            <host availableMemory="5000" availableStorage="88000" maxVNF="16" hostname="H1">
+                <deployed-node node-name="Chrome-Nffg-1"/>
+                <deployed-node node-name="SpamTitan-2-Nffg-2"/>
+            </host>
+            <host availableMemory="2900" availableStorage="79000" maxVNF="10" hostname="H2">
+                <deployed-node node-name="ThunderBird-Nffg-1"/>
+                <deployed-node node-name="Squid-2-Nffg-2"/>
+            </host>
+            <host availableMemory="3900" availableStorage="44000" maxVNF="8" hostname="H3">
+                <deployed-node node-name="Squid-3-Nffg-2"/>
+                <deployed-node node-name="Tomcat-Nffg-1"/>
+            </host>
+            <host availableMemory="2000" availableStorage="13000" maxVNF="8" hostname="H4">
+                <deployed-node node-name="Squid-Nffg-2"/>
+                <deployed-node node-name="Chrome-Nffg-2"/>
+                <deployed-node node-name="SpamTitan-Nffg-1"/>
+            </host>
+            <host availableMemory="3300" availableStorage="68000" maxVNF="4" hostname="H5">
+            </host>
+        </host-group>
+        <connections>
+            <connection hostname1="H0" hostname2="H0" latency="0" throughput="21.57"/>
+            <connection hostname1="H0" hostname2="H1" latency="10" throughput="48.81"/>
+            <connection hostname1="H0" hostname2="H2" latency="37" throughput="4.95"/>
+            <connection hostname1="H0" hostname2="H3" latency="70" throughput="73.29"/>
+            <connection hostname1="H0" hostname2="H4" latency="30" throughput="89.98"/>
+            <connection hostname1="H0" hostname2="H5" latency="56" throughput="73.51"/>
+            <connection hostname1="H1" hostname2="H0" latency="10" throughput="65.93"/>
+            <connection hostname1="H1" hostname2="H1" latency="0" throughput="90.85"/>
+            <connection hostname1="H1" hostname2="H2" latency="41" throughput="27.88"/>
+            <connection hostname1="H1" hostname2="H3" latency="78" throughput="27.28"/>
+            <connection hostname1="H1" hostname2="H4" latency="39" throughput="46.23"/>
+            <connection hostname1="H1" hostname2="H5" latency="65" throughput="34.21"/>
+            <connection hostname1="H2" hostname2="H0" latency="37" throughput="10.74"/>
+            <connection hostname1="H2" hostname2="H1" latency="41" throughput="16.44"/>
+            <connection hostname1="H2" hostname2="H2" latency="0" throughput="62.33"/>
+            <connection hostname1="H2" hostname2="H3" latency="48" throughput="94.59"/>
+            <connection hostname1="H2" hostname2="H4" latency="43" throughput="41.36"/>
+            <connection hostname1="H2" hostname2="H5" latency="53" throughput="52.38"/>
+            <connection hostname1="H3" hostname2="H0" latency="70" throughput="22.08"/>
+            <connection hostname1="H3" hostname2="H1" latency="78" throughput="42.56"/>
+            <connection hostname1="H3" hostname2="H2" latency="48" throughput="73.98"/>
+            <connection hostname1="H3" hostname2="H3" latency="0" throughput="33.34"/>
+            <connection hostname1="H3" hostname2="H4" latency="50" throughput="80.65"/>
+            <connection hostname1="H3" hostname2="H5" latency="31" throughput="2.28"/>
+            <connection hostname1="H4" hostname2="H0" latency="30" throughput="65.85"/>
+            <connection hostname1="H4" hostname2="H1" latency="39" throughput="8.5"/>
+            <connection hostname1="H4" hostname2="H2" latency="43" throughput="28.73"/>
+            <connection hostname1="H4" hostname2="H3" latency="50" throughput="46.49"/>
+            <connection hostname1="H4" hostname2="H4" latency="0" throughput="30.24"/>
+            <connection hostname1="H4" hostname2="H5" latency="28" throughput="92.87"/>
+            <connection hostname1="H5" hostname2="H0" latency="56" throughput="8.68"/>
+            <connection hostname1="H5" hostname2="H1" latency="65" throughput="78.41"/>
+            <connection hostname1="H5" hostname2="H2" latency="53" throughput="43.69"/>
+            <connection hostname1="H5" hostname2="H3" latency="31" throughput="39.74"/>
+            <connection hostname1="H5" hostname2="H4" latency="28" throughput="21.19"/>
+            <connection hostname1="H5" hostname2="H5" latency="0" throughput="50.35"/>
+        </connections>
+    </inf-net>
+</NFV>

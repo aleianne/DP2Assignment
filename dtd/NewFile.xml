@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nfv SYSTEM "nfvInfo.dtd" >
+<nfv>
+
+  <VNFcatalog>
+    <VNFunction func_id="idvalue0" requiredStorage="" requiredMemory="" type="CACHE"/>
+  </VNFcatalog>
+  
+  <nf-fg deploy_time="" name="idvalue1">
+    <node name="idvalue2">
+      <func_type function="idvalue0"/>
+      <link inboundNode="idvalue0" outboundNode="idvalue0"/>
+      <host_ref hostname="idvalue0"/>
+    </node>
+  </nf-fg>
+  
+  <inf-net name="idvalue3">
+    <host-group>
+      <host availableDiskMem="" availableRAM="" hostname="idvalue4" maxVNF=""/>
+    </host-group>
+    <connection-group>
+      <connection/>
+    </connection-group>
+  </inf-net>
+</nfv>
