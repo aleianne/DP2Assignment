@@ -10,7 +10,7 @@ import it.polito.dp2.NFV.sol1.jaxb.HostType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
 
 class HostReaderImpl implements HostReader {
-	
+
 	private HostType host;
 	private XMLreferenceMapper refTable;
 
@@ -19,7 +19,7 @@ class HostReaderImpl implements HostReader {
 		this.host = host;
 		this.refTable = refTable;
 	}
-	
+
 	@Override
 	public String getName() {
 		return host.getHostname();
@@ -44,23 +44,23 @@ class HostReaderImpl implements HostReader {
 	public Set<NodeReader> getNodes() {
 		Set<NodeReader> nodeReaderSet = new HashSet<NodeReader> ();
 		List<HostType.DeployedNode> deployedNodeList = host.getDeployedNode();
-		
-		for (HostType.DeployedNode dpn: deployedNodeList) {
-			NodeType node = refTable.getNode(dpn.getNodeName());					// get the referenced node using an hash table
-			
+
+		for(HostType.DeployedNode dpn: deployedNodeList) {
+			NodeType node = refTable.getNode(dpn.getNodeName());                                    // get the referenced node using an hash table
+
 			System.out.println("i'm h" + dpn.getNodeName());
-			
-			if(refTable == null) 
+
+			if(refTable == null)
 				System.out.println("ref table null");
-			
-			if(node == null) 
+
+			if(node == null)
 				System.out.println("nodo nullo");
 
-			
+
 			NodeReaderImpl nodeReader = new NodeReaderImpl(node, refTable);
 			nodeReaderSet.add(nodeReader);
 		}
-		
+
 		return nodeReaderSet;
 	}
 
