@@ -1,11 +1,11 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import it.polito.dp2.NFV.*;
 import it.polito.dp2.NFV.sol1.jaxb.NFV;
 
 public class NfvReaderFactory extends it.polito.dp2.NFV.NfvReaderFactory {
 
-	private XMLreferenceMapper refTable;	
+	private XmlReferenceMap refTable;	
 	
 	public NfvReaderFactory() {
 		
@@ -19,7 +19,7 @@ public class NfvReaderFactory extends it.polito.dp2.NFV.NfvReaderFactory {
 		if((nfv = um.getNFVobject()) == null) 
 			throw new NfvReaderException();
 		
-		refTable = new XMLreferenceMapper(nfv);				// create a reference table starting from the instance of the XML tree
+		refTable = new XmlReferenceMap(nfv);				// create a reference table starting from the instance of the XML tree
 		NfvReaderImpl nr = new NfvReaderImpl(nfv, refTable);	
 			
 		return nr;

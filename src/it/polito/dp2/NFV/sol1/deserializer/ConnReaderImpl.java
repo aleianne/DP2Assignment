@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import it.polito.dp2.NFV.ConnectionPerformanceReader;
 import it.polito.dp2.NFV.sol1.jaxb.ConnectionType;

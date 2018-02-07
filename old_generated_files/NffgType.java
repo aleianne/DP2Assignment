@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -29,9 +29,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="node" type="{http://www.example.org/nfv}nodeType" maxOccurs="unbounded"/>
+ *         &lt;element name="node" type="{}nodeType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
- *       &lt;attribute name="nffg-name" use="required" type="{http://www.example.org/nfv}nfvName" />
+ *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="deploy-time" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,8 +48,8 @@ public class NffgType {
 
     @XmlElement(required = true)
     protected List<NodeType> node;
-    @XmlAttribute(name = "nffg-name", required = true)
-    protected String nffgName;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
     @XmlAttribute(name = "deploy-time")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar deployTime;
@@ -84,27 +84,27 @@ public class NffgType {
     }
 
     /**
-     * Recupera il valore della proprietà nffgName.
+     * Recupera il valore della proprietà name.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNffgName() {
-        return nffgName;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Imposta il valore della proprietà nffgName.
+     * Imposta il valore della proprietà name.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNffgName(String value) {
-        this.nffgName = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
     /**

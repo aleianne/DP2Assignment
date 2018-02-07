@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import it.polito.dp2.NFV.FunctionalType;
 import it.polito.dp2.NFV.VNFTypeReader;

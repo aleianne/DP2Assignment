@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.serializer;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -13,28 +13,27 @@ import it.polito.dp2.NFV.sol1.jaxb.*;
 
 // this module create the instance of the XML binded class
 // starting from the information read from the nfv interface passed in the costructor
-public class NfvObjectGenerator {
+public class NfvLoader {
 	
 	private NfvReader monitor;
 	private NFV newNFV;
 
-	public NfvObjectGenerator() throws NfvReaderException {
+	public NfvLoader() throws NfvReaderException {
 		NfvReaderFactory factory = NfvReaderFactory.newInstance();					// implements a new reader factory
 		monitor = factory.newNfvReader();											// implements a new NFV reader factory
 		newNFV = new NFV(); 														// implements a new NFV object used for the XML marsahlling
 	}
 	
-	public NfvObjectGenerator(NfvReader monitor) {
+	public NfvLoader(NfvReader monitor) {
 		super();
 		this.monitor = monitor;
 	}
 	
 	// create the instances of the nffg element contained into the NFV reader interface
 	private void mapGraphs() {
-		
 		List<NffgType> graphs = newNFV.getNfFg();								// get the reference of the Nffg list containded inside NFV
 				
-		System.out.println("number of nffg: " + monitor.getNffgs(null).size());
+		System.out.println("number of nffg: " + monitor.getNffgs(null).size() + "\n");
 		
 		for (NffgReader nfgr: monitor.getNffgs(null)) {							// for each element in the reader set create a new Nffg XML element
 			NffgGenerator gen = new NffgGenerator(nfgr);
@@ -48,9 +47,10 @@ public class NfvObjectGenerator {
 	}
 	
 	private void mapCatalog() {
-		
 		newNFV.setCatalog(new NFV.Catalog());													// instantiate a new catalog inside the NFV element
 		List<FunctionType> functions = newNFV.getCatalog().getFunction();						// get the function list reference							
+		
+		System.out.println("");
 		
 		for (VNFTypeReader vtr: monitor.getVNFCatalog()) {
 			FunctionType newVNF = new FunctionType();											// create a new VNF element
@@ -65,9 +65,11 @@ public class NfvObjectGenerator {
 	}
 	
 	public NFV getNFV() {
+		System.out.println("*** Begin to load the DP2-NFV info into the Java content tree ***");
 		mapGraphs();
 		mapInfrastructure();
 		mapCatalog();
+		System.out.println("*** DP2-NFV info loaded correctly! ***\n");
 		return newNFV;
 	}
 	

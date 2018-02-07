@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,17 +14,21 @@ import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NodeReader;
 import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
+import it.polito.dp2.NFV.sol1.serializer.CalendarXMLconverter;
 
 class NffgReaderImpl implements NffgReader {
 	
-	private XMLreferenceMapper refTable;
+	private XmlReferenceMap refTable;
 	private NffgType nffgElement;
-	private Set<NodeReader> nodeSet;
 	private List<NodeType> nodeList;
+	
+	private Set<NodeReader> nodeReaderSet;
 
-	protected NffgReaderImpl(NffgType nffg, XMLreferenceMapper refTable) {
+	protected NffgReaderImpl(NffgType nffg, XmlReferenceMap refTable) {
 		this.nffgElement = nffg;
 		this.refTable = refTable;
+		
+		Set<NodeReader> nodeReaderSet = new HashSet<NodeReader> ();
 	}
 	
 	@Override
@@ -45,26 +49,34 @@ class NffgReaderImpl implements NffgReader {
 	@Override
 	public NodeReader getNode(String arg0) {
 		
-		if (arg0 == null) return null;										// check if the arg0 is null
+		if(arg0 == null) {
+			System.out.println("the argument passed is null");
+			return null;
+		}
 		
-		NodeType nodeElement = refTable.getNodeInsideNffg(arg0, nffgElement.getName());		// take as parameter the nffg graph where the node should be searched and the node name		
-	
-		if (nodeElement == null) return null;								
+		NodeType nodeElement = refTable.getNode(arg0);
+		if (nodeElement == null) {
+			System.out.println("there is no node called " + arg0);
+			return null;								
+		}
 		
-		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);		// create the node reader interface 
+		// create and return the node reader interface 
+		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);		
 		return nr;
 	}
 
 	@Override
 	public Set<NodeReader> getNodes() {
-		nodeList = nffgElement.getNode();									// get the list of nodes inside this graph
-		nodeSet = new HashSet<NodeReader> ();								// create a new set of node reader interface
 		
+		if(!nodeReaderSet.isEmpty()) 										// return the set, if is already filled, in order to optimize successive invokation of the method
+			return nodeReaderSet;
+		
+		nodeList = nffgElement.getNode();									// get the list of nodes inside this graph
 		for (NodeType nodeElement: nodeList) {								
 			NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);	// create a new node reader interface
-			nodeSet.add(nr);												// insert the interface inside the set
+			nodeReaderSet.add(nr);											// insert the interface inside the set
 		}
-		return nodeSet;
+		return nodeReaderSet;
 	}
 	
 	 

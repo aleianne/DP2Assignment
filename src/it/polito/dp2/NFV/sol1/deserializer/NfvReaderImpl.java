@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -14,8 +14,8 @@ import it.polito.dp2.NFV.HostReader;
 import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NfvReader;
 import it.polito.dp2.NFV.VNFTypeReader;
-
 import it.polito.dp2.NFV.sol1.jaxb.*;
+import it.polito.dp2.NFV.sol1.serializer.CalendarXMLconverter;
 
 public class NfvReaderImpl implements NfvReader {
 	
@@ -32,9 +32,9 @@ public class NfvReaderImpl implements NfvReader {
 	private List<FunctionType> VNFList;
 	
 	// table of reference 
-	private XMLreferenceMapper refTable;
+	private XmlReferenceMap refTable;
 	
-	protected NfvReaderImpl(NFV newNFV, XMLreferenceMapper refTable) {
+	protected NfvReaderImpl(NFV newNFV, XmlReferenceMap refTable) {
 		this.newNfv = newNFV;
 		this.refTable = refTable;
 	}

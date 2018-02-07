@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -27,9 +27,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="catalog" type="{http://www.example.org/nfv}catalogType"/>
- *         &lt;element name="nf-fg" type="{http://www.example.org/nfv}nffgType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="inf-net" type="{http://www.example.org/nfv}infrastructureType"/>
+ *         &lt;element name="catalog">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="function" type="{}functionType" maxOccurs="unbounded"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="nf-fg" type="{}nffgType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="inf-net" type="{}inf-netType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,21 +58,21 @@ import javax.xml.bind.annotation.XmlType;
 public class NFV {
 
     @XmlElement(required = true)
-    protected CatalogType catalog;
+    protected NFV.Catalog catalog;
     @XmlElement(name = "nf-fg")
     protected List<NffgType> nfFg;
     @XmlElement(name = "inf-net", required = true)
-    protected InfrastructureType infNet;
+    protected InfNetType infNet;
 
     /**
      * Recupera il valore della proprietà catalog.
      * 
      * @return
      *     possible object is
-     *     {@link CatalogType }
+     *     {@link NFV.Catalog }
      *     
      */
-    public CatalogType getCatalog() {
+    public NFV.Catalog getCatalog() {
         return catalog;
     }
 
@@ -71,10 +81,10 @@ public class NFV {
      * 
      * @param value
      *     allowed object is
-     *     {@link CatalogType }
+     *     {@link NFV.Catalog }
      *     
      */
-    public void setCatalog(CatalogType value) {
+    public void setCatalog(NFV.Catalog value) {
         this.catalog = value;
     }
 
@@ -112,10 +122,10 @@ public class NFV {
      * 
      * @return
      *     possible object is
-     *     {@link InfrastructureType }
+     *     {@link InfNetType }
      *     
      */
-    public InfrastructureType getInfNet() {
+    public InfNetType getInfNet() {
         return infNet;
     }
 
@@ -124,11 +134,71 @@ public class NFV {
      * 
      * @param value
      *     allowed object is
-     *     {@link InfrastructureType }
+     *     {@link InfNetType }
      *     
      */
-    public void setInfNet(InfrastructureType value) {
+    public void setInfNet(InfNetType value) {
         this.infNet = value;
+    }
+
+
+    /**
+     * <p>Classe Java per anonymous complex type.
+     * 
+     * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="function" type="{}functionType" maxOccurs="unbounded"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "function"
+    })
+    public static class Catalog {
+
+        @XmlElement(required = true)
+        protected List<FunctionType> function;
+
+        /**
+         * Gets the value of the function property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the function property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getFunction().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link FunctionType }
+         * 
+         * 
+         */
+        public List<FunctionType> getFunction() {
+            if (function == null) {
+                function = new ArrayList<FunctionType>();
+            }
+            return this.function;
+        }
+
     }
 
 }

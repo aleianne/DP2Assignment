@@ -4,7 +4,7 @@
 		xmlns:nfv="http://www.example.org/nfv"
 		elementFormDefault="qualified">
 
-	<xsd:include schemaLocation="NFVDataTypes.xsd"/>
+	<xsd:include schemaLocation="nfvDataTypes.xsd"/>
 	
 	<!-- declaration of the root element in the document  -->
 	<xsd:element name="NFV">
@@ -23,13 +23,6 @@
 				</xsd:element>
 				<xsd:element name="inf-net" type="nfv:infrastructureType">
 				
-					<!-- key definition (unique inside the infrastructure network) -->
-				
-					<xsd:key name="unique_host">
-						<xsd:selector xpath="host-group/host"/>
-						<xsd:field xpath="@hostname"/>
-					</xsd:key>
-					
 					<!-- key ref -->
 					
 					<xsd:keyref name="conn_host1_ref" refer="nfv:unique_host">
@@ -46,6 +39,11 @@
 		</xsd:complexType>
 		
 		<!-- key definition (defined as unique inside NFV)  -->
+				
+		<xsd:key name="unique_host">
+			<xsd:selector xpath="host-group/host"/>
+			<xsd:field xpath="@hostname"/>
+		</xsd:key>		
 		
 		<xsd:key name="unique_node">
 			<xsd:selector xpath="nf-fg/node"></xsd:selector>

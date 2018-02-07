@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -37,22 +37,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link HostType }
-     * 
-     */
-    public HostType createHostType() {
-        return new HostType();
-    }
-
-    /**
-     * Create an instance of {@link InfrastructureType }
-     * 
-     */
-    public InfrastructureType createInfrastructureType() {
-        return new InfrastructureType();
-    }
-
-    /**
      * Create an instance of {@link NFV }
      * 
      */
@@ -61,11 +45,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CatalogType }
+     * Create an instance of {@link HostType }
      * 
      */
-    public CatalogType createCatalogType() {
-        return new CatalogType();
+    public HostType createHostType() {
+        return new HostType();
+    }
+
+    /**
+     * Create an instance of {@link InfNetType }
+     * 
+     */
+    public InfNetType createInfNetType() {
+        return new InfNetType();
+    }
+
+    /**
+     * Create an instance of {@link NFV.Catalog }
+     * 
+     */
+    public NFV.Catalog createNFVCatalog() {
+        return new NFV.Catalog();
     }
 
     /**
@@ -117,19 +117,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InfrastructureType.Hosts }
+     * Create an instance of {@link InfNetType.HostGroup }
      * 
      */
-    public InfrastructureType.Hosts createInfrastructureTypeHosts() {
-        return new InfrastructureType.Hosts();
+    public InfNetType.HostGroup createInfNetTypeHostGroup() {
+        return new InfNetType.HostGroup();
     }
 
     /**
-     * Create an instance of {@link InfrastructureType.Connections }
+     * Create an instance of {@link InfNetType.Connections }
      * 
      */
-    public InfrastructureType.Connections createInfrastructureTypeConnections() {
-        return new InfrastructureType.Connections();
+    public InfNetType.Connections createInfNetTypeConnections() {
+        return new InfNetType.Connections();
     }
 
 }

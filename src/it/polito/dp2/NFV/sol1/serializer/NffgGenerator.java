@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.serializer;
 
 import java.math.BigInteger;
 import java.util.Set;
@@ -22,8 +22,7 @@ public class NffgGenerator {
 	// generate an XML tree that contain the information about the nffg graph read from the nfv interface
 	protected NffgType generateGraph() {
 		
-		graph = objFactory.createNffgType();				// create a new nffg instance			
-		Set<NodeReader> nodeSet = nfgr.getNodes();		
+		graph = objFactory.createNffgType();				// create a new nffg instance				
 		
 		// if the XML file doesn't contain any deployed graph return null in order to not create graph elements
 		if (nodeSet.isEmpty()) {
@@ -42,35 +41,36 @@ public class NffgGenerator {
 			graph.setDeployTime(null);
 		}
 		
-		// set the inner node element into the nffg graph
+		// update the graph with the list of the node
+		Set<NodeReader> nodeSet = nfgr.getNodes();	
 		for(NodeReader nr: nodeSet) {					
 			System.out.println("begin to read " + nr.getName() + " node information");
 			graph.getNode().add(generateNode(nr));				
 		}
 		
+		System.out.println("graph loaded correcly!\n");
 		return graph;
 	}
 	
 	// generate a node element instance, it contains link elements that connect this node with other nodes
 	private NodeType generateNode(NodeReader nr) {
-		
 		NodeType newNode = objFactory.createNodeType();			// instantiate a new node
-		Set<LinkReader> linkSet = nr.getLinks();				// get the set of link reader from the node reader interface
 
-		newNode.setName(nr.getName());							// set Node attributes
+		// set Node attributes
+		newNode.setName(nr.getName());							
 		newNode.setHostname(nr.getHost().getName());
 		newNode.setVNF(nr.getFuncType().getName());
 		newNode.setNfFg(nr.getNffg().getName());
 		
+		Set<LinkReader> linkSet = nr.getLinks();				// get the set of link reader from the node reader interface
 		if (linkSet.isEmpty()) {
 			System.out.println("this node doesn't contain any link");
 			return newNode;
 		}
-		
-		for(LinkReader lr: linkSet) {							// for each link reader element create a new linkType instance		
+		for(LinkReader lr: linkSet) {							// for each link reader element create a new linkType instance	
+			System.out.println("begin to read the link information");
 			newNode.getLink().add(generateLink(lr));			// add the linkType instance into node's list of links
 		}
-		
 		return newNode;
 	}
 	

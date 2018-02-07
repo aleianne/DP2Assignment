@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.io.File;
 
@@ -22,12 +22,12 @@ import org.xml.sax.SAXException;
 import it.polito.dp2.NFV.*;
 import it.polito.dp2.NFV.sol1.jaxb.*;
 
-class XMLMapper {
+class NfvInfoDeserializer{
 
 	private static final String property = "it.polito.dp2.NFV.sol1.NfvInfo.file";
 	private NFV unmarshalledNFV = null;
 
-	protected XMLMapper() throws NfvReaderException {
+	protected NfvInfoDeserializer() throws NfvReaderException {
 		
 		String fileName = System.getProperty(property);				// read the filename from a system property
 		

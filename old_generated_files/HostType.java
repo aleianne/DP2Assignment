@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -32,16 +32,16 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="node-name" type="{http://www.example.org/nfv}nfvName" />
+ *                 &lt;attribute name="node-name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="availableMemory" type="{http://www.example.org/nfv}positiveInt"/>
- *         &lt;element name="availableStorage" type="{http://www.example.org/nfv}positiveInt"/>
- *         &lt;element name="maxVNF" type="{http://www.example.org/nfv}positiveInt"/>
- *         &lt;element name="hostname" type="{http://www.example.org/nfv}nfvName"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="availableMemory" type="{}positiveInt" />
+ *       &lt;attribute name="availableStorage" type="{}positiveInt" />
+ *       &lt;attribute name="maxVNF" type="{}positiveInt" />
+ *       &lt;attribute name="hostname" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -51,23 +51,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hostType", propOrder = {
-    "deployedNode",
-    "availableMemory",
-    "availableStorage",
-    "maxVNF",
-    "hostname"
+    "deployedNode"
 })
 public class HostType {
 
     @XmlElement(name = "deployed-node")
     protected List<HostType.DeployedNode> deployedNode;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "availableMemory")
     protected BigInteger availableMemory;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "availableStorage")
     protected BigInteger availableStorage;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "maxVNF")
     protected BigInteger maxVNF;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "hostname")
     protected String hostname;
 
     /**
@@ -205,7 +201,7 @@ public class HostType {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="node-name" type="{http://www.example.org/nfv}nfvName" />
+     *       &lt;attribute name="node-name" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>

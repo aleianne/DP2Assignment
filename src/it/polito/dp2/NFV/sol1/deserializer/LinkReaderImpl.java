@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import it.polito.dp2.NFV.LinkReader;
 import it.polito.dp2.NFV.NodeReader;
@@ -7,10 +7,10 @@ import it.polito.dp2.NFV.sol1.jaxb.*;
 class LinkReaderImpl implements LinkReader {
 	
 	private LinkType linkElement;
-	private XMLreferenceMapper refTable;
+	private XmlReferenceMap refTable;
 	private NodeType parentNode;
 	
-	protected LinkReaderImpl(LinkType link, XMLreferenceMapper refTable, NodeType node) {
+	protected LinkReaderImpl(LinkType link, XmlReferenceMap refTable, NodeType node) {
 		this.linkElement = link;
 		this.refTable = refTable;
 		this.parentNode = node;

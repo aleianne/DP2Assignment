@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +10,9 @@ import it.polito.dp2.NFV.sol1.jaxb.HostType;
 import it.polito.dp2.NFV.sol1.jaxb.NFV;
 import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
+import it.polito.dp2.NFV.sol1.serializer.StringPair;
 
-class XMLreferenceMapper {
+class XmlReferenceMap {
 
 	// HashMaps declaration
 	private Map<String, NodeType> nodeMap = new HashMap<String, NodeType> ();
@@ -26,7 +27,7 @@ class XMLreferenceMapper {
 	// NFV reference
 	private NFV newNFV;
 	
-	protected XMLreferenceMapper(NFV newNFV) {
+	protected XmlReferenceMap(NFV newNFV) {
 		this.newNFV = newNFV;									// get the NFV unmarshalled object and create a reference table
 		
 		// load the data in the hashMaps
@@ -34,45 +35,27 @@ class XMLreferenceMapper {
 		loadHost();
 		loadVNF();
 		loadConnection();
-		
-		// hashMap assertions
-		assert nodeMap.isEmpty() : "node map is empty";
-		assert VNFmap.isEmpty() : "VNF map is empty";
-		assert nffgMap.isEmpty() : "nffg map is empty";
-		assert hostMap.isEmpty() : "host map is empty";
-		assert connMap.isEmpty() : "connection map is empty";
 	}
 	
-	// method for the node search inside the hashmap
 	protected NodeType getNode(String nodeName) {					
 		return nodeMap.get(nodeName);
 	}
 	
-	// method for the nffg search inside the hashmap
 	protected NffgType getGraph(String graphName) {					
 		return nffgMap.get(graphName);
 	}
 	
-	// method for the VNF search inside the hashmap
 	protected FunctionType getVNF(String functionName) {			
 		return VNFmap.get(functionName);
 	}
 	
-	// method for the host search inside the hasmap
 	protected HostType getHost(String hostName) {					
 		return hostMap.get(hostName);
 	}
 	
-	// method for the connection searh inside the hashmap
 	protected ConnectionType getConnection(String hostname1, String hostname2) {	
 		StringPair hostPair = new StringPair(hostname1, hostname2);
 		return connMap.get(hostPair);
-	}
-	
-	// return the null if not exist a pair nodeName graphname inside the HashMap
-	protected NodeType getNodeInsideNffg(String nodeName, String graphName) {
-		StringPair nodeNffgPair = new StringPair(nodeName, graphName);
-		return nodeNffgMap.get(nodeNffgPair);
 	}
 	
 	private void loadNffg() {											// this method load nodes and nffgs

@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -26,12 +26,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="link" type="{http://www.example.org/nfv}linkType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="link" type="{}linkType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="VNF" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="hostname" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="nf-fg" use="required" type="{http://www.example.org/nfv}nfvName" />
+ *       &lt;attribute name="name" use="required" type="{}node-name" />
+ *       &lt;attribute name="VNF" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="hostname" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="nf-fg" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>

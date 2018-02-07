@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.01.16 alle 06:15:27 PM CET 
+// Generato il: 2018.02.07 alle 08:09:28 PM CET 
 //
 
 
@@ -11,7 +11,7 @@ package it.polito.dp2.NFV.sol1.jaxb;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -24,10 +24,12 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="connectionType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="hostname1" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="hostname2" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="latency" type="{}positiveInt" />
- *       &lt;attribute name="throughput" type="{}throughput-type" />
+ *       &lt;sequence>
+ *         &lt;element name="hostname1" type="{http://www.example.org/nfv}nfvName"/>
+ *         &lt;element name="hostname2" type="{http://www.example.org/nfv}nfvName"/>
+ *         &lt;element name="latency" type="{http://www.example.org/nfv}positiveInt"/>
+ *         &lt;element name="throughput" type="{http://www.example.org/nfv}throughputType"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,17 +38,21 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "connectionType")
+@XmlType(name = "connectionType", propOrder = {
+    "hostname1",
+    "hostname2",
+    "latency",
+    "throughput"
+})
 public class ConnectionType {
 
-    @XmlAttribute(name = "hostname1")
+    @XmlElement(required = true)
     protected String hostname1;
-    @XmlAttribute(name = "hostname2")
+    @XmlElement(required = true)
     protected String hostname2;
-    @XmlAttribute(name = "latency")
+    @XmlElement(required = true)
     protected BigInteger latency;
-    @XmlAttribute(name = "throughput")
-    protected Float throughput;
+    protected float throughput;
 
     /**
      * Recupera il valore della proprietà hostname1.
@@ -123,24 +129,16 @@ public class ConnectionType {
     /**
      * Recupera il valore della proprietà throughput.
      * 
-     * @return
-     *     possible object is
-     *     {@link Float }
-     *     
      */
-    public Float getThroughput() {
+    public float getThroughput() {
         return throughput;
     }
 
     /**
      * Imposta il valore della proprietà throughput.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Float }
-     *     
      */
-    public void setThroughput(Float value) {
+    public void setThroughput(float value) {
         this.throughput = value;
     }
 

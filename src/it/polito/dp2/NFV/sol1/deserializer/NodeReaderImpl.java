@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,22 +10,18 @@ import it.polito.dp2.NFV.NamedEntityReader;
 import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NodeReader;
 import it.polito.dp2.NFV.VNFTypeReader;
-
 import it.polito.dp2.NFV.sol1.jaxb.*;
 
 public class NodeReaderImpl implements NodeReader {
 	
-	private XMLreferenceMapper refTable;
+	private XmlReferenceMap refTable;
 	private NodeType nodeElement;
 	private List<LinkType> linkList;
 	private Set<LinkReader> linkSet;
 	
-	protected NodeReaderImpl(NodeType node, XMLreferenceMapper refTable) {
+	protected NodeReaderImpl(NodeType node, XmlReferenceMap refTable) {
 		this.refTable = refTable;
 		this.nodeElement = node;
-		
-		// assert that the reference table is not null
-		//assert (refTable == null) : "the reference table is null";
 	}
 
 	@Override

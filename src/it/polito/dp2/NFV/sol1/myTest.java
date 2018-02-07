@@ -6,6 +6,7 @@ import it.polito.dp2.NFV.FactoryConfigurationError;
 import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NfvReader;
 import it.polito.dp2.NFV.NfvReaderException;
+import it.polito.dp2.NFV.sol1.deserializer.NfvReaderFactory;
 
 public class myTest {
 	

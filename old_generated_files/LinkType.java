@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -11,7 +11,7 @@ package it.polito.dp2.NFV.sol1.jaxb;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -24,13 +24,11 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="linkType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="link-name" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="destinationNode" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="sourceNode" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="latency" type="{http://www.example.org/nfv}positiveInt" minOccurs="0"/>
- *         &lt;element name="throughput" type="{http://www.example.org/nfv}throughputType" minOccurs="0"/>
- *       &lt;/sequence>
+ *       &lt;attribute name="link-name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="destinationNode" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="sourceNode" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="latency" type="{}positiveInt" />
+ *       &lt;attribute name="throughput" type="{}throughput-type" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,22 +37,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "linkType", propOrder = {
-    "linkName",
-    "destinationNode",
-    "sourceNode",
-    "latency",
-    "throughput"
-})
+@XmlType(name = "linkType")
 public class LinkType {
 
-    @XmlElement(name = "link-name", required = true)
+    @XmlAttribute(name = "link-name", required = true)
     protected String linkName;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "destinationNode", required = true)
     protected String destinationNode;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "sourceNode", required = true)
     protected String sourceNode;
+    @XmlAttribute(name = "latency")
     protected BigInteger latency;
+    @XmlAttribute(name = "throughput")
     protected Float throughput;
 
     /**

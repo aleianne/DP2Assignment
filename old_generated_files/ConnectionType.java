@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -11,26 +11,23 @@ package it.polito.dp2.NFV.sol1.jaxb;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java per linkType complex type.
+ * <p>Classe Java per connectionType complex type.
  * 
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * 
  * <pre>
- * &lt;complexType name="linkType">
+ * &lt;complexType name="connectionType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="link-name" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="destinationNode" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="sourceNode" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="latency" type="{http://www.example.org/nfv}positiveInt" minOccurs="0"/>
- *         &lt;element name="throughput" type="{http://www.example.org/nfv}throughputType" minOccurs="0"/>
- *       &lt;/sequence>
+ *       &lt;attribute name="hostname1" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="hostname2" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="latency" type="{}positiveInt" />
+ *       &lt;attribute name="throughput" type="{}throughput-type" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,94 +36,64 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "linkType", propOrder = {
-    "linkName",
-    "destinationNode",
-    "sourceNode",
-    "latency",
-    "throughput"
-})
-public class LinkType {
+@XmlType(name = "connectionType")
+public class ConnectionType {
 
-    @XmlElement(name = "link-name", required = true)
-    protected String linkName;
-    @XmlElement(required = true)
-    protected String destinationNode;
-    @XmlElement(required = true)
-    protected String sourceNode;
+    @XmlAttribute(name = "hostname1")
+    protected String hostname1;
+    @XmlAttribute(name = "hostname2")
+    protected String hostname2;
+    @XmlAttribute(name = "latency")
     protected BigInteger latency;
+    @XmlAttribute(name = "throughput")
     protected Float throughput;
 
     /**
-     * Recupera il valore della proprietà linkName.
+     * Recupera il valore della proprietà hostname1.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLinkName() {
-        return linkName;
+    public String getHostname1() {
+        return hostname1;
     }
 
     /**
-     * Imposta il valore della proprietà linkName.
+     * Imposta il valore della proprietà hostname1.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLinkName(String value) {
-        this.linkName = value;
+    public void setHostname1(String value) {
+        this.hostname1 = value;
     }
 
     /**
-     * Recupera il valore della proprietà destinationNode.
+     * Recupera il valore della proprietà hostname2.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getDestinationNode() {
-        return destinationNode;
+    public String getHostname2() {
+        return hostname2;
     }
 
     /**
-     * Imposta il valore della proprietà destinationNode.
+     * Imposta il valore della proprietà hostname2.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setDestinationNode(String value) {
-        this.destinationNode = value;
-    }
-
-    /**
-     * Recupera il valore della proprietà sourceNode.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSourceNode() {
-        return sourceNode;
-    }
-
-    /**
-     * Imposta il valore della proprietà sourceNode.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSourceNode(String value) {
-        this.sourceNode = value;
+    public void setHostname2(String value) {
+        this.hostname2 = value;
     }
 
     /**

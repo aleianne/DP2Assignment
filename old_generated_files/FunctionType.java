@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.01.16 alle 06:15:27 PM CET 
 //
 
 
@@ -11,8 +11,7 @@ package it.polito.dp2.NFV.sol1.jaxb;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -25,12 +24,10 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="functionType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="type" type="{http://www.example.org/nfv}function_enumeration"/>
- *         &lt;element name="requiredStorage" type="{http://www.example.org/nfv}positiveInt"/>
- *         &lt;element name="requiredMemory" type="{http://www.example.org/nfv}positiveInt"/>
- *       &lt;/sequence>
+ *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" use="required" type="{}function_enumeration" />
+ *       &lt;attribute name="requiredStorage" type="{}positiveInt" />
+ *       &lt;attribute name="requiredMemory" type="{}positiveInt" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,22 +36,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "functionType", propOrder = {
-    "name",
-    "type",
-    "requiredStorage",
-    "requiredMemory"
-})
+@XmlType(name = "functionType")
 public class FunctionType {
 
-    @XmlElement(required = true)
+    @XmlAttribute(name = "name", required = true)
     protected String name;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "string")
+    @XmlAttribute(name = "type", required = true)
     protected FunctionEnumeration type;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "requiredStorage")
     protected BigInteger requiredStorage;
-    @XmlElement(required = true)
+    @XmlAttribute(name = "requiredMemory")
     protected BigInteger requiredMemory;
 
     /**

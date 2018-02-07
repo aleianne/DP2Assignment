@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1;
+package it.polito.dp2.NFV.sol1.deserializer;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,10 +12,15 @@ import it.polito.dp2.NFV.sol1.jaxb.NodeType;
 class HostReaderImpl implements HostReader {
 	
 	private HostType host;
-	private XMLreferenceMapper refTable;
+	private XmlReferenceMap refTable;
+	private Set<NodeReader> nodeReaderSet;
 
-	protected HostReaderImpl(HostType host, XMLreferenceMapper refTable) {
-		System.out.println("host " + host.getHostname());
+	protected HostReaderImpl(HostType host, XmlReferenceMap refTable) {
+		System.out.println("create interfacefor host: " + host.getHostname());
+		
+		// declare the node reader set 
+		Set<NodeReader> nodeReaderSet = new HashSet<NodeReader> ();
+		
 		this.host = host;
 		this.refTable = refTable;
 	}
@@ -42,21 +47,18 @@ class HostReaderImpl implements HostReader {
 
 	@Override
 	public Set<NodeReader> getNodes() {
-		Set<NodeReader> nodeReaderSet = new HashSet<NodeReader> ();
+		
+		// used for multiple calls optimization, in order to not recompute the set at every invocation
+		if(!nodeReaderSet.isEmpty()) {
+			return nodeReaderSet;
+		}
+		
 		List<HostType.DeployedNode> deployedNodeList = host.getDeployedNode();
 		
-		for (HostType.DeployedNode dpn: deployedNodeList) {
-			NodeType node = refTable.getNode(dpn.getNodeName());					// get the referenced node using an hash table
-			
-			System.out.println("i'm h" + dpn.getNodeName());
-			
-			if(refTable == null) 
-				System.out.println("ref table null");
-			
-			if(node == null) 
-				System.out.println("nodo nullo");
-
-			
+		// create the nodeReader interface set
+		for(HostType.DeployedNode dpn: deployedNodeList) {
+			// get the referenced node using an hash table
+			NodeType node = refTable.getNode(dpn.getNodeName());					
 			NodeReaderImpl nodeReader = new NodeReaderImpl(node, refTable);
 			nodeReaderSet.add(nodeReader);
 		}
