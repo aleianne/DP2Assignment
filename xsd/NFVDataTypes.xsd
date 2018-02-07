@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.example.org/nfv"
+	xmlns:nfv="http://www.example.org/nfv"
+	elementFormDefault="qualified">
+	
+	<!-- declaration of the catalog element -->
+	
+	<xsd:complexType name="functionType">
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="type" type="nfv:function_enumeration" use="required"/>
+		<xsd:attribute name="requiredStorage" type="nfv:positiveInt"/>
+		<xsd:attribute name="requiredMemory" type="nfv:positiveInt"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="catalogType">
+		<xsd:sequence>
+			<xsd:element name="function" type="nfv:functionType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="function_enumeration">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="VPN"></xsd:enumeration>
+			<xsd:enumeration value="WEB_SERVER"></xsd:enumeration>
+			<xsd:enumeration value="WEB_CLIENT"></xsd:enumeration>
+			<xsd:enumeration value="SPAM"></xsd:enumeration>
+			<xsd:enumeration value="NAT"></xsd:enumeration>
+			<xsd:enumeration value="MAIL_SERVER"></xsd:enumeration>
+			<xsd:enumeration value="MAIL_CLIENT"></xsd:enumeration>
+			<xsd:enumeration value="FW"></xsd:enumeration>
+			<xsd:enumeration value="DPI"></xsd:enumeration>
+			<xsd:enumeration value="CACHE"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!--  declaration of the NF-FG graph and his element -->
+	
+	<xsd:complexType name="nffgType">
+		<xsd:sequence>
+			<xsd:element name="node" type="nfv:nodeType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="deploy-time" type="xsd:dateTime"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="nodeType">
+		<xsd:sequence>
+			<xsd:element name="link" type="nfv:linkType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="nfv:nodeName" use="required"/>
+		<xsd:attribute name="VNF" type="xsd:string" use="required"/>
+		<xsd:attribute name="hostname" type="xsd:string" use="required"/>
+		<xsd:attribute name="nf-fg" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="linkType">
+		<xsd:attribute name="link-name" type="xsd:string" use="required"/>
+		<xsd:attribute name="destinationNode" type="xsd:string" use="required"/>
+		<xsd:attribute name="sourceNode" type="xsd:string" use="required"/>
+		<xsd:attribute name="latency" type="nfv:positiveInt" use="optional"/>
+		<xsd:attribute name="throughput" type="nfv:throughputType" use="optional"/>
+	</xsd:complexType>
+	
+	<!--  declaration of infrastructure node model and his element -->
+	<xsd:complexType name="infrastructureType">
+		<xsd:sequence>
+			<xsd:element name="hosts">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="host" type="nfv:hostType" maxOccurs="unbounded">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="connections">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name ="connection" type="nfv:connectionType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="hostType">
+		<xsd:sequence>
+			<xsd:element name="deployed-node" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="node-name" type="xsd:string"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="availableMemory" type="nfv:positiveInt"/>
+		<xsd:attribute name="availableStorage" type="nfv:positiveInt"/>
+		<xsd:attribute name="maxVNF" type="nfv:positiveInt"/>
+		<xsd:attribute name="hostname" type="xsd:string"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="connectionType">
+		<xsd:attribute name="hostname1" type="xsd:string"/>
+		<xsd:attribute name="hostname2" type="xsd:string"/>
+		<xsd:attribute name="latency" type="nfv:positiveInt"/>
+		<xsd:attribute name="throughput" type="nfv:throughputType"/>
+	</xsd:complexType>
+	
+	
+	<!-- declaration of the throughput type -->
+	<xsd:simpleType name="throughputType">
+		<xsd:restriction base="xsd:float">
+			<xsd:minInclusive value="0.0"/>
+			<xsd:pattern value="\d+\.[0-9]+"/>
+		</xsd:restriction>	
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="positiveInt">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="nodeName">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Z][a-zA-Z0-9]*"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+</xsd:schema>
