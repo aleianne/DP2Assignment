@@ -36,18 +36,18 @@ public class NfvLoader {
 		System.out.println("number of nffg: " + monitor.getNffgs(null).size() + "\n");
 		
 		for (NffgReader nfgr: monitor.getNffgs(null)) {							// for each element in the reader set create a new Nffg XML element
-			NffgGenerator gen = new NffgGenerator(nfgr);
+			NffgLoader gen = new NffgLoader(nfgr);
 			graphs.add(gen.generateGraph());									// add the nffg XML element into the list of nffg element
 		}
 	}
 	
 	private void mapInfrastructure() {
-		InfrastructureGenerator inf = new InfrastructureGenerator(monitor);
-		newNFV.setInfNet(inf.generateNetwork());
+		InfrastructureLoader infLoader = new InfrastructureLoader(monitor);
+		newNFV.setInfNet(infLoader.generateNetwork());
 	}
 	
 	private void mapCatalog() {
-		newNFV.setCatalog(new NFV.Catalog());													// instantiate a new catalog inside the NFV element
+		//newNFV.setCatalog(new NFV.Catalog());													// instantiate a new catalog inside the NFV element
 		List<FunctionType> functions = newNFV.getCatalog().getFunction();						// get the function list reference							
 		
 		System.out.println("");

@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NodeReader;
+import it.polito.dp2.NFV.sol1.CalendarXMLconverter;
 import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
-import it.polito.dp2.NFV.sol1.serializer.CalendarXMLconverter;
 
 class NffgReaderImpl implements NffgReader {
 	
@@ -33,7 +33,7 @@ class NffgReaderImpl implements NffgReader {
 	
 	@Override
 	public String getName() {
-		return nffgElement.getName();
+		return nffgElement.getNffgName();
 	}
 
 	@Override

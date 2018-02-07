@@ -1,4 +1,4 @@
-package it.polito.dp2.NFV.sol1.serializer;
+package it.polito.dp2.NFV.sol1;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

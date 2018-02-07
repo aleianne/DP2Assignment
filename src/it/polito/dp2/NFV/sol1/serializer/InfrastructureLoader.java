@@ -11,7 +11,7 @@ import it.polito.dp2.NFV.*;
 class InfrastructureLoader {
 	
 	private NfvReader nfvr;
-	private InfNetType infrastructure;
+	private InfrastructureType infrastructure;
 	private ObjectFactory objFactory;
 	private List<HostType> hostList;
 	private List<ConnectionType> ConnList;
@@ -24,11 +24,11 @@ class InfrastructureLoader {
 	// instantiate a new infrastructure network for the XML serialization
 	protected InfrastructureType generateNetwork() {
 		
-		infrastructure = objFactory.createInfNetType();							// create a new inf net instance
+		infrastructure = objFactory.createInfrastructureType();							// create a new inf net instance
 		Set<HostReader> hostSet = nfvr.getHosts();				
 		
-		infrastructure.setHostGroup(new InfNetType.HostGroup());				// instantiate the hostGroup attribute inside InfNet
-		hostList = infrastructure.getHostGroup().getHost();						// get the host list reference used for insert new host element
+		infrastructure.setHosts(new InfrastructureType.Hosts());				// instantiate the hostGroup attribute inside InfNet
+		hostList = infrastructure.getHosts().getHost();						// get the host list reference used for insert new host element
 		
 		System.out.println("begin to load the infrastructure network information");
 		
@@ -45,7 +45,7 @@ class InfrastructureLoader {
 			hostList.add(newHost);												// finally add the host element into the list of host 
 		}
 		
-		infrastructure.setConnections(new InfNetType.Connections());			// instantiate the connections attribute inside InfNet
+		infrastructure.setConnections(new InfrastructureType.Connections());			// instantiate the connections attribute inside InfNet
 		ConnList = infrastructure.getConnections().getConnection();				// get the list of connection reference 
 		
  		getConnectionPerformance(hostSet);
@@ -73,7 +73,6 @@ class InfrastructureLoader {
 	
 	// insert into the connection list all the performances between two hosts 
 	private void getConnectionPerformance(Set<HostReader> hrSet) {
-		
 		ConnectionPerformanceReader connPerf;							
 		
 		for(HostReader outer_host: hrSet) {												// for all the host check the connection performance reader 					

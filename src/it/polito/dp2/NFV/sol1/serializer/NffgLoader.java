@@ -6,50 +6,54 @@ import java.util.Set;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import it.polito.dp2.NFV.*;
+import it.polito.dp2.NFV.sol1.CalendarXMLconverter;
 import it.polito.dp2.NFV.sol1.jaxb.*;
 
-public class NffgGenerator {
+public class NffgLoader {
 	
 	private NffgReader nfgr;
-	private NffgType graph;
+	private NffgType nffgGraph;
 	private ObjectFactory objFactory;
 	
-	protected NffgGenerator(NffgReader nfgr) {
+	protected NffgLoader(NffgReader nfgr) {
 		this.nfgr = nfgr;
 		objFactory = new ObjectFactory();
 	}
 	
-	// generate an XML tree that contain the information about the nffg graph read from the nfv interface
+	// generate an XML tree that contain the information about the nffg nffgGraph read from the nfv interface
 	protected NffgType generateGraph() {
 		
-		graph = objFactory.createNffgType();				// create a new nffg instance				
+		nffgGraph = objFactory.createNffgType();				// create a new nffg instance				
 		
-		// if the XML file doesn't contain any deployed graph return null in order to not create graph elements
-		if (nodeSet.isEmpty()) {
-			System.out.println("XMlL file doesn't containt any deployed graph...");
+		// if the XML file doesn't contain any deployed nffgGraph return null in order to not create nffgGraph elements
+		/*if (nodeSet.isEmpty()) {
+			System.out.println("XML file doesn't containt any deployed nffgGraph...");
 			return null;
-		}	
+		}	*/
 		
-		System.out.println("begin to create " + nfgr.getName() + " graph element");
+		System.out.println("begin to create " + nfgr.getName() + " nffg element");
 		
 		// set Nffg element attribute
 		try {
-			graph.setName(nfgr.getName());																	
-			graph.setDeployTime(CalendarXMLconverter.toXMLGregorianCalendar(nfgr.getDeployTime()));			
+			nffgGraph.setNffgName(nfgr.getName());																	
+			nffgGraph.setDeployTime(CalendarXMLconverter.toXMLGregorianCalendar(nfgr.getDeployTime()));			
 		} catch (DatatypeConfigurationException de) {
 			System.out.println("the date cannot be converted into XML gregorian calendar");
-			graph.setDeployTime(null);
+			nffgGraph.setDeployTime(null);
 		}
 		
-		// update the graph with the list of the node
+		// update the nffgGraph with the list of the node
 		Set<NodeReader> nodeSet = nfgr.getNodes();	
+		if(nodeSet.isEmpty()) 
+			return nffgGraph;
+					
 		for(NodeReader nr: nodeSet) {					
 			System.out.println("begin to read " + nr.getName() + " node information");
-			graph.getNode().add(generateNode(nr));				
+			nffgGraph.getNode().add(generateNode(nr));				
 		}
 		
-		System.out.println("graph loaded correcly!\n");
-		return graph;
+		System.out.println("nffg loaded correcly!\n");
+		return nffgGraph;
 	}
 	
 	// generate a node element instance, it contains link elements that connect this node with other nodes

@@ -58,19 +58,17 @@ class XmlReferenceMap {
 		return connMap.get(hostPair);
 	}
 	
-	private void loadNffg() {											// this method load nodes and nffgs
+	private void loadNffg() {											
 		List<NffgType> graphList = newNFV.getNfFg();					// get the list of nffg and load it into the hashMap
 		
 		for (NffgType nffgElement: graphList) {
-			nffgMap.put(nffgElement.getName(), nffgElement);			// put all the nffg element into the hashmap
-			
-			// begin to load the node
+			nffgMap.put(nffgElement.getNffgName(), nffgElement);			// put all the nffg element into the hashmap
 			loadNode(nffgElement);										
 		}
 	}
 	
 	private void loadHost() {
-		List<HostType> hostList = newNFV.getInfNet().getHostGroup().getHost();		// get the list of host 
+		List<HostType> hostList = newNFV.getInfNet().getHosts().getHost();		// get the list of host 
 		
 		// load the hostList into the the hashMap
 		for (HostType hostElement: hostList) {																
@@ -78,15 +76,13 @@ class XmlReferenceMap {
 		}
 	}
 	
-	private void loadNode(NffgType graph) {
-		List<NodeType> nodeList = graph.getNode();					// get the list of node and load it into the hashMap
+	private void loadNode(NffgType newNffg) {
+		List<NodeType> nodeList = newNffg.getNode();					// get the list of node and load it into the hashMap
 		
 		for (NodeType nodeElement: nodeList) {
 			// insert the single node inside the map 
 			nodeMap.put(nodeElement.getName(), nodeElement);
-			
-			// insert the node graph pair inside the map
-			StringPair node_nffg = new StringPair(nodeElement.getName(), graph.getName());
+			StringPair node_nffg = new StringPair(nodeElement.getName(), newNffg.getNffgName());
 			nodeNffgMap.put(node_nffg, nodeElement);
 		}
 	}

@@ -14,8 +14,8 @@ import it.polito.dp2.NFV.HostReader;
 import it.polito.dp2.NFV.NffgReader;
 import it.polito.dp2.NFV.NfvReader;
 import it.polito.dp2.NFV.VNFTypeReader;
+import it.polito.dp2.NFV.sol1.CalendarXMLconverter;
 import it.polito.dp2.NFV.sol1.jaxb.*;
-import it.polito.dp2.NFV.sol1.serializer.CalendarXMLconverter;
 
 public class NfvReaderImpl implements NfvReader {
 	
@@ -78,7 +78,7 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public Set<HostReader> getHosts() {
-		hostList = newNfv.getInfNet().getHostGroup().getHost();										// get the list of host contained into the Infrastructure network
+		hostList = newNfv.getInfNet().getHosts().getHost();										// get the list of host contained into the Infrastructure network
 		hostSet  = new HashSet<HostReader> ();														// set declaration, it contains all the interface for host info reading
 		
 		

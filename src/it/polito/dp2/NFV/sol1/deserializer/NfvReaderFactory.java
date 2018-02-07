@@ -13,7 +13,7 @@ public class NfvReaderFactory extends it.polito.dp2.NFV.NfvReaderFactory {
 	
 	@Override
 	public NfvReader newNfvReader() throws NfvReaderException {
-		XMLMapper um = new XMLMapper();			// unmarshall the XML file
+		NfvInfoDeserializer um = new NfvInfoDeserializer();			// unmarshall the XML file
 		NFV nfv;	
 		
 		if((nfv = um.getNFVobject()) == null) 
@@ -21,7 +21,6 @@ public class NfvReaderFactory extends it.polito.dp2.NFV.NfvReaderFactory {
 		
 		refTable = new XmlReferenceMap(nfv);				// create a reference table starting from the instance of the XML tree
 		NfvReaderImpl nr = new NfvReaderImpl(nfv, refTable);	
-			
 		return nr;
 	}
 
