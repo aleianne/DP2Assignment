@@ -9,14 +9,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 public class CalendarXMLconverter {
 
-	protected static Calendar fromXMLGregorianCalendar(XMLGregorianCalendar xc)
+	public static Calendar fromXMLGregorianCalendar(XMLGregorianCalendar xc)
 			 throws DatatypeConfigurationException {
 		 Calendar c = Calendar.getInstance();
 		 c.setTimeInMillis(xc.toGregorianCalendar().getTimeInMillis());
 		 return c;
 	 }
 
-	protected static XMLGregorianCalendar toXMLGregorianCalendar(Calendar c)
+	public static XMLGregorianCalendar toXMLGregorianCalendar(Calendar c)
 			 throws DatatypeConfigurationException {
 		 GregorianCalendar gc = new GregorianCalendar();
 		 gc.setTimeInMillis(c.getTimeInMillis());

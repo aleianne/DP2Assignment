@@ -22,14 +22,7 @@ public class NffgLoader {
 	
 	// generate an XML tree that contain the information about the nffg nffgGraph read from the nfv interface
 	protected NffgType generateGraph() {
-		
 		nffgGraph = objFactory.createNffgType();				// create a new nffg instance				
-		
-		// if the XML file doesn't contain any deployed nffgGraph return null in order to not create nffgGraph elements
-		/*if (nodeSet.isEmpty()) {
-			System.out.println("XML file doesn't containt any deployed nffgGraph...");
-			return null;
-		}	*/
 		
 		System.out.println("begin to create " + nfgr.getName() + " nffg element");
 		

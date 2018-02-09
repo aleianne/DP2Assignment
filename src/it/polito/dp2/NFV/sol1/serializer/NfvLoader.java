@@ -31,13 +31,14 @@ public class NfvLoader {
 	
 	// create the instances of the nffg element contained into the NFV reader interface
 	private void mapGraphs() {
-		List<NffgType> graphs = newNFV.getNfFg();								// get the reference of the Nffg list containded inside NFV
+		newNFV.setNffgList(new NFV.NffgList());
+		List<NffgType> nfvGraphList = newNFV.getNffgList().getNffg();								// get the reference of the Nffg list containded inside NFV
 				
 		System.out.println("number of nffg: " + monitor.getNffgs(null).size() + "\n");
 		
-		for (NffgReader nfgr: monitor.getNffgs(null)) {							// for each element in the reader set create a new Nffg XML element
+		for (NffgReader nfgr: monitor.getNffgs(null)) {								// for each element in the reader set create a new Nffg XML element
 			NffgLoader gen = new NffgLoader(nfgr);
-			graphs.add(gen.generateGraph());									// add the nffg XML element into the list of nffg element
+			nfvGraphList.add(gen.generateGraph());									// add the nffg XML element into the list of nffg element
 		}
 	}
 	
@@ -47,10 +48,10 @@ public class NfvLoader {
 	}
 	
 	private void mapCatalog() {
-		//newNFV.setCatalog(new NFV.Catalog());													// instantiate a new catalog inside the NFV element
+		newNFV.setCatalog(new CatalogType());
 		List<FunctionType> functions = newNFV.getCatalog().getFunction();						// get the function list reference							
 		
-		System.out.println("");
+		System.out.println("load the Virtual function...");
 		
 		for (VNFTypeReader vtr: monitor.getVNFCatalog()) {
 			FunctionType newVNF = new FunctionType();											// create a new VNF element
@@ -62,6 +63,7 @@ public class NfvLoader {
 			newVNF.setType(FunctionEnumeration.fromValue(vtr.getFunctionalType().value()));
 			functions.add(newVNF);
 		}
+		System.out.println("function loaded correclty!\n");
 	}
 	
 	public NFV getNFV() {
@@ -69,7 +71,7 @@ public class NfvLoader {
 		mapGraphs();
 		mapInfrastructure();
 		mapCatalog();
-		System.out.println("*** DP2-NFV info loaded correctly! ***\n");
+		System.out.println("*** DP2-NFV info loaded correctly! ***\n");	
 		return newNFV;
 	}
 	

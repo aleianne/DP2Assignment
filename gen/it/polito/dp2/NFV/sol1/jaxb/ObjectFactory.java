@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.07 alle 08:09:28 PM CET 
+// Generato il: 2018.02.09 alle 01:35:19 PM CET 
 //
 
 
@@ -37,6 +37,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NFV }
+     * 
+     */
+    public NFV createNFV() {
+        return new NFV();
+    }
+
+    /**
      * Create an instance of {@link HostType }
      * 
      */
@@ -53,14 +61,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link NFV }
-     * 
-     */
-    public NFV createNFV() {
-        return new NFV();
-    }
-
-    /**
      * Create an instance of {@link CatalogType }
      * 
      */
@@ -69,11 +69,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NFV.NffgList }
+     * 
+     */
+    public NFV.NffgList createNFVNffgList() {
+        return new NFV.NffgList();
+    }
+
+    /**
+     * Create an instance of {@link NodeType }
+     * 
+     */
+    public NodeType createNodeType() {
+        return new NodeType();
+    }
+
+    /**
      * Create an instance of {@link NffgType }
      * 
      */
     public NffgType createNffgType() {
         return new NffgType();
+    }
+
+    /**
+     * Create an instance of {@link ConnectionType }
+     * 
+     */
+    public ConnectionType createConnectionType() {
+        return new ConnectionType();
     }
 
     /**
@@ -93,27 +117,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link NodeType }
+     * Create an instance of {@link DeployedNodeType }
      * 
      */
-    public NodeType createNodeType() {
-        return new NodeType();
+    public DeployedNodeType createDeployedNodeType() {
+        return new DeployedNodeType();
     }
 
     /**
-     * Create an instance of {@link ConnectionType }
+     * Create an instance of {@link HostType.DeployedNodes }
      * 
      */
-    public ConnectionType createConnectionType() {
-        return new ConnectionType();
-    }
-
-    /**
-     * Create an instance of {@link HostType.DeployedNode }
-     * 
-     */
-    public HostType.DeployedNode createHostTypeDeployedNode() {
-        return new HostType.DeployedNode();
+    public HostType.DeployedNodes createHostTypeDeployedNodes() {
+        return new HostType.DeployedNodes();
     }
 
     /**

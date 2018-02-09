@@ -28,7 +28,7 @@ class InfrastructureLoader {
 		Set<HostReader> hostSet = nfvr.getHosts();				
 		
 		infrastructure.setHosts(new InfrastructureType.Hosts());				// instantiate the hostGroup attribute inside InfNet
-		hostList = infrastructure.getHosts().getHost();						// get the host list reference used for insert new host element
+		hostList = infrastructure.getHosts().getHost();							// get the host list reference used for insert new host element
 		
 		System.out.println("begin to load the infrastructure network information");
 		
@@ -59,15 +59,17 @@ class InfrastructureLoader {
 		Set<NodeReader> nrSet = hr.getNodes();
 		
 		if (nrSet.isEmpty()) {													
-			System.out.println("the deployed-node set of host" + hr.getName() + " is empty");
+			System.out.println("the host " + hr.getName() + " hasn't any node deployed");
 			return;
 		}
 		
+		hostElement.setDeployedNodes(new HostType.DeployedNodes());
+		List<DeployedNodeType> nodeList = hostElement.getDeployedNodes().getNode();
 		// for each node inside the node reader set put into the host element a new deployed node element
 		for (NodeReader node: nrSet) {
-			HostType.DeployedNode dp_node = new HostType.DeployedNode();
-			dp_node.setNodeName(node.getName());
-			hostElement.getDeployedNode().add(dp_node);
+			DeployedNodeType newDeployedNodeElement = objFactory.createDeployedNodeType();
+			newDeployedNodeElement.setNodeName(node.getName());
+			nodeList.add(newDeployedNodeElement);
 		}
 	}
 	

@@ -26,40 +26,37 @@ public class NfvReaderImpl implements NfvReader {
 	private Set<HostReader> hostSet; 
 	private Set<VNFTypeReader> functionSet; 
 	
-	// lists that contain the unmarshelled XML data
-	private List<NffgType> graphList;
-	private List<HostType> hostList;
-	private List<FunctionType> VNFList;
-	
 	// table of reference 
 	private XmlReferenceMap refTable;
 	
 	protected NfvReaderImpl(NFV newNFV, XmlReferenceMap refTable) {
 		this.newNfv = newNFV;
 		this.refTable = refTable;
+		
+		graphSet = new HashSet<NffgReader> ();
+		hostSet = new HashSet<HostReader> ();
+		functionSet = new HashSet<VNFTypeReader> ();
 	}
 
 	@Override
 	public ConnectionPerformanceReader getConnectionPerformance(HostReader arg0, HostReader arg1) {
 		
 		// if the parameter passed are null return null
-		if (arg0 == null || arg1 == null) {
+		if(arg0 == null || arg1 == null) {
 			return null;
 		}
 		
 		ConnectionType connElement = refTable.getConnection(arg0.getName(), arg1.getName());		// get the  connection element
 		ConnectionPerformanceReader cpr = null;														// if no element is found inside the connection return null
 		
-		if (connElement != null) {
+		if(connElement != null) {
 			cpr = new ConnReaderImpl(connElement);
 		}
-	
 		return cpr;																					// return the connection reader interface
 	}
 
 	@Override
 	public HostReader getHost(String arg0) {
-		
 		// check if the argument passed is not null
 		if (arg0 == null) 
 			return null;
@@ -72,17 +69,17 @@ public class NfvReaderImpl implements NfvReader {
 		
 		// create a new host reader interface
 		HostReaderImpl hr = new HostReaderImpl(hostElement, refTable);
-		
 		return hr;																					// if no host object is found, null is returned
 	}
 
 	@Override
 	public Set<HostReader> getHosts() {
-		hostList = newNfv.getInfNet().getHosts().getHost();										// get the list of host contained into the Infrastructure network
-		hostSet  = new HashSet<HostReader> ();														// set declaration, it contains all the interface for host info reading
+		if(!hostSet.isEmpty()) {
+			return hostSet;
+		}
 		
-		
-		for (HostType hostElement: hostList) {
+		List<HostType> hostList = newNfv.getInfNet().getHosts().getHost();							// get the list of host contained into the Infrastructure network	
+		for(HostType hostElement: hostList) {
 			HostReaderImpl hr = new HostReaderImpl(hostElement, refTable);							// declaration of the interface for host info reading
 			hostSet.add(hr);
 		}
@@ -91,12 +88,10 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public NffgReader getNffg(String arg0) {		
-		
 		if (arg0 == null) 
 			return null;
 		
 		NffgType nffgElement = refTable.getGraph(arg0);
-		
 		if (nffgElement == null) 
 			return null;
 		
@@ -106,20 +101,17 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public Set<NffgReader> getNffgs(Calendar arg0) {											
-		graphList = newNfv.getNfFg();																// get the list of graph contained into the NFV element implementation
-		graphSet = new HashSet<NffgReader> ();
+		List<NffgType> graphList = newNfv.getNffgList().getNffg();																// get the list of graph contained into the NFV element implementation
 		
-		if (arg0 == null) {																			// if the argument is null return all nffg contained inside the nfv
-			
-			for (NffgType nffgElement: graphList) {														
+		if(arg0 == null) {																							// if the argument is null return all nffg contained inside the nfv
+			for(NffgType nffgElement: graphList) {														
 				NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
 				graphSet.add(nfgr);
 			}
-			
 		} else {
 		
 			// if a date is specified, get all the nffgs that have been deployed before the date
-			for (NffgType nffgElement: graphList) {
+			for(NffgType nffgElement: graphList) {
 				
 				XMLGregorianCalendar XMLcalendar;
 				
@@ -127,12 +119,12 @@ public class NfvReaderImpl implements NfvReader {
 					
 					XMLcalendar = CalendarXMLconverter.toXMLGregorianCalendar(arg0);						// convert the calendar in gregorian calendar
 					
-					if (nffgElement.getDeployTime().compare(XMLcalendar) ==  DatatypeConstants.GREATER) {	// check if the date is greater or lesser than the graph deploy date
+					if(nffgElement.getDeployTime().compare(XMLcalendar) ==  DatatypeConstants.GREATER) {	// check if the date is greater or lesser than the graph deploy date
 						NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
 						graphSet.add(nfgr);
 					}
 					
-				} catch (DatatypeConfigurationException de) {
+				} catch(DatatypeConfigurationException de) {
 					System.err.print("the date cannot be converted into a XML calendar instance: ");
 					System.err.println(de.getMessage());
 					de.printStackTrace();
@@ -145,14 +137,15 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public Set<VNFTypeReader> getVNFCatalog() {
-		VNFList = newNfv.getCatalog().getFunction();												// get the list of VNF 
-		functionSet = new HashSet<VNFTypeReader> ();												// instantiate a new set that contains the interface for the function reader
+		if(!functionSet.isEmpty()) {
+			return functionSet;
+		}
 		
-		for (FunctionType VNFelement: VNFList) {
+		List<FunctionType> VNFList = newNfv.getCatalog().getFunction();												// get the list of VNF 
+		for(FunctionType VNFelement: VNFList) {
 			VNFTypeReaderImpl vtr = new VNFTypeReaderImpl(VNFelement);								// add the function interface into the set
 			functionSet.add(vtr);
 		}
-		
 		return functionSet;																				
 	}
 

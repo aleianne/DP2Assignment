@@ -12,7 +12,7 @@ import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
 import it.polito.dp2.NFV.sol1.serializer.StringPair;
 
-class XmlReferenceMap {
+public class XmlReferenceMap {
 
 	// HashMaps declaration
 	private Map<String, NodeType> nodeMap = new HashMap<String, NodeType> ();
@@ -59,7 +59,7 @@ class XmlReferenceMap {
 	}
 	
 	private void loadNffg() {											
-		List<NffgType> graphList = newNFV.getNfFg();					// get the list of nffg and load it into the hashMap
+		List<NffgType> graphList = newNFV.getNffgList().getNffg();					// get the list of nffg and load it into the hashMap
 		
 		for (NffgType nffgElement: graphList) {
 			nffgMap.put(nffgElement.getNffgName(), nffgElement);			// put all the nffg element into the hashmap

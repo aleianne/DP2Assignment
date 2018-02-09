@@ -16,12 +16,14 @@ public class NodeReaderImpl implements NodeReader {
 	
 	private XmlReferenceMap refTable;
 	private NodeType nodeElement;
-	private List<LinkType> linkList;
+	
 	private Set<LinkReader> linkSet;
 	
 	protected NodeReaderImpl(NodeType node, XmlReferenceMap refTable) {
 		this.refTable = refTable;
 		this.nodeElement = node;
+		
+		linkSet = new HashSet<LinkReader> ();
 	}
 
 	@Override
@@ -45,21 +47,22 @@ public class NodeReaderImpl implements NodeReader {
 
 	@Override
 	public Set<LinkReader> getLinks() {
-		linkList = nodeElement.getLink();											// get the list of link inside the nodeElement passed as parameter
-		linkSet = new HashSet<LinkReader> ();										// create  new set
+		// multiple call optimization
+		if(!linkSet.isEmpty()) {
+			return linkSet;
+		}
 		
-		for (LinkType linkElement: linkList) {										// for each element in the list create a new link reader implementation
+		List<LinkType> linkList = nodeElement.getLink();											// get the list of link inside the nodeElement passed as parameter		
+		for (LinkType linkElement: linkList) {														// for each element in the list create a new link reader implementation
 			LinkReaderImpl lr = new LinkReaderImpl(linkElement, refTable, nodeElement);
 			linkSet.add(lr);
 		}
-		
 		return linkSet;
 	}
 
 	@Override
 	public NffgReader getNffg() {
 		NffgType nffgElement = refTable.getGraph(nodeElement.getNfFg());			// get the nffg node using the reference table
-		
 		NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement, refTable);			// set the nffg reader interface
 		return nfgr;
 	}

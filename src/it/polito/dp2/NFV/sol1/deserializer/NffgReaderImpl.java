@@ -16,7 +16,7 @@ import it.polito.dp2.NFV.sol1.CalendarXMLconverter;
 import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
 
-class NffgReaderImpl implements NffgReader {
+public class NffgReaderImpl implements NffgReader {
 	
 	private XmlReferenceMap refTable;
 	private NffgType nffgElement;
@@ -28,7 +28,7 @@ class NffgReaderImpl implements NffgReader {
 		this.nffgElement = nffg;
 		this.refTable = refTable;
 		
-		Set<NodeReader> nodeReaderSet = new HashSet<NodeReader> ();
+		nodeReaderSet = new HashSet<NodeReader> ();
 	}
 	
 	@Override
@@ -67,7 +67,6 @@ class NffgReaderImpl implements NffgReader {
 
 	@Override
 	public Set<NodeReader> getNodes() {
-		
 		if(!nodeReaderSet.isEmpty()) 										// return the set, if is already filled, in order to optimize successive invokation of the method
 			return nodeReaderSet;
 		

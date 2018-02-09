@@ -4,7 +4,7 @@ import it.polito.dp2.NFV.LinkReader;
 import it.polito.dp2.NFV.NodeReader;
 import it.polito.dp2.NFV.sol1.jaxb.*;
 
-class LinkReaderImpl implements LinkReader {
+public class LinkReaderImpl implements LinkReader {
 	
 	private LinkType linkElement;
 	private XmlReferenceMap refTable;

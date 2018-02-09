@@ -1,10 +1,11 @@
-package it.polito.dp2.NFV.sol1.serializer;
+package it.polito.dp2.NFV.sol1;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -14,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 import javax.xml.bind.ValidationEventLocator;
+import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -21,6 +23,7 @@ import javax.xml.validation.SchemaFactory;
 import org.xml.sax.SAXException;
 
 import it.polito.dp2.NFV.NfvReaderException;
+import it.polito.dp2.NFV.sol1.serializer.NfvLoader;
 
 public class NfvInfoSerializer {
 
@@ -37,27 +40,26 @@ public class NfvInfoSerializer {
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 			
-			try(FileInputStream xmlSchema1 = new FileInputStream("xsd" + File.separator + "nfvInfo.xsd"); 
-					FileInputStream xmlSchema2 = new FileInputStream("xsd" + File.separator + "nfvDataTypes.xsd")) {
+			/*try(FileInputStream xmlSchema1 = new FileInputStream("xsd/nfvInfo.xsd"); 
+					FileInputStream xmlSchema2 = new FileInputStream("xsd/nfvDataTypes.xsd")) {*/
+			try(FileInputStream xmlSchema = new FileInputStream("xsd/nfvInfo.xsd")) {
 				
 				// create a new schema
-				schema = schemaFactory.newSchema(new StreamSource[] { new StreamSource(xmlSchema1), new StreamSource(xmlSchema2)});
-				
+				//schema = schemaFactory.newSchema(new Source[] {new StreamSource(xmlSchema2), new StreamSource(xmlSchema1)});
+				schema = schemaFactory.newSchema(new StreamSource(xmlSchema));
 				m.setSchema(schema);			
-				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);					
-			} catch(SAXException se) {
-				System.err.println("");
-				se.printStackTrace();
-			} catch(FileNotFoundException fne) {
-				System.err.println("the schema file, used for the validation, are not found");
-				fne.printStackTrace();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);		
+				
+			} catch(SAXException | FileNotFoundException e) {
+				System.err.println(e.getMessage());
+				e.printStackTrace();
 			}
 			
 			NfvLoader nfvLoader = new NfvLoader();												// generate the NFV object
 			m.marshal(nfvLoader.getNFV(), xmlFileStream);										// marshall the data into the xml file
 			
 		} catch(NfvReaderException nre) {															
-			System.err.println("impossible to read the data from the interface: ");
+			System.err.println("impossible to read data from the interface: ");
 			System.err.print(nre.getMessage());
 			nre.printStackTrace();
 			System.exit(1);

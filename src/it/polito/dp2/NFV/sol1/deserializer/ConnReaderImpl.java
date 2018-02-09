@@ -3,7 +3,7 @@ package it.polito.dp2.NFV.sol1.deserializer;
 import it.polito.dp2.NFV.ConnectionPerformanceReader;
 import it.polito.dp2.NFV.sol1.jaxb.ConnectionType;
 
-class ConnReaderImpl implements ConnectionPerformanceReader{
+public class ConnReaderImpl implements ConnectionPerformanceReader{
 
 	private ConnectionType conn;
 	
