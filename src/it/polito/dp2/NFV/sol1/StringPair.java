@@ -1,5 +1,4 @@
-package it.polito.dp2.NFV.sol1.serializer;
-
+package it.polito.dp2.NFV.sol1;
 
 // this class is used to create an object with two keys for the hashmap lookup
 public class StringPair{

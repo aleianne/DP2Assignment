@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polito.dp2.NFV.sol1.StringPair;
 import it.polito.dp2.NFV.sol1.jaxb.ConnectionType;
 import it.polito.dp2.NFV.sol1.jaxb.FunctionType;
 import it.polito.dp2.NFV.sol1.jaxb.HostType;
 import it.polito.dp2.NFV.sol1.jaxb.NFV;
 import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
-import it.polito.dp2.NFV.sol1.serializer.StringPair;
 
 public class XmlReferenceMap {
 
@@ -59,27 +59,27 @@ public class XmlReferenceMap {
 	}
 	
 	private void loadNffg() {											
-		List<NffgType> graphList = newNFV.getNffgList().getNffg();					// get the list of nffg and load it into the hashMap
+		List<NffgType> graphElementList = newNFV.getNffgList().getNffg();					// get the list of nffg and load it into the hashMap
 		
-		for (NffgType nffgElement: graphList) {
+		for (NffgType nffgElement: graphElementList) {
 			nffgMap.put(nffgElement.getNffgName(), nffgElement);			// put all the nffg element into the hashmap
 			loadNode(nffgElement);										
 		}
 	}
 	
 	private void loadHost() {
-		List<HostType> hostList = newNFV.getInfNet().getHosts().getHost();		// get the list of host 
+		List<HostType> hostElementList = newNFV.getInfNet().getHosts().getHost();		// get the list of host 
 		
 		// load the hostList into the the hashMap
-		for (HostType hostElement: hostList) {																
+		for (HostType hostElement: hostElementList) {																
 			hostMap.put(hostElement.getHostname(), hostElement);					// put the element into the hashmap
 		}
 	}
 	
 	private void loadNode(NffgType newNffg) {
-		List<NodeType> nodeList = newNffg.getNode();					// get the list of node and load it into the hashMap
+		List<NodeType> nodeElementList = newNffg.getNode();					// get the list of node and load it into the hashMap
 		
-		for (NodeType nodeElement: nodeList) {
+		for (NodeType nodeElement: nodeElementList) {
 			// insert the single node inside the map 
 			nodeMap.put(nodeElement.getName(), nodeElement);
 			StringPair node_nffg = new StringPair(nodeElement.getName(), newNffg.getNffgName());
@@ -88,21 +88,21 @@ public class XmlReferenceMap {
 	}
 	
 	private void loadVNF() {
-		List<FunctionType> functionList = newNFV.getCatalog().getFunction();		// get the list of function 
+		List<FunctionType> functionElementList = newNFV.getCatalog().getFunction();		// get the list of function 
 		
 		// load the function List into the hashMap
-		for (FunctionType f: functionList) {
-			VNFmap.put(f.getName(), f);
+		for (FunctionType functionElement: functionElementList) {
+			VNFmap.put(functionElement.getName(), functionElement);
 		}
 	}
 	
 	private void loadConnection() {
-		List<ConnectionType> connList = newNFV.getInfNet().getConnections().getConnection();
+		List<ConnectionType> connectionElementList = newNFV.getInfNet().getConnections().getConnection();
 		
 		// load the connection performance into the hashmap
-		for (ConnectionType c: connList) {
-			StringPair hostPair = new StringPair(c.getHostname1(), c.getHostname2());
-			connMap.put(hostPair, c);
+		for (ConnectionType connectionElement: connectionElementList) {
+			StringPair hostPair = new StringPair(connectionElement.getHostname1(), connectionElement.getHostname2());
+			connMap.put(hostPair, connectionElement);
 		}
 		
 	}

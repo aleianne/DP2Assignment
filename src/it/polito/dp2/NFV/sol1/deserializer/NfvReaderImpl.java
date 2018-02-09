@@ -39,14 +39,13 @@ public class NfvReaderImpl implements NfvReader {
 	}
 
 	@Override
-	public ConnectionPerformanceReader getConnectionPerformance(HostReader arg0, HostReader arg1) {
-		
+	public ConnectionPerformanceReader getConnectionPerformance(HostReader host1, HostReader host2) {
 		// if the parameter passed are null return null
-		if(arg0 == null || arg1 == null) {
+		if(host1 == null || host2 == null) {
 			return null;
 		}
 		
-		ConnectionType connElement = refTable.getConnection(arg0.getName(), arg1.getName());		// get the  connection element
+		ConnectionType connElement = refTable.getConnection(host1.getName(), host2.getName());		// get the  connection element
 		ConnectionPerformanceReader cpr = null;														// if no element is found inside the connection return null
 		
 		if(connElement != null) {
@@ -56,12 +55,12 @@ public class NfvReaderImpl implements NfvReader {
 	}
 
 	@Override
-	public HostReader getHost(String arg0) {
+	public HostReader getHost(String hostName) {
 		// check if the argument passed is not null
-		if (arg0 == null) 
+		if (hostName == null) 
 			return null;
 		
-		HostType hostElement = refTable.getHost(arg0);	
+		HostType hostElement = refTable.getHost(hostName);	
 		
 		// chek if the element exist or not
 		if (hostElement == null) 
@@ -87,11 +86,11 @@ public class NfvReaderImpl implements NfvReader {
 	}
 
 	@Override
-	public NffgReader getNffg(String arg0) {		
-		if (arg0 == null) 
+	public NffgReader getNffg(String nffgName) {		
+		if (nffgName == null) 
 			return null;
 		
-		NffgType nffgElement = refTable.getGraph(arg0);
+		NffgType nffgElement = refTable.getGraph(nffgName);
 		if (nffgElement == null) 
 			return null;
 		
@@ -100,10 +99,10 @@ public class NfvReaderImpl implements NfvReader {
 	}
 
 	@Override
-	public Set<NffgReader> getNffgs(Calendar arg0) {											
+	public Set<NffgReader> getNffgs(Calendar date) {											
 		List<NffgType> graphList = newNfv.getNffgList().getNffg();																// get the list of graph contained into the NFV element implementation
 		
-		if(arg0 == null) {																							// if the argument is null return all nffg contained inside the nfv
+		if(date == null) {																							// if the argument is null return all nffg contained inside the nfv
 			for(NffgType nffgElement: graphList) {														
 				NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
 				graphSet.add(nfgr);
@@ -116,14 +115,11 @@ public class NfvReaderImpl implements NfvReader {
 				XMLGregorianCalendar XMLcalendar;
 				
 				try {
-					
-					XMLcalendar = CalendarXMLconverter.toXMLGregorianCalendar(arg0);						// convert the calendar in gregorian calendar
-					
+					XMLcalendar = CalendarXMLconverter.toXMLGregorianCalendar(date);						// convert the calendar in gregorian calendar
 					if(nffgElement.getDeployTime().compare(XMLcalendar) ==  DatatypeConstants.GREATER) {	// check if the date is greater or lesser than the graph deploy date
 						NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
 						graphSet.add(nfgr);
 					}
-					
 				} catch(DatatypeConfigurationException de) {
 					System.err.print("the date cannot be converted into a XML calendar instance: ");
 					System.err.println(de.getMessage());
@@ -131,7 +127,6 @@ public class NfvReaderImpl implements NfvReader {
 				}
 			}
 		}
-		
 		return graphSet;
 	}
 
@@ -141,9 +136,9 @@ public class NfvReaderImpl implements NfvReader {
 			return functionSet;
 		}
 		
-		List<FunctionType> VNFList = newNfv.getCatalog().getFunction();												// get the list of VNF 
-		for(FunctionType VNFelement: VNFList) {
-			VNFTypeReaderImpl vtr = new VNFTypeReaderImpl(VNFelement);								// add the function interface into the set
+		List<FunctionType> VNFElementList = newNfv.getCatalog().getFunction();												// get the list of VNF 
+		for(FunctionType VNFelement: VNFElementList) {
+			VNFTypeReaderImpl vtr = new VNFTypeReaderImpl(VNFelement);														// add the function interface into the set
 			functionSet.add(vtr);
 		}
 		return functionSet;																				

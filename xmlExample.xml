@@ -4,537 +4,599 @@
         <function>
             <name>MAILCLIENTt</name>
             <type>MAIL_CLIENT</type>
-            <requiredStorage>570</requiredStorage>
-            <requiredMemory>12</requiredMemory>
+            <requiredStorage>440</requiredStorage>
+            <requiredMemory>97</requiredMemory>
         </function>
         <function>
             <name>WEBCLIENTt</name>
             <type>WEB_CLIENT</type>
-            <requiredStorage>50</requiredStorage>
-            <requiredMemory>93</requiredMemory>
+            <requiredStorage>510</requiredStorage>
+            <requiredMemory>79</requiredMemory>
         </function>
         <function>
             <name>MAILSERVERt</name>
             <type>MAIL_SERVER</type>
-            <requiredStorage>8200</requiredStorage>
-            <requiredMemory>910</requiredMemory>
+            <requiredStorage>7900</requiredStorage>
+            <requiredMemory>930</requiredMemory>
         </function>
         <function>
             <name>WEBSERVERt</name>
             <type>WEB_SERVER</type>
-            <requiredStorage>9300</requiredStorage>
-            <requiredMemory>430</requiredMemory>
+            <requiredStorage>2500</requiredStorage>
+            <requiredMemory>20</requiredMemory>
         </function>
         <function>
-            <name>DPIa</name>
-            <type>DPI</type>
-            <requiredStorage>810</requiredStorage>
-            <requiredMemory>18</requiredMemory>
-        </function>
-        <function>
-            <name>CACHEb</name>
-            <type>CACHE</type>
-            <requiredStorage>360</requiredStorage>
-            <requiredMemory>29</requiredMemory>
-        </function>
-        <function>
-            <name>CACHEc</name>
-            <type>CACHE</type>
-            <requiredStorage>830</requiredStorage>
-            <requiredMemory>79</requiredMemory>
-        </function>
-        <function>
-            <name>CACHEd</name>
-            <type>CACHE</type>
-            <requiredStorage>850</requiredStorage>
-            <requiredMemory>38</requiredMemory>
-        </function>
-        <function>
-            <name>NATe</name>
-            <type>NAT</type>
-            <requiredStorage>490</requiredStorage>
+            <name>FWa</name>
+            <type>FW</type>
+            <requiredStorage>620</requiredStorage>
             <requiredMemory>64</requiredMemory>
+        </function>
+        <function>
+            <name>FWb</name>
+            <type>FW</type>
+            <requiredStorage>650</requiredStorage>
+            <requiredMemory>80</requiredMemory>
+        </function>
+        <function>
+            <name>FWc</name>
+            <type>FW</type>
+            <requiredStorage>190</requiredStorage>
+            <requiredMemory>52</requiredMemory>
         </function>
     </catalog>
     <nffg-list>
-        <nffg nffg-name="Nffg4" deploy-time="2016-09-29T02:14:20.000+02:00">
-            <node name="CACHEc4Nffg4" VNF="CACHEc" hostname="H3" nf-fg="Nffg4">
-                <link>
-                    <link-name>Link3</link-name>
-                    <destinationNode>MAILSERVERt0Nffg4</destinationNode>
-                    <sourceNode>CACHEc4Nffg4</sourceNode>
-                </link>
-            </node>
-            <node name="WEBCLIENTt0Nffg4" VNF="WEBCLIENTt" hostname="H2" nf-fg="Nffg4">
+        <nffg nffg-name="Nffg4" deploy-time="2016-09-28T13:23:20.000+02:00">
+            <node name="WEBCLIENTt0Nffg4" VNF="WEBCLIENTt" hostname="H6" nf-fg="Nffg4">
                 <link>
                     <link-name>Link0</link-name>
-                    <destinationNode>CACHEd2Nffg4</destinationNode>
-                    <sourceNode>WEBCLIENTt0Nffg4</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link8</link-name>
-                    <destinationNode>CACHEc5Nffg4</destinationNode>
+                    <destinationNode>FWb0Nffg4</destinationNode>
                     <sourceNode>WEBCLIENTt0Nffg4</sourceNode>
                 </link>
             </node>
-            <node name="CACHEc1Nffg4" VNF="CACHEc" hostname="H6" nf-fg="Nffg4">
+            <node name="WEBCLIENTt3Nffg4" VNF="WEBCLIENTt" hostname="H2" nf-fg="Nffg4">
                 <link>
                     <link-name>Link6</link-name>
-                    <destinationNode>WEBCLIENTt0Nffg4</destinationNode>
-                    <sourceNode>CACHEc1Nffg4</sourceNode>
+                    <destinationNode>FWa2Nffg4</destinationNode>
+                    <sourceNode>WEBCLIENTt3Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="MAILSERVERt2Nffg4" VNF="MAILSERVERt" hostname="H6" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link12</link-name>
+                    <destinationNode>FWc3Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt2Nffg4</sourceNode>
                 </link>
                 <link>
-                    <link-name>Link7</link-name>
-                    <destinationNode>CACHEd3Nffg4</destinationNode>
-                    <sourceNode>CACHEc1Nffg4</sourceNode>
+                    <link-name>Link19</link-name>
+                    <destinationNode>FWb0Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt2Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWa4Nffg4" VNF="FWa" hostname="H1" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link11</link-name>
+                    <destinationNode>MAILSERVERt1Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link25</link-name>
+                    <destinationNode>FWb0Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link35</link-name>
+                    <destinationNode>FWb1Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link18</link-name>
+                    <destinationNode>FWb5Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link30</link-name>
+                    <destinationNode>MAILSERVERt3Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
                 </link>
                 <link>
                     <link-name>Link9</link-name>
-                    <destinationNode>CACHEc5Nffg4</destinationNode>
-                    <sourceNode>CACHEc1Nffg4</sourceNode>
+                    <destinationNode>MAILSERVERt0Nffg4</destinationNode>
+                    <sourceNode>FWa4Nffg4</sourceNode>
                 </link>
             </node>
-            <node name="CACHEd3Nffg4" VNF="CACHEd" hostname="H1" nf-fg="Nffg4"/>
-            <node name="CACHEc6Nffg4" VNF="CACHEc" hostname="H4" nf-fg="Nffg4">
+            <node name="WEBCLIENTt1Nffg4" VNF="WEBCLIENTt" hostname="H0" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link2</link-name>
+                    <destinationNode>FWa2Nffg4</destinationNode>
+                    <sourceNode>WEBCLIENTt1Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWb1Nffg4" VNF="FWb" hostname="H2" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link32</link-name>
+                    <destinationNode>FWa4Nffg4</destinationNode>
+                    <sourceNode>FWb1Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link31</link-name>
+                    <destinationNode>MAILSERVERt3Nffg4</destinationNode>
+                    <sourceNode>FWb1Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link27</link-name>
+                    <destinationNode>MAILSERVERt1Nffg4</destinationNode>
+                    <sourceNode>FWb1Nffg4</sourceNode>
+                </link>
                 <link>
                     <link-name>Link5</link-name>
-                    <destinationNode>MAILSERVERt1Nffg4</destinationNode>
-                    <sourceNode>CACHEc6Nffg4</sourceNode>
+                    <destinationNode>WEBCLIENTt2Nffg4</destinationNode>
+                    <sourceNode>FWb1Nffg4</sourceNode>
                 </link>
             </node>
-            <node name="MAILSERVERt1Nffg4" VNF="MAILSERVERt" hostname="H4" nf-fg="Nffg4">
+            <node name="WEBSERVERt4Nffg4" VNF="WEBSERVERt" hostname="H0" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link16</link-name>
+                    <destinationNode>FWb0Nffg4</destinationNode>
+                    <sourceNode>WEBSERVERt4Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="WEBCLIENTt2Nffg4" VNF="WEBCLIENTt" hostname="H1" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link20</link-name>
+                    <destinationNode>FWa4Nffg4</destinationNode>
+                    <sourceNode>WEBCLIENTt2Nffg4</sourceNode>
+                </link>
                 <link>
                     <link-name>Link4</link-name>
-                    <destinationNode>CACHEc6Nffg4</destinationNode>
+                    <destinationNode>FWb1Nffg4</destinationNode>
+                    <sourceNode>WEBCLIENTt2Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="MAILSERVERt1Nffg4" VNF="MAILSERVERt" hostname="H6" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link10</link-name>
+                    <destinationNode>FWa4Nffg4</destinationNode>
                     <sourceNode>MAILSERVERt1Nffg4</sourceNode>
                 </link>
             </node>
-            <node name="CACHEb0Nffg4" VNF="CACHEb" hostname="H5" nf-fg="Nffg4"/>
-            <node name="MAILSERVERt0Nffg4" VNF="MAILSERVERt" hostname="H4" nf-fg="Nffg4">
+            <node name="MAILSERVERt0Nffg4" VNF="MAILSERVERt" hostname="H3" nf-fg="Nffg4">
                 <link>
-                    <link-name>Link2</link-name>
-                    <destinationNode>CACHEc4Nffg4</destinationNode>
+                    <link-name>Link23</link-name>
+                    <destinationNode>FWc3Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt0Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link34</link-name>
+                    <destinationNode>FWb5Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt0Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link8</link-name>
+                    <destinationNode>FWa4Nffg4</destinationNode>
                     <sourceNode>MAILSERVERt0Nffg4</sourceNode>
                 </link>
             </node>
-            <node name="CACHEc5Nffg4" VNF="CACHEc" hostname="H3" nf-fg="Nffg4"/>
-            <node name="CACHEd2Nffg4" VNF="CACHEd" hostname="H1" nf-fg="Nffg4">
+            <node name="MAILSERVERt3Nffg4" VNF="MAILSERVERt" hostname="H6" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link26</link-name>
+                    <destinationNode>FWc3Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt3Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link14</link-name>
+                    <destinationNode>FWb0Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt3Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link24</link-name>
+                    <destinationNode>FWa4Nffg4</destinationNode>
+                    <sourceNode>MAILSERVERt3Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWb5Nffg4" VNF="FWb" hostname="H1" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link21</link-name>
+                    <destinationNode>WEBCLIENTt1Nffg4</destinationNode>
+                    <sourceNode>FWb5Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWc3Nffg4" VNF="FWc" hostname="H1" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link13</link-name>
+                    <destinationNode>MAILSERVERt2Nffg4</destinationNode>
+                    <sourceNode>FWc3Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link29</link-name>
+                    <destinationNode>FWb5Nffg4</destinationNode>
+                    <sourceNode>FWc3Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWb0Nffg4" VNF="FWb" hostname="H1" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link15</link-name>
+                    <destinationNode>MAILSERVERt3Nffg4</destinationNode>
+                    <sourceNode>FWb0Nffg4</sourceNode>
+                </link>
                 <link>
                     <link-name>Link1</link-name>
                     <destinationNode>WEBCLIENTt0Nffg4</destinationNode>
-                    <sourceNode>CACHEd2Nffg4</sourceNode>
+                    <sourceNode>FWb0Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link17</link-name>
+                    <destinationNode>WEBSERVERt4Nffg4</destinationNode>
+                    <sourceNode>FWb0Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link28</link-name>
+                    <destinationNode>WEBCLIENTt3Nffg4</destinationNode>
+                    <sourceNode>FWb0Nffg4</sourceNode>
+                </link>
+            </node>
+            <node name="FWa2Nffg4" VNF="FWa" hostname="H3" nf-fg="Nffg4">
+                <link>
+                    <link-name>Link22</link-name>
+                    <destinationNode>MAILSERVERt0Nffg4</destinationNode>
+                    <sourceNode>FWa2Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link33</link-name>
+                    <destinationNode>MAILSERVERt3Nffg4</destinationNode>
+                    <sourceNode>FWa2Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link3</link-name>
+                    <destinationNode>WEBCLIENTt1Nffg4</destinationNode>
+                    <sourceNode>FWa2Nffg4</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link7</link-name>
+                    <destinationNode>WEBCLIENTt3Nffg4</destinationNode>
+                    <sourceNode>FWa2Nffg4</sourceNode>
                 </link>
             </node>
         </nffg>
-        <nffg nffg-name="Nffg3" deploy-time="2016-09-26T14:19:20.000+02:00">
-            <node name="WEBSERVERt0Nffg3" VNF="WEBSERVERt" hostname="H2" nf-fg="Nffg3">
+        <nffg nffg-name="Nffg3" deploy-time="2016-09-28T00:03:20.000+02:00">
+            <node name="WEBSERVERt0Nffg3" VNF="WEBSERVERt" hostname="H6" nf-fg="Nffg3">
                 <link>
-                    <link-name>Link6</link-name>
-                    <destinationNode>CACHEd0Nffg3</destinationNode>
-                    <sourceNode>WEBSERVERt0Nffg3</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link9</link-name>
-                    <destinationNode>DPIa2Nffg3</destinationNode>
+                    <link-name>Link4</link-name>
+                    <destinationNode>FWa2Nffg3</destinationNode>
                     <sourceNode>WEBSERVERt0Nffg3</sourceNode>
                 </link>
             </node>
-            <node name="DPIa1Nffg3" VNF="DPIa" hostname="H4" nf-fg="Nffg3"/>
-            <node name="DPIa3Nffg3" VNF="DPIa" hostname="H6" nf-fg="Nffg3">
-                <link>
-                    <link-name>Link5</link-name>
-                    <destinationNode>MAILCLIENTt2Nffg3</destinationNode>
-                    <sourceNode>DPIa3Nffg3</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEb4Nffg3" VNF="CACHEb" hostname="H1" nf-fg="Nffg3">
+            <node name="FWb4Nffg3" VNF="FWb" hostname="H3" nf-fg="Nffg3">
                 <link>
                     <link-name>Link3</link-name>
                     <destinationNode>WEBCLIENTt1Nffg3</destinationNode>
-                    <sourceNode>CACHEb4Nffg3</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link8</link-name>
-                    <destinationNode>DPIa1Nffg3</destinationNode>
-                    <sourceNode>CACHEb4Nffg3</sourceNode>
+                    <sourceNode>FWb4Nffg3</sourceNode>
                 </link>
             </node>
-            <node name="CACHEd5Nffg3" VNF="CACHEd" hostname="H1" nf-fg="Nffg3">
-                <link>
-                    <link-name>Link1</link-name>
-                    <destinationNode>MAILCLIENTt0Nffg3</destinationNode>
-                    <sourceNode>CACHEd5Nffg3</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEd0Nffg3" VNF="CACHEd" hostname="H3" nf-fg="Nffg3">
-                <link>
-                    <link-name>Link7</link-name>
-                    <destinationNode>WEBSERVERt0Nffg3</destinationNode>
-                    <sourceNode>CACHEd0Nffg3</sourceNode>
-                </link>
-            </node>
-            <node name="WEBCLIENTt1Nffg3" VNF="WEBCLIENTt" hostname="H0" nf-fg="Nffg3">
+            <node name="FWc1Nffg3" VNF="FWc" hostname="H0" nf-fg="Nffg3"/>
+            <node name="FWb6Nffg3" VNF="FWb" hostname="H6" nf-fg="Nffg3"/>
+            <node name="WEBCLIENTt1Nffg3" VNF="WEBCLIENTt" hostname="H4" nf-fg="Nffg3">
                 <link>
                     <link-name>Link2</link-name>
-                    <destinationNode>CACHEb4Nffg3</destinationNode>
+                    <destinationNode>FWb4Nffg3</destinationNode>
                     <sourceNode>WEBCLIENTt1Nffg3</sourceNode>
                 </link>
             </node>
-            <node name="DPIa2Nffg3" VNF="DPIa" hostname="H5" nf-fg="Nffg3"/>
-            <node name="MAILCLIENTt0Nffg3" VNF="MAILCLIENTt" hostname="H6" nf-fg="Nffg3">
+            <node name="FWb0Nffg3" VNF="FWb" hostname="H6" nf-fg="Nffg3"/>
+            <node name="MAILCLIENTt0Nffg3" VNF="MAILCLIENTt" hostname="H3" nf-fg="Nffg3">
                 <link>
                     <link-name>Link0</link-name>
-                    <destinationNode>CACHEd5Nffg3</destinationNode>
+                    <destinationNode>FWb5Nffg3</destinationNode>
                     <sourceNode>MAILCLIENTt0Nffg3</sourceNode>
                 </link>
             </node>
-            <node name="MAILCLIENTt2Nffg3" VNF="MAILCLIENTt" hostname="H1" nf-fg="Nffg3">
+            <node name="FWb5Nffg3" VNF="FWb" hostname="H6" nf-fg="Nffg3">
                 <link>
-                    <link-name>Link4</link-name>
-                    <destinationNode>DPIa3Nffg3</destinationNode>
-                    <sourceNode>MAILCLIENTt2Nffg3</sourceNode>
+                    <link-name>Link1</link-name>
+                    <destinationNode>MAILCLIENTt0Nffg3</destinationNode>
+                    <sourceNode>FWb5Nffg3</sourceNode>
                 </link>
             </node>
-        </nffg>
-        <nffg nffg-name="Nffg2" deploy-time="2016-09-28T05:45:20.000+02:00">
-            <node name="CACHEc1Nffg2" VNF="CACHEc" hostname="H2" nf-fg="Nffg2">
+            <node name="FWa2Nffg3" VNF="FWa" hostname="H1" nf-fg="Nffg3">
                 <link>
                     <link-name>Link5</link-name>
-                    <destinationNode>WEBCLIENTt2Nffg2</destinationNode>
-                    <sourceNode>CACHEc1Nffg2</sourceNode>
+                    <destinationNode>WEBSERVERt0Nffg3</destinationNode>
+                    <sourceNode>FWa2Nffg3</sourceNode>
                 </link>
                 <link>
-                    <link-name>Link7</link-name>
-                    <destinationNode>MAILSERVERt0Nffg2</destinationNode>
-                    <sourceNode>CACHEc1Nffg2</sourceNode>
+                    <link-name>Link6</link-name>
+                    <destinationNode>FWc3Nffg3</destinationNode>
+                    <sourceNode>FWa2Nffg3</sourceNode>
                 </link>
             </node>
-            <node name="WEBCLIENTt2Nffg2" VNF="WEBCLIENTt" hostname="H6" nf-fg="Nffg2">
+            <node name="FWc3Nffg3" VNF="FWc" hostname="H2" nf-fg="Nffg3"/>
+        </nffg>
+        <nffg nffg-name="Nffg2" deploy-time="2016-09-25T17:36:20.000+02:00">
+            <node name="WEBSERVERt0Nffg2" VNF="WEBSERVERt" hostname="H1" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link12</link-name>
+                    <destinationNode>FWc6Nffg2</destinationNode>
+                    <sourceNode>WEBSERVERt0Nffg2</sourceNode>
+                </link>
                 <link>
                     <link-name>Link4</link-name>
-                    <destinationNode>CACHEc1Nffg2</destinationNode>
-                    <sourceNode>WEBCLIENTt2Nffg2</sourceNode>
+                    <destinationNode>FWa3Nffg2</destinationNode>
+                    <sourceNode>WEBSERVERt0Nffg2</sourceNode>
+                </link>
+            </node>
+            <node name="FWc6Nffg2" VNF="FWc" hostname="H2" nf-fg="Nffg2"/>
+            <node name="FWc1Nffg2" VNF="FWc" hostname="H4" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link8</link-name>
+                    <destinationNode>WEBSERVERt1Nffg2</destinationNode>
+                    <sourceNode>FWc1Nffg2</sourceNode>
                 </link>
                 <link>
                     <link-name>Link9</link-name>
-                    <destinationNode>NATe2Nffg2</destinationNode>
-                    <sourceNode>WEBCLIENTt2Nffg2</sourceNode>
+                    <destinationNode>FWa3Nffg2</destinationNode>
+                    <sourceNode>FWc1Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="WEBCLIENTt1Nffg2" VNF="WEBCLIENTt" hostname="H5" nf-fg="Nffg2">
+            <node name="FWb2Nffg2" VNF="FWb" hostname="H5" nf-fg="Nffg2"/>
+            <node name="MAILCLIENTt1Nffg2" VNF="MAILCLIENTt" hostname="H0" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link13</link-name>
+                    <destinationNode>FWc5Nffg2</destinationNode>
+                    <sourceNode>MAILCLIENTt1Nffg2</sourceNode>
+                </link>
                 <link>
                     <link-name>Link2</link-name>
-                    <destinationNode>CACHEb3Nffg2</destinationNode>
-                    <sourceNode>WEBCLIENTt1Nffg2</sourceNode>
+                    <destinationNode>FWa3Nffg2</destinationNode>
+                    <sourceNode>MAILCLIENTt1Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="CACHEb3Nffg2" VNF="CACHEb" hostname="H4" nf-fg="Nffg2">
+            <node name="FWc5Nffg2" VNF="FWc" hostname="H1" nf-fg="Nffg2"/>
+            <node name="FWb0Nffg2" VNF="FWb" hostname="H3" nf-fg="Nffg2">
                 <link>
-                    <link-name>Link3</link-name>
-                    <destinationNode>WEBCLIENTt1Nffg2</destinationNode>
-                    <sourceNode>CACHEb3Nffg2</sourceNode>
+                    <link-name>Link15</link-name>
+                    <destinationNode>FWc6Nffg2</destinationNode>
+                    <sourceNode>FWb0Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="NATe2Nffg2" VNF="NATe" hostname="H3" nf-fg="Nffg2"/>
-            <node name="MAILSERVERt0Nffg2" VNF="MAILSERVERt" hostname="H0" nf-fg="Nffg2">
+            <node name="FWc4Nffg2" VNF="FWc" hostname="H0" nf-fg="Nffg2">
                 <link>
-                    <link-name>Link6</link-name>
-                    <destinationNode>CACHEc1Nffg2</destinationNode>
-                    <sourceNode>MAILSERVERt0Nffg2</sourceNode>
+                    <link-name>Link7</link-name>
+                    <destinationNode>WEBSERVERt1Nffg2</destinationNode>
+                    <sourceNode>FWc4Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="CACHEc4Nffg2" VNF="CACHEc" hostname="H5" nf-fg="Nffg2">
+            <node name="FWa3Nffg2" VNF="FWa" hostname="H6" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link14</link-name>
+                    <destinationNode>FWc5Nffg2</destinationNode>
+                    <sourceNode>FWa3Nffg2</sourceNode>
+                </link>
                 <link>
                     <link-name>Link1</link-name>
                     <destinationNode>WEBCLIENTt0Nffg2</destinationNode>
-                    <sourceNode>CACHEc4Nffg2</sourceNode>
+                    <sourceNode>FWa3Nffg2</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link3</link-name>
+                    <destinationNode>MAILCLIENTt1Nffg2</destinationNode>
+                    <sourceNode>FWa3Nffg2</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link5</link-name>
+                    <destinationNode>WEBSERVERt0Nffg2</destinationNode>
+                    <sourceNode>FWa3Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="WEBCLIENTt0Nffg2" VNF="WEBCLIENTt" hostname="H4" nf-fg="Nffg2">
+            <node name="WEBSERVERt1Nffg2" VNF="WEBSERVERt" hostname="H2" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link11</link-name>
+                    <destinationNode>FWb2Nffg2</destinationNode>
+                    <sourceNode>WEBSERVERt1Nffg2</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link6</link-name>
+                    <destinationNode>FWc4Nffg2</destinationNode>
+                    <sourceNode>WEBSERVERt1Nffg2</sourceNode>
+                </link>
+            </node>
+            <node name="WEBCLIENTt0Nffg2" VNF="WEBCLIENTt" hostname="H6" nf-fg="Nffg2">
+                <link>
+                    <link-name>Link10</link-name>
+                    <destinationNode>FWc5Nffg2</destinationNode>
+                    <sourceNode>WEBCLIENTt0Nffg2</sourceNode>
+                </link>
                 <link>
                     <link-name>Link0</link-name>
-                    <destinationNode>CACHEc4Nffg2</destinationNode>
-                    <sourceNode>WEBCLIENTt0Nffg2</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link8</link-name>
-                    <destinationNode>CACHEc0Nffg2</destinationNode>
+                    <destinationNode>FWa3Nffg2</destinationNode>
                     <sourceNode>WEBCLIENTt0Nffg2</sourceNode>
                 </link>
             </node>
-            <node name="CACHEc0Nffg2" VNF="CACHEc" hostname="H1" nf-fg="Nffg2"/>
         </nffg>
-        <nffg nffg-name="Nffg1" deploy-time="2016-09-27T15:43:20.000+02:00">
-            <node name="CACHEb1Nffg1" VNF="CACHEb" hostname="H0" nf-fg="Nffg1">
+        <nffg nffg-name="Nffg1" deploy-time="2016-09-28T03:13:20.000+02:00">
+            <node name="WEBCLIENTt2Nffg1" VNF="WEBCLIENTt" hostname="H3" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link4</link-name>
+                    <destinationNode>FWc1Nffg1</destinationNode>
+                    <sourceNode>WEBCLIENTt2Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="MAILSERVERt1Nffg1" VNF="MAILSERVERt" hostname="H0" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link12</link-name>
+                    <destinationNode>FWa4Nffg1</destinationNode>
+                    <sourceNode>MAILSERVERt1Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="FWa2Nffg1" VNF="FWa" hostname="H3" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link9</link-name>
+                    <destinationNode>MAILCLIENTt4Nffg1</destinationNode>
+                    <sourceNode>FWa2Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="WEBSERVERt0Nffg1" VNF="WEBSERVERt" hostname="H6" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link10</link-name>
+                    <destinationNode>FWb3Nffg1</destinationNode>
+                    <sourceNode>WEBSERVERt0Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="FWc0Nffg1" VNF="FWc" hostname="H1" nf-fg="Nffg1">
                 <link>
                     <link-name>Link1</link-name>
-                    <destinationNode>MAILCLIENTt0Nffg1</destinationNode>
-                    <sourceNode>CACHEb1Nffg1</sourceNode>
+                    <destinationNode>WEBCLIENTt0Nffg1</destinationNode>
+                    <sourceNode>FWc0Nffg1</sourceNode>
                 </link>
             </node>
-            <node name="MAILCLIENTt1Nffg1" VNF="MAILCLIENTt" hostname="H1" nf-fg="Nffg1">
+            <node name="FWa4Nffg1" VNF="FWa" hostname="H5" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link13</link-name>
+                    <destinationNode>MAILSERVERt1Nffg1</destinationNode>
+                    <sourceNode>FWa4Nffg1</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link3</link-name>
+                    <destinationNode>MAILCLIENTt1Nffg1</destinationNode>
+                    <sourceNode>FWa4Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="MAILCLIENTt1Nffg1" VNF="MAILCLIENTt" hostname="H2" nf-fg="Nffg1">
                 <link>
                     <link-name>Link2</link-name>
-                    <destinationNode>CACHEb2Nffg1</destinationNode>
+                    <destinationNode>FWa4Nffg1</destinationNode>
                     <sourceNode>MAILCLIENTt1Nffg1</sourceNode>
                 </link>
             </node>
-            <node name="WEBCLIENTt3Nffg1" VNF="WEBCLIENTt" hostname="H3" nf-fg="Nffg1">
+            <node name="WEBCLIENTt3Nffg1" VNF="WEBCLIENTt" hostname="H4" nf-fg="Nffg1">
                 <link>
                     <link-name>Link6</link-name>
-                    <destinationNode>CACHEb0Nffg1</destinationNode>
+                    <destinationNode>FWb3Nffg1</destinationNode>
                     <sourceNode>WEBCLIENTt3Nffg1</sourceNode>
                 </link>
             </node>
-            <node name="CACHEb0Nffg1" VNF="CACHEb" hostname="H6" nf-fg="Nffg1">
+            <node name="FWc1Nffg1" VNF="FWc" hostname="H2" nf-fg="Nffg1">
+                <link>
+                    <link-name>Link14</link-name>
+                    <destinationNode>FWa4Nffg1</destinationNode>
+                    <sourceNode>FWc1Nffg1</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link5</link-name>
+                    <destinationNode>WEBCLIENTt2Nffg1</destinationNode>
+                    <sourceNode>FWc1Nffg1</sourceNode>
+                </link>
+            </node>
+            <node name="FWb3Nffg1" VNF="FWb" hostname="H4" nf-fg="Nffg1">
                 <link>
                     <link-name>Link11</link-name>
-                    <destinationNode>MAILSERVERt0Nffg1</destinationNode>
-                    <sourceNode>CACHEb0Nffg1</sourceNode>
+                    <destinationNode>WEBSERVERt0Nffg1</destinationNode>
+                    <sourceNode>FWb3Nffg1</sourceNode>
                 </link>
                 <link>
                     <link-name>Link7</link-name>
                     <destinationNode>WEBCLIENTt3Nffg1</destinationNode>
-                    <sourceNode>CACHEb0Nffg1</sourceNode>
+                    <sourceNode>FWb3Nffg1</sourceNode>
                 </link>
             </node>
-            <node name="CACHEd4Nffg1" VNF="CACHEd" hostname="H3" nf-fg="Nffg1">
-                <link>
-                    <link-name>Link9</link-name>
-                    <destinationNode>WEBCLIENTt4Nffg1</destinationNode>
-                    <sourceNode>CACHEd4Nffg1</sourceNode>
-                </link>
-            </node>
-            <node name="MAILCLIENTt2Nffg1" VNF="MAILCLIENTt" hostname="H2" nf-fg="Nffg1">
-                <link>
-                    <link-name>Link4</link-name>
-                    <destinationNode>CACHEd3Nffg1</destinationNode>
-                    <sourceNode>MAILCLIENTt2Nffg1</sourceNode>
-                </link>
-            </node>
-            <node name="MAILCLIENTt0Nffg1" VNF="MAILCLIENTt" hostname="H0" nf-fg="Nffg1">
+            <node name="WEBCLIENTt0Nffg1" VNF="WEBCLIENTt" hostname="H1" nf-fg="Nffg1">
                 <link>
                     <link-name>Link0</link-name>
-                    <destinationNode>CACHEb1Nffg1</destinationNode>
-                    <sourceNode>MAILCLIENTt0Nffg1</sourceNode>
+                    <destinationNode>FWc0Nffg1</destinationNode>
+                    <sourceNode>WEBCLIENTt0Nffg1</sourceNode>
                 </link>
             </node>
-            <node name="WEBCLIENTt4Nffg1" VNF="WEBCLIENTt" hostname="H4" nf-fg="Nffg1">
+            <node name="MAILCLIENTt4Nffg1" VNF="MAILCLIENTt" hostname="H5" nf-fg="Nffg1">
                 <link>
                     <link-name>Link8</link-name>
-                    <destinationNode>CACHEd4Nffg1</destinationNode>
-                    <sourceNode>WEBCLIENTt4Nffg1</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEb2Nffg1" VNF="CACHEb" hostname="H1" nf-fg="Nffg1">
-                <link>
-                    <link-name>Link3</link-name>
-                    <destinationNode>MAILCLIENTt1Nffg1</destinationNode>
-                    <sourceNode>CACHEb2Nffg1</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEd3Nffg1" VNF="CACHEd" hostname="H2" nf-fg="Nffg1">
-                <link>
-                    <link-name>Link5</link-name>
-                    <destinationNode>MAILCLIENTt2Nffg1</destinationNode>
-                    <sourceNode>CACHEd3Nffg1</sourceNode>
-                </link>
-            </node>
-            <node name="MAILSERVERt0Nffg1" VNF="MAILSERVERt" hostname="H5" nf-fg="Nffg1">
-                <link>
-                    <link-name>Link10</link-name>
-                    <destinationNode>CACHEb0Nffg1</destinationNode>
-                    <sourceNode>MAILSERVERt0Nffg1</sourceNode>
+                    <destinationNode>FWa2Nffg1</destinationNode>
+                    <sourceNode>MAILCLIENTt4Nffg1</sourceNode>
                 </link>
             </node>
         </nffg>
-        <nffg nffg-name="Nffg5" deploy-time="2016-09-26T15:17:20.000+02:00">
-            <node name="WEBCLIENTt3Nffg5" VNF="WEBCLIENTt" hostname="H3" nf-fg="Nffg5">
+        <nffg nffg-name="Nffg0" deploy-time="2016-09-27T15:49:20.000+02:00">
+            <node name="MAILCLIENTt3Nffg0" VNF="MAILCLIENTt" hostname="H3" nf-fg="Nffg0">
                 <link>
                     <link-name>Link6</link-name>
-                    <destinationNode>CACHEb1Nffg5</destinationNode>
-                    <sourceNode>WEBCLIENTt3Nffg5</sourceNode>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>MAILCLIENTt3Nffg0</sourceNode>
                 </link>
             </node>
-            <node name="WEBSERVERt1Nffg5" VNF="WEBSERVERt" hostname="H4" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link10</link-name>
-                    <destinationNode>CACHEd0Nffg5</destinationNode>
-                    <sourceNode>WEBSERVERt1Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="WEBSERVERt3Nffg5" VNF="WEBSERVERt" hostname="H5" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link14</link-name>
-                    <destinationNode>CACHEb1Nffg5</destinationNode>
-                    <sourceNode>WEBSERVERt3Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEd0Nffg5" VNF="CACHEd" hostname="H3" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link11</link-name>
-                    <destinationNode>WEBSERVERt1Nffg5</destinationNode>
-                    <sourceNode>CACHEd0Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link1</link-name>
-                    <destinationNode>MAILCLIENTt0Nffg5</destinationNode>
-                    <sourceNode>CACHEd0Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link5</link-name>
-                    <destinationNode>MAILCLIENTt2Nffg5</destinationNode>
-                    <sourceNode>CACHEd0Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link17</link-name>
-                    <destinationNode>WEBSERVERt4Nffg5</destinationNode>
-                    <sourceNode>CACHEd0Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link9</link-name>
-                    <destinationNode>WEBSERVERt0Nffg5</destinationNode>
-                    <sourceNode>CACHEd0Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="WEBCLIENTt1Nffg5" VNF="WEBCLIENTt" hostname="H6" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link2</link-name>
-                    <destinationNode>CACHEb1Nffg5</destinationNode>
-                    <sourceNode>WEBCLIENTt1Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="WEBSERVERt2Nffg5" VNF="WEBSERVERt" hostname="H4" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link12</link-name>
-                    <destinationNode>CACHEb1Nffg5</destinationNode>
-                    <sourceNode>WEBSERVERt2Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="CACHEb1Nffg5" VNF="CACHEb" hostname="H3" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link15</link-name>
-                    <destinationNode>WEBSERVERt3Nffg5</destinationNode>
-                    <sourceNode>CACHEb1Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link13</link-name>
-                    <destinationNode>WEBSERVERt2Nffg5</destinationNode>
-                    <sourceNode>CACHEb1Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link3</link-name>
-                    <destinationNode>WEBCLIENTt1Nffg5</destinationNode>
-                    <sourceNode>CACHEb1Nffg5</sourceNode>
-                </link>
-                <link>
-                    <link-name>Link7</link-name>
-                    <destinationNode>WEBCLIENTt3Nffg5</destinationNode>
-                    <sourceNode>CACHEb1Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="MAILCLIENTt0Nffg5" VNF="MAILCLIENTt" hostname="H5" nf-fg="Nffg5">
-                <link>
-                    <link-name>Link0</link-name>
-                    <destinationNode>CACHEd0Nffg5</destinationNode>
-                    <sourceNode>MAILCLIENTt0Nffg5</sourceNode>
-                </link>
-            </node>
-            <node name="MAILCLIENTt2Nffg5" VNF="MAILCLIENTt" hostname="H3" nf-fg="Nffg5">
+            <node name="WEBCLIENTt2Nffg0" VNF="WEBCLIENTt" hostname="H2" nf-fg="Nffg0">
                 <link>
                     <link-name>Link4</link-name>
-                    <destinationNode>CACHEd0Nffg5</destinationNode>
-                    <sourceNode>MAILCLIENTt2Nffg5</sourceNode>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>WEBCLIENTt2Nffg0</sourceNode>
                 </link>
             </node>
-            <node name="WEBSERVERt0Nffg5" VNF="WEBSERVERt" hostname="H4" nf-fg="Nffg5">
+            <node name="WEBSERVERt0Nffg0" VNF="WEBSERVERt" hostname="H4" nf-fg="Nffg0">
                 <link>
                     <link-name>Link8</link-name>
-                    <destinationNode>CACHEd0Nffg5</destinationNode>
-                    <sourceNode>WEBSERVERt0Nffg5</sourceNode>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>WEBSERVERt0Nffg0</sourceNode>
                 </link>
             </node>
-            <node name="WEBSERVERt4Nffg5" VNF="WEBSERVERt" hostname="H6" nf-fg="Nffg5">
+            <node name="MAILCLIENTt1Nffg0" VNF="MAILCLIENTt" hostname="H1" nf-fg="Nffg0">
                 <link>
-                    <link-name>Link16</link-name>
-                    <destinationNode>CACHEd0Nffg5</destinationNode>
-                    <sourceNode>WEBSERVERt4Nffg5</sourceNode>
+                    <link-name>Link2</link-name>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>MAILCLIENTt1Nffg0</sourceNode>
                 </link>
             </node>
-        </nffg>
-        <nffg nffg-name="Nffg0" deploy-time="2016-09-25T20:53:20.000+02:00">
-            <node name="MAILCLIENTt2Nffg0" VNF="MAILCLIENTt" hostname="H2" nf-fg="Nffg0">
+            <node name="WEBSERVERt1Nffg0" VNF="WEBSERVERt" hostname="H5" nf-fg="Nffg0">
                 <link>
-                    <link-name>Link4</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
-                    <sourceNode>MAILCLIENTt2Nffg0</sourceNode>
+                    <link-name>Link10</link-name>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>WEBSERVERt1Nffg0</sourceNode>
                 </link>
             </node>
-            <node name="NATe0Nffg0" VNF="NATe" hostname="H6" nf-fg="Nffg0">
+            <node name="MAILSERVERt2Nffg0" VNF="MAILSERVERt" hostname="H6" nf-fg="Nffg0">
+                <link>
+                    <link-name>Link12</link-name>
+                    <destinationNode>FWa0Nffg0</destinationNode>
+                    <sourceNode>MAILSERVERt2Nffg0</sourceNode>
+                </link>
+            </node>
+            <node name="FWa0Nffg0" VNF="FWa" hostname="H0" nf-fg="Nffg0">
                 <link>
                     <link-name>Link11</link-name>
-                    <destinationNode>MAILSERVERt2Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
+                    <destinationNode>WEBSERVERt1Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
                 <link>
                     <link-name>Link1</link-name>
                     <destinationNode>WEBCLIENTt0Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
+                </link>
+                <link>
+                    <link-name>Link13</link-name>
+                    <destinationNode>MAILSERVERt2Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
                 <link>
                     <link-name>Link3</link-name>
-                    <destinationNode>WEBCLIENTt1Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
+                    <destinationNode>MAILCLIENTt1Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
                 <link>
                     <link-name>Link5</link-name>
-                    <destinationNode>MAILCLIENTt2Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
+                    <destinationNode>WEBCLIENTt2Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
                 <link>
                     <link-name>Link7</link-name>
-                    <destinationNode>MAILSERVERt0Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
+                    <destinationNode>MAILCLIENTt3Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
                 <link>
                     <link-name>Link9</link-name>
-                    <destinationNode>WEBSERVERt1Nffg0</destinationNode>
-                    <sourceNode>NATe0Nffg0</sourceNode>
-                </link>
-            </node>
-            <node name="WEBSERVERt1Nffg0" VNF="WEBSERVERt" hostname="H4" nf-fg="Nffg0">
-                <link>
-                    <link-name>Link8</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
-                    <sourceNode>WEBSERVERt1Nffg0</sourceNode>
-                </link>
-            </node>
-            <node name="MAILSERVERt2Nffg0" VNF="MAILSERVERt" hostname="H5" nf-fg="Nffg0">
-                <link>
-                    <link-name>Link10</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
-                    <sourceNode>MAILSERVERt2Nffg0</sourceNode>
-                </link>
-            </node>
-            <node name="MAILSERVERt0Nffg0" VNF="MAILSERVERt" hostname="H3" nf-fg="Nffg0">
-                <link>
-                    <link-name>Link6</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
-                    <sourceNode>MAILSERVERt0Nffg0</sourceNode>
+                    <destinationNode>WEBSERVERt0Nffg0</destinationNode>
+                    <sourceNode>FWa0Nffg0</sourceNode>
                 </link>
             </node>
             <node name="WEBCLIENTt0Nffg0" VNF="WEBCLIENTt" hostname="H0" nf-fg="Nffg0">
                 <link>
                     <link-name>Link0</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
+                    <destinationNode>FWa0Nffg0</destinationNode>
                     <sourceNode>WEBCLIENTt0Nffg0</sourceNode>
-                </link>
-            </node>
-            <node name="WEBCLIENTt1Nffg0" VNF="WEBCLIENTt" hostname="H1" nf-fg="Nffg0">
-                <link>
-                    <link-name>Link2</link-name>
-                    <destinationNode>NATe0Nffg0</destinationNode>
-                    <sourceNode>WEBCLIENTt1Nffg0</sourceNode>
                 </link>
             </node>
         </nffg>
@@ -542,103 +604,227 @@
     <inf-net>
         <hosts>
             <host>
-                <deployed-node node-name="CACHEb1Nffg1"/>
-                <deployed-node node-name="WEBCLIENTt1Nffg3"/>
-                <deployed-node node-name="WEBCLIENTt0Nffg0"/>
-                <deployed-node node-name="MAILCLIENTt0Nffg1"/>
-                <deployed-node node-name="MAILSERVERt0Nffg2"/>
-                <availableMemory>4700</availableMemory>
-                <availableStorage>43000</availableStorage>
-                <maxVNF>5</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>MAILSERVERt1Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc1Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILCLIENTt1Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt1Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa0Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc4Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt0Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBSERVERt4Nffg4</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>3000</availableMemory>
+                <availableStorage>47000</availableStorage>
+                <maxVNF>8</maxVNF>
                 <hostname>H0</hostname>
             </host>
             <host>
-                <deployed-node node-name="CACHEd3Nffg4"/>
-                <deployed-node node-name="CACHEb4Nffg3"/>
-                <deployed-node node-name="CACHEd5Nffg3"/>
-                <deployed-node node-name="MAILCLIENTt1Nffg1"/>
-                <deployed-node node-name="MAILCLIENTt2Nffg3"/>
-                <deployed-node node-name="WEBCLIENTt1Nffg0"/>
-                <deployed-node node-name="CACHEb2Nffg1"/>
-                <deployed-node node-name="CACHEd2Nffg4"/>
-                <deployed-node node-name="CACHEc0Nffg2"/>
-                <availableMemory>5600</availableMemory>
-                <availableStorage>38000</availableStorage>
-                <maxVNF>9</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>MAILCLIENTt1Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc5Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa4Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBSERVERt0Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc0Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt2Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt0Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb5Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc3Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa2Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb0Nffg4</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>1900</availableMemory>
+                <availableStorage>17000</availableStorage>
+                <maxVNF>19</maxVNF>
                 <hostname>H1</hostname>
             </host>
             <host>
-                <deployed-node node-name="WEBSERVERt0Nffg3"/>
-                <deployed-node node-name="WEBCLIENTt0Nffg4"/>
-                <deployed-node node-name="CACHEc1Nffg2"/>
-                <deployed-node node-name="MAILCLIENTt2Nffg0"/>
-                <deployed-node node-name="MAILCLIENTt2Nffg1"/>
-                <deployed-node node-name="CACHEd3Nffg1"/>
-                <availableMemory>4700</availableMemory>
-                <availableStorage>73000</availableStorage>
-                <maxVNF>6</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>WEBCLIENTt2Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt3Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc6Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILCLIENTt1Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc1Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb1Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBSERVERt1Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc3Nffg3</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>4400</availableMemory>
+                <availableStorage>94000</availableStorage>
+                <maxVNF>11</maxVNF>
                 <hostname>H2</hostname>
             </host>
             <host>
-                <deployed-node node-name="WEBCLIENTt3Nffg5"/>
-                <deployed-node node-name="WEBCLIENTt3Nffg1"/>
-                <deployed-node node-name="CACHEd0Nffg5"/>
-                <deployed-node node-name="CACHEd0Nffg3"/>
-                <deployed-node node-name="CACHEc5Nffg4"/>
-                <deployed-node node-name="NATe2Nffg2"/>
-                <deployed-node node-name="MAILCLIENTt2Nffg5"/>
-                <deployed-node node-name="CACHEc4Nffg4"/>
-                <deployed-node node-name="CACHEd4Nffg1"/>
-                <deployed-node node-name="CACHEb1Nffg5"/>
-                <deployed-node node-name="MAILSERVERt0Nffg0"/>
-                <availableMemory>2200</availableMemory>
-                <availableStorage>16000</availableStorage>
-                <maxVNF>19</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>MAILCLIENTt3Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt2Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa2Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb4Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb0Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILSERVERt0Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILCLIENTt0Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa2Nffg4</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>1900</availableMemory>
+                <availableStorage>30000</availableStorage>
+                <maxVNF>15</maxVNF>
                 <hostname>H3</hostname>
             </host>
             <host>
-                <deployed-node node-name="DPIa1Nffg3"/>
-                <deployed-node node-name="WEBSERVERt1Nffg5"/>
-                <deployed-node node-name="CACHEc6Nffg4"/>
-                <deployed-node node-name="WEBSERVERt2Nffg5"/>
-                <deployed-node node-name="WEBSERVERt1Nffg0"/>
-                <deployed-node node-name="WEBCLIENTt4Nffg1"/>
-                <deployed-node node-name="MAILSERVERt1Nffg4"/>
-                <deployed-node node-name="MAILSERVERt0Nffg4"/>
-                <deployed-node node-name="CACHEb3Nffg2"/>
-                <deployed-node node-name="WEBCLIENTt0Nffg2"/>
-                <deployed-node node-name="WEBSERVERt0Nffg5"/>
-                <availableMemory>5000</availableMemory>
-                <availableStorage>99000</availableStorage>
-                <maxVNF>18</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>WEBSERVERt0Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWc1Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt3Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb3Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt1Nffg3</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>9900</availableMemory>
+                <availableStorage>62000</availableStorage>
+                <maxVNF>5</maxVNF>
                 <hostname>H4</hostname>
             </host>
             <host>
-                <deployed-node node-name="WEBSERVERt3Nffg5"/>
-                <deployed-node node-name="CACHEb0Nffg4"/>
-                <deployed-node node-name="DPIa2Nffg3"/>
-                <deployed-node node-name="MAILSERVERt2Nffg0"/>
-                <deployed-node node-name="MAILCLIENTt0Nffg5"/>
-                <deployed-node node-name="WEBCLIENTt1Nffg2"/>
-                <deployed-node node-name="CACHEc4Nffg2"/>
-                <deployed-node node-name="MAILSERVERt0Nffg1"/>
-                <availableMemory>6300</availableMemory>
-                <availableStorage>67000</availableStorage>
-                <maxVNF>12</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>FWa4Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb2Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBSERVERt1Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILCLIENTt4Nffg1</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>4500</availableMemory>
+                <availableStorage>73000</availableStorage>
+                <maxVNF>4</maxVNF>
                 <hostname>H5</hostname>
             </host>
             <host>
-                <deployed-node node-name="CACHEc1Nffg4"/>
-                <deployed-node node-name="DPIa3Nffg3"/>
-                <deployed-node node-name="CACHEb0Nffg1"/>
-                <deployed-node node-name="WEBCLIENTt1Nffg5"/>
-                <deployed-node node-name="NATe0Nffg0"/>
-                <deployed-node node-name="WEBCLIENTt2Nffg2"/>
-                <deployed-node node-name="MAILCLIENTt0Nffg3"/>
-                <deployed-node node-name="WEBSERVERt4Nffg5"/>
-                <availableMemory>4000</availableMemory>
-                <availableStorage>86000</availableStorage>
-                <maxVNF>13</maxVNF>
+                <deployed-nodes>
+                    <node>
+                        <node-name>WEBSERVERt0Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt0Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBSERVERt0Nffg1</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb6Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILSERVERt1Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILSERVERt2Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILSERVERt2Nffg0</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb0Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>MAILSERVERt3Nffg4</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWa3Nffg2</node-name>
+                    </node>
+                    <node>
+                        <node-name>FWb5Nffg3</node-name>
+                    </node>
+                    <node>
+                        <node-name>WEBCLIENTt0Nffg2</node-name>
+                    </node>
+                </deployed-nodes>
+                <availableMemory>7700</availableMemory>
+                <availableStorage>90000</availableStorage>
+                <maxVNF>12</maxVNF>
                 <hostname>H6</hostname>
             </host>
         </hosts>
@@ -647,295 +833,295 @@
                 <hostname1>H0</hostname1>
                 <hostname2>H0</hostname2>
                 <latency>0</latency>
-                <throughput>37.82</throughput>
+                <throughput>47.6</throughput>
             </connection>
             <connection>
                 <hostname1>H0</hostname1>
                 <hostname2>H1</hostname2>
-                <latency>66</latency>
-                <throughput>62.4</throughput>
+                <latency>49</latency>
+                <throughput>79.68</throughput>
             </connection>
             <connection>
                 <hostname1>H0</hostname1>
                 <hostname2>H2</hostname2>
-                <latency>32</latency>
-                <throughput>13.98</throughput>
+                <latency>83</latency>
+                <throughput>4.94</throughput>
             </connection>
             <connection>
                 <hostname1>H0</hostname1>
                 <hostname2>H3</hostname2>
+                <latency>65</latency>
+                <throughput>17.16</throughput>
+            </connection>
+            <connection>
+                <hostname1>H0</hostname1>
+                <hostname2>H4</hostname2>
+                <latency>49</latency>
+                <throughput>58.23</throughput>
+            </connection>
+            <connection>
+                <hostname1>H0</hostname1>
+                <hostname2>H5</hostname2>
+                <latency>40</latency>
+                <throughput>16.43</throughput>
+            </connection>
+            <connection>
+                <hostname1>H0</hostname1>
+                <hostname2>H6</hostname2>
+                <latency>65</latency>
+                <throughput>85.12</throughput>
+            </connection>
+            <connection>
+                <hostname1>H1</hostname1>
+                <hostname2>H0</hostname2>
+                <latency>49</latency>
+                <throughput>59.33</throughput>
+            </connection>
+            <connection>
+                <hostname1>H1</hostname1>
+                <hostname2>H1</hostname2>
+                <latency>0</latency>
+                <throughput>22.87</throughput>
+            </connection>
+            <connection>
+                <hostname1>H1</hostname1>
+                <hostname2>H2</hostname2>
+                <latency>95</latency>
+                <throughput>23.83</throughput>
+            </connection>
+            <connection>
+                <hostname1>H1</hostname1>
+                <hostname2>H3</hostname2>
+                <latency>41</latency>
+                <throughput>15.32</throughput>
+            </connection>
+            <connection>
+                <hostname1>H1</hostname1>
+                <hostname2>H4</hostname2>
                 <latency>81</latency>
-                <throughput>87.93</throughput>
-            </connection>
-            <connection>
-                <hostname1>H0</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>59</latency>
-                <throughput>69.49</throughput>
-            </connection>
-            <connection>
-                <hostname1>H0</hostname1>
-                <hostname2>H5</hostname2>
-                <latency>53</latency>
-                <throughput>45.02</throughput>
-            </connection>
-            <connection>
-                <hostname1>H0</hostname1>
-                <hostname2>H6</hostname2>
-                <latency>52</latency>
-                <throughput>80.52</throughput>
-            </connection>
-            <connection>
-                <hostname1>H1</hostname1>
-                <hostname2>H0</hostname2>
-                <latency>66</latency>
-                <throughput>0.49</throughput>
-            </connection>
-            <connection>
-                <hostname1>H1</hostname1>
-                <hostname2>H1</hostname2>
-                <latency>0</latency>
-                <throughput>0.5</throughput>
-            </connection>
-            <connection>
-                <hostname1>H1</hostname1>
-                <hostname2>H2</hostname2>
-                <latency>38</latency>
-                <throughput>85.23</throughput>
-            </connection>
-            <connection>
-                <hostname1>H1</hostname1>
-                <hostname2>H3</hostname2>
-                <latency>42</latency>
-                <throughput>52.31</throughput>
-            </connection>
-            <connection>
-                <hostname1>H1</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>28</latency>
-                <throughput>2.34</throughput>
+                <throughput>66.33</throughput>
             </connection>
             <connection>
                 <hostname1>H1</hostname1>
                 <hostname2>H5</hostname2>
-                <latency>79</latency>
-                <throughput>74.4</throughput>
+                <latency>17</latency>
+                <throughput>96.39</throughput>
             </connection>
             <connection>
                 <hostname1>H1</hostname1>
                 <hostname2>H6</hostname2>
-                <latency>21</latency>
-                <throughput>70.5</throughput>
+                <latency>80</latency>
+                <throughput>62.84</throughput>
             </connection>
             <connection>
                 <hostname1>H2</hostname1>
                 <hostname2>H0</hostname2>
+                <latency>83</latency>
+                <throughput>23.26</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H1</hostname2>
+                <latency>95</latency>
+                <throughput>68.66</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H2</hostname2>
+                <latency>0</latency>
+                <throughput>61.66</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H3</hostname2>
+                <latency>65</latency>
+                <throughput>2.65</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H4</hostname2>
+                <latency>43</latency>
+                <throughput>60.89</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H5</hostname2>
+                <latency>80</latency>
+                <throughput>73.28</throughput>
+            </connection>
+            <connection>
+                <hostname1>H2</hostname1>
+                <hostname2>H6</hostname2>
+                <latency>18</latency>
+                <throughput>24.76</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H0</hostname2>
+                <latency>65</latency>
+                <throughput>72.85</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H1</hostname2>
+                <latency>41</latency>
+                <throughput>83.94</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H2</hostname2>
+                <latency>65</latency>
+                <throughput>0.98</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H3</hostname2>
+                <latency>0</latency>
+                <throughput>68.9</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H4</hostname2>
+                <latency>69</latency>
+                <throughput>54.02</throughput>
+            </connection>
+            <connection>
+                <hostname1>H3</hostname1>
+                <hostname2>H5</hostname2>
                 <latency>32</latency>
-                <throughput>14.2</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H1</hostname2>
-                <latency>38</latency>
-                <throughput>27.5</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H2</hostname2>
-                <latency>0</latency>
-                <throughput>48.17</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H3</hostname2>
-                <latency>50</latency>
-                <throughput>7.54</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>28</latency>
-                <throughput>54.46</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H5</hostname2>
-                <latency>67</latency>
-                <throughput>61.06</throughput>
-            </connection>
-            <connection>
-                <hostname1>H2</hostname1>
-                <hostname2>H6</hostname2>
-                <latency>22</latency>
-                <throughput>57.71</throughput>
+                <throughput>79.77</throughput>
             </connection>
             <connection>
                 <hostname1>H3</hostname1>
+                <hostname2>H6</hostname2>
+                <latency>55</latency>
+                <throughput>1.06</throughput>
+            </connection>
+            <connection>
+                <hostname1>H4</hostname1>
                 <hostname2>H0</hostname2>
+                <latency>49</latency>
+                <throughput>12.37</throughput>
+            </connection>
+            <connection>
+                <hostname1>H4</hostname1>
+                <hostname2>H1</hostname2>
                 <latency>81</latency>
-                <throughput>95.49</throughput>
+                <throughput>82.58</throughput>
             </connection>
             <connection>
-                <hostname1>H3</hostname1>
-                <hostname2>H1</hostname2>
-                <latency>42</latency>
-                <throughput>20.49</throughput>
-            </connection>
-            <connection>
-                <hostname1>H3</hostname1>
+                <hostname1>H4</hostname1>
                 <hostname2>H2</hostname2>
-                <latency>50</latency>
-                <throughput>27.41</throughput>
+                <latency>43</latency>
+                <throughput>10.76</throughput>
             </connection>
             <connection>
-                <hostname1>H3</hostname1>
+                <hostname1>H4</hostname1>
                 <hostname2>H3</hostname2>
-                <latency>0</latency>
-                <throughput>62.34</throughput>
+                <latency>69</latency>
+                <throughput>10.5</throughput>
             </connection>
             <connection>
-                <hostname1>H3</hostname1>
+                <hostname1>H4</hostname1>
                 <hostname2>H4</hostname2>
-                <latency>23</latency>
-                <throughput>19.02</throughput>
+                <latency>0</latency>
+                <throughput>3.28</throughput>
             </connection>
             <connection>
-                <hostname1>H3</hostname1>
+                <hostname1>H4</hostname1>
                 <hostname2>H5</hostname2>
-                <latency>113</latency>
-                <throughput>18.47</throughput>
+                <latency>66</latency>
+                <throughput>84.77</throughput>
             </connection>
             <connection>
-                <hostname1>H3</hostname1>
+                <hostname1>H4</hostname1>
                 <hostname2>H6</hostname2>
-                <latency>34</latency>
-                <throughput>0.13</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H0</hostname2>
-                <latency>59</latency>
-                <throughput>1.07</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H1</hostname2>
                 <latency>28</latency>
-                <throughput>68.35</throughput>
+                <throughput>93.27</throughput>
             </connection>
             <connection>
-                <hostname1>H4</hostname1>
+                <hostname1>H5</hostname1>
+                <hostname2>H0</hostname2>
+                <latency>40</latency>
+                <throughput>74.74</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
+                <hostname2>H1</hostname2>
+                <latency>17</latency>
+                <throughput>26.68</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
                 <hostname2>H2</hostname2>
+                <latency>80</latency>
+                <throughput>80.81</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
+                <hostname2>H3</hostname2>
+                <latency>32</latency>
+                <throughput>55.44</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
+                <hostname2>H4</hostname2>
+                <latency>66</latency>
+                <throughput>3.53</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
+                <hostname2>H5</hostname2>
+                <latency>0</latency>
+                <throughput>22.73</throughput>
+            </connection>
+            <connection>
+                <hostname1>H5</hostname1>
+                <hostname2>H6</hostname2>
+                <latency>64</latency>
+                <throughput>12.81</throughput>
+            </connection>
+            <connection>
+                <hostname1>H6</hostname1>
+                <hostname2>H0</hostname2>
+                <latency>65</latency>
+                <throughput>14.29</throughput>
+            </connection>
+            <connection>
+                <hostname1>H6</hostname1>
+                <hostname2>H1</hostname2>
+                <latency>80</latency>
+                <throughput>98.4</throughput>
+            </connection>
+            <connection>
+                <hostname1>H6</hostname1>
+                <hostname2>H2</hostname2>
+                <latency>18</latency>
+                <throughput>5.06</throughput>
+            </connection>
+            <connection>
+                <hostname1>H6</hostname1>
+                <hostname2>H3</hostname2>
+                <latency>55</latency>
+                <throughput>33.37</throughput>
+            </connection>
+            <connection>
+                <hostname1>H6</hostname1>
+                <hostname2>H4</hostname2>
                 <latency>28</latency>
-                <throughput>16.1</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H3</hostname2>
-                <latency>23</latency>
-                <throughput>48.63</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>0</latency>
-                <throughput>17.81</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H5</hostname2>
-                <latency>90</latency>
-                <throughput>48.75</throughput>
-            </connection>
-            <connection>
-                <hostname1>H4</hostname1>
-                <hostname2>H6</hostname2>
-                <latency>12</latency>
-                <throughput>54.04</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H0</hostname2>
-                <latency>53</latency>
-                <throughput>12.66</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H1</hostname2>
-                <latency>79</latency>
-                <throughput>97.38</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H2</hostname2>
-                <latency>67</latency>
-                <throughput>13.02</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H3</hostname2>
-                <latency>113</latency>
-                <throughput>24.54</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>90</latency>
-                <throughput>20.63</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H5</hostname2>
-                <latency>0</latency>
-                <throughput>39.45</throughput>
-            </connection>
-            <connection>
-                <hostname1>H5</hostname1>
-                <hostname2>H6</hostname2>
-                <latency>79</latency>
-                <throughput>84.57</throughput>
-            </connection>
-            <connection>
-                <hostname1>H6</hostname1>
-                <hostname2>H0</hostname2>
-                <latency>52</latency>
-                <throughput>21.76</throughput>
-            </connection>
-            <connection>
-                <hostname1>H6</hostname1>
-                <hostname2>H1</hostname2>
-                <latency>21</latency>
-                <throughput>40.65</throughput>
-            </connection>
-            <connection>
-                <hostname1>H6</hostname1>
-                <hostname2>H2</hostname2>
-                <latency>22</latency>
-                <throughput>43.2</throughput>
-            </connection>
-            <connection>
-                <hostname1>H6</hostname1>
-                <hostname2>H3</hostname2>
-                <latency>34</latency>
-                <throughput>94.98</throughput>
-            </connection>
-            <connection>
-                <hostname1>H6</hostname1>
-                <hostname2>H4</hostname2>
-                <latency>12</latency>
-                <throughput>23.32</throughput>
+                <throughput>13.09</throughput>
             </connection>
             <connection>
                 <hostname1>H6</hostname1>
                 <hostname2>H5</hostname2>
-                <latency>79</latency>
-                <throughput>52.08</throughput>
+                <latency>64</latency>
+                <throughput>56.0</throughput>
             </connection>
             <connection>
                 <hostname1>H6</hostname1>
                 <hostname2>H6</hostname2>
                 <latency>0</latency>
-                <throughput>88.99</throughput>
+                <throughput>5.79</throughput>
             </connection>
         </connections>
     </inf-net>
