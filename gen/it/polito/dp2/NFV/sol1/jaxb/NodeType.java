@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.09 alle 01:35:19 PM CET 
+// Generato il: 2018.03.09 alle 02:42:18 PM CET 
 //
 
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -26,12 +26,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="link" type="{http://www.example.org/nfv}linkType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="link" type="{http://www.example.com/nfv}linkType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="name" type="{http://www.example.com/nfv}nfvName"/>
+ *         &lt;element name="VNF" type="{http://www.example.com/nfv}nfvName"/>
+ *         &lt;element name="hostname" type="{http://www.example.com/nfv}nfvName"/>
+ *         &lt;element name="nf-fg" type="{http://www.example.com/nfv}nfvName"/>
  *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="VNF" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="hostname" use="required" type="{http://www.example.org/nfv}nfvName" />
- *       &lt;attribute name="nf-fg" use="required" type="{http://www.example.org/nfv}nfvName" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -41,18 +41,22 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "nodeType", propOrder = {
-    "link"
+    "link",
+    "name",
+    "vnf",
+    "hostname",
+    "nfFg"
 })
 public class NodeType {
 
     protected List<LinkType> link;
-    @XmlAttribute(name = "name", required = true)
+    @XmlElement(required = true)
     protected String name;
-    @XmlAttribute(name = "VNF", required = true)
+    @XmlElement(name = "VNF", required = true)
     protected String vnf;
-    @XmlAttribute(name = "hostname", required = true)
+    @XmlElement(required = true)
     protected String hostname;
-    @XmlAttribute(name = "nf-fg", required = true)
+    @XmlElement(name = "nf-fg", required = true)
     protected String nfFg;
 
     /**

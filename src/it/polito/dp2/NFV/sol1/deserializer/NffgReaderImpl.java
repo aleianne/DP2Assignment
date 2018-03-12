@@ -20,14 +20,12 @@ public class NffgReaderImpl implements NffgReader {
 	
 	private XmlReferenceMap refTable;
 	private NffgType nffgElement;
-	private List<NodeType> nodeList;
 	
 	private Set<NodeReader> nodeReaderSet;
 
 	protected NffgReaderImpl(NffgType nffg, XmlReferenceMap refTable) {
 		this.nffgElement = nffg;
 		this.refTable = refTable;
-		
 		nodeReaderSet = new HashSet<NodeReader> ();
 	}
 	
@@ -47,16 +45,15 @@ public class NffgReaderImpl implements NffgReader {
 	}
 
 	@Override
-	public NodeReader getNode(String arg0) {
-		
-		if(arg0 == null) {
+	public NodeReader getNode(String nodeName) {
+		if(nodeName == null) {
 			System.out.println("the argument passed is null");
 			return null;
 		}
 		
-		NodeType nodeElement = refTable.getNode(arg0);
+		NodeType nodeElement = refTable.getNode(nodeName);
 		if (nodeElement == null) {
-			System.out.println("there is no node called " + arg0);
+			System.out.println("there isn't a node called " + nodeName);
 			return null;								
 		}
 		
@@ -70,8 +67,8 @@ public class NffgReaderImpl implements NffgReader {
 		if(!nodeReaderSet.isEmpty()) 										// return the set, if is already filled, in order to optimize successive invokation of the method
 			return nodeReaderSet;
 		
-		nodeList = nffgElement.getNode();									// get the list of nodes inside this graph
-		for (NodeType nodeElement: nodeList) {								
+		List<NodeType> nodeElementList = nffgElement.getNode();									// get the list of nodes inside this graph
+		for (NodeType nodeElement: nodeElementList) {								
 			NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);	// create a new node reader interface
 			nodeReaderSet.add(nr);											// insert the interface inside the set
 		}

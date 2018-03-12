@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.example.org/nfv"
-		xmlns:nfv="http://www.example.org/nfv"
+		targetNamespace="http://www.example.com/nfv"
+		xmlns:nfv="http://www.example.com/nfv"
 		elementFormDefault="qualified">
 	
 	<!-- declaration of the root element in the document  -->
@@ -18,8 +18,8 @@
 					
 								<!-- key definition (unique inside the nf-fg) -->
 								<xsd:key name="unique_link">
-									<xsd:selector xpath="nf-fg/node/link"></xsd:selector>
-									<xsd:field xpath="@link-name"></xsd:field>
+									<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:link-name"></xsd:selector>
+									<xsd:field xpath="."></xsd:field>
 								</xsd:key>
 		
 							</xsd:element>
@@ -34,70 +34,65 @@
 		<!-- key definition (defined as unique inside NFV)  -->
 				
 		<xsd:key name="unique_host">
-			<xsd:selector xpath="host-group/host"/>
-			<xsd:field xpath="@hostname"/>
+			<xsd:selector xpath="nfv:host-group/nfv:host/nfv:hostname"/>
+			<xsd:field xpath="."/>
 		</xsd:key>		
 		
 		<xsd:key name="unique_node">
-			<xsd:selector xpath="nf-fg/node"></xsd:selector>
-			<xsd:field xpath="@name"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:name"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:key>
 		
 		<xsd:key name="unique_nffg">
-			<xsd:selector xpath="nf-fg"></xsd:selector>
-			<xsd:field xpath="@name"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:name"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:key>
 		
 		<xsd:key name="unique_function">
-			<xsd:selector xpath="catalog/function"/>
-			<xsd:field xpath="@name"></xsd:field>
+			<xsd:selector xpath="nfv:catalog/nfv:function/nfv:name"/>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:key>
 		
 		<!-- key ref definition -->
 		
 		<xsd:keyref name="node_nffg_ref" refer="nfv:unique_nffg">
-			<xsd:selector xpath="nf-fg/node"></xsd:selector>
-			<xsd:field xpath="@nf-fg"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:nf-fg"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="node_function_ref" refer="nfv:unique_function">
-			<xsd:selector xpath="nf-fg/node"></xsd:selector>
-			<xsd:field xpath="@VNF"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:VNF"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref> 
 		
 		<xsd:keyref name="node_host_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="nf-fg/node"></xsd:selector>
-			<xsd:field xpath="@hostname"></xsd:field>
-		</xsd:keyref>
-		
-		<xsd:keyref name="host_node_ref" refer="nfv:unique_node">
-			<xsd:selector xpath="inf-net/host-group/host"></xsd:selector>
-			<xsd:field xpath="@node_name"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:hostname"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="inNode_link_ref" refer="nfv:unique_node">
-			<xsd:selector xpath="nf-fg/node/link"></xsd:selector>
-			<xsd:field xpath="@inboundNode"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:destinatioNode"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="outNode_link_ref" refer="nfv:unique_node">
-			<xsd:selector xpath="nf-fg/node/link"></xsd:selector>
-			<xsd:field xpath="@outboundNode"></xsd:field>
+			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:sourceNode"></xsd:selector>
+			<xsd:field xpath="sourceNode"></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="dep_node_ef" refer="nfv:unique_node">
-			<xsd:selector xpath="inf-net/host-group/host/deployed-node"></xsd:selector>
-			<xsd:field xpath="@node-name"></xsd:field>
+			<xsd:selector xpath="nfv:inf-net/nfv:host-group/nfv:host/nfv:deployed-nodes/nfv:node"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="conn_host1_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="connections/connection"></xsd:selector>
-			<xsd:field xpath="@hostname1"></xsd:field>
+			<xsd:selector xpath="nfv:connections/nfv:connection/nfv:hostname1"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 		
 		<xsd:keyref name="conn_host2_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="connections/connection"></xsd:selector>
-			<xsd:field xpath="@hostname2"></xsd:field>
+			<xsd:selector xpath="nfv:connections/nfv:connection"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
 		</xsd:keyref>
 			
 	</xsd:element>
@@ -155,11 +150,11 @@
 	<xsd:complexType name="nodeType">
 		<xsd:sequence>
 			<xsd:element name="link" type="nfv:linkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="name" type="nfv:nfvName" maxOccurs="1"/>
+			<xsd:element name="VNF" type="nfv:nfvName" maxOccurs="1"/>
+			<xsd:element name="hostname" type="nfv:nfvName" maxOccurs="1"/>
+			<xsd:element name="nf-fg" type="nfv:nfvName" maxOccurs="1"/>
 		</xsd:sequence>
-		<xsd:attribute name="name" type="nfv:nfvName" use="required"/>
-		<xsd:attribute name="VNF" type="nfv:nfvName" use="required"/>
-		<xsd:attribute name="hostname" type="nfv:nfvName" use="required"/>
-		<xsd:attribute name="nf-fg" type="nfv:nfvName" use="required"/>
 	</xsd:complexType>
 	
 	<xsd:complexType name="linkType">

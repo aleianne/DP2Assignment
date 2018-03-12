@@ -23,19 +23,13 @@ public class LinkReaderImpl implements LinkReader {
 
 	@Override
 	public NodeReader getDestinationNode() {
-		NodeType nodeElement = refTable.getNode(linkElement.getDestinationNode());			// get the node using as reference the outboundNode name
-		
-		if (nodeElement == null) {
-			System.out.println(linkElement.getDestinationNode() + " doesn't exist");
-		}
-		
-		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);						// encapsulate the node into the interface
+		NodeType nodeElement = refTable.getNode(linkElement.getDestinationNode());			// get the node using as reference the outboundNode name		
+		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);					
 		return nr;
 	}
 
 	@Override
 	public int getLatency() {
-	
 		if (linkElement.getLatency() == null) 
 			return 0;																	// if the value is not specified return 0
 		
@@ -45,13 +39,12 @@ public class LinkReaderImpl implements LinkReader {
 	@Override
 	public NodeReader getSourceNode() {
 		// since the source node is the parent nodeElement, return the parent nodeElement
-		NodeReaderImpl nr = new NodeReaderImpl(parentNode, refTable);					// encapsulate the node into the interface
+		NodeReaderImpl nr = new NodeReaderImpl(parentNode, refTable);					
 		return nr;
 	}
 
 	@Override
 	public float getThroughput() {
-		
 		if (linkElement.getThroughput() == null) 
 			return (float) 0;															// if the value is not specified return 0
 		

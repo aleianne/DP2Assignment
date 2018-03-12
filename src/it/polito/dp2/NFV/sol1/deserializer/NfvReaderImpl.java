@@ -21,7 +21,6 @@ public class NfvReaderImpl implements NfvReader {
 	
 	private NFV newNfv;
 	
-	// declaration of sets used for interface insertion
 	private Set<NffgReader> graphSet;	
 	private Set<HostReader> hostSet; 
 	private Set<VNFTypeReader> functionSet; 
@@ -32,7 +31,6 @@ public class NfvReaderImpl implements NfvReader {
 	protected NfvReaderImpl(NFV newNFV, XmlReferenceMap refTable) {
 		this.newNfv = newNFV;
 		this.refTable = refTable;
-		
 		graphSet = new HashSet<NffgReader> ();
 		hostSet = new HashSet<HostReader> ();
 		functionSet = new HashSet<VNFTypeReader> ();
@@ -40,23 +38,20 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public ConnectionPerformanceReader getConnectionPerformance(HostReader host1, HostReader host2) {
-		// if the parameter passed are null return null
 		if(host1 == null || host2 == null) {
 			return null;
 		}
 		
-		ConnectionType connElement = refTable.getConnection(host1.getName(), host2.getName());		// get the  connection element
-		ConnectionPerformanceReader cpr = null;														// if no element is found inside the connection return null
-		
-		if(connElement != null) {
-			cpr = new ConnReaderImpl(connElement);
+		ConnectionType connectionElement = refTable.getConnection(host1.getName(), host2.getName());		// get the  connection element
+		if(connectionElement == null) {
+			return null;
+		} else {
+			return new ConnReaderImpl(connectionElement);
 		}
-		return cpr;																					// return the connection reader interface
 	}
 
 	@Override
 	public HostReader getHost(String hostName) {
-		// check if the argument passed is not null
 		if (hostName == null) 
 			return null;
 		

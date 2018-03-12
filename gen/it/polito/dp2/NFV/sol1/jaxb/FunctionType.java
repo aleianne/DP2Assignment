@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.09 alle 01:35:19 PM CET 
+// Generato il: 2018.03.09 alle 02:42:18 PM CET 
 //
 
 
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.example.org/nfv}nfvName"/>
- *         &lt;element name="type" type="{http://www.example.org/nfv}function_enumeration"/>
- *         &lt;element name="requiredStorage" type="{http://www.example.org/nfv}positiveInt"/>
- *         &lt;element name="requiredMemory" type="{http://www.example.org/nfv}positiveInt"/>
+ *         &lt;element name="name" type="{http://www.example.com/nfv}nfvName"/>
+ *         &lt;element name="type" type="{http://www.example.com/nfv}function_enumeration"/>
+ *         &lt;element name="requiredStorage" type="{http://www.example.com/nfv}positiveInt"/>
+ *         &lt;element name="requiredMemory" type="{http://www.example.com/nfv}positiveInt"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

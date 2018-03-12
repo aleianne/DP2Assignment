@@ -23,7 +23,6 @@ class InfrastructureLoader {
 	
 	// instantiate a new infrastructure network for the XML serialization
 	protected InfrastructureType generateNetwork() {
-		
 		infrastructure = objFactory.createInfrastructureType();							// create a new inf net instance
 		Set<HostReader> hostSet = nfvr.getHosts();				
 		
@@ -34,7 +33,6 @@ class InfrastructureLoader {
 		
 		for(HostReader hr: hostSet) {
 			HostType newHost = objFactory.createHostType();					
-			
 			getDeployedNode(hr, newHost);										// fill the list of deployed-node using the HostReader interface
 			
 			// set the information inside an hostType instance

@@ -15,9 +15,7 @@ public class HostReaderImpl implements HostReader {
 	private Set<NodeReader> nodeReaderSet;
 
 	protected HostReaderImpl(HostType host, XmlReferenceMap refTable) {
-		// declare the node reader set 
 		nodeReaderSet = new HashSet<NodeReader> ();
-		
 		this.host = host;
 		this.refTable = refTable;
 	}
@@ -49,11 +47,11 @@ public class HostReaderImpl implements HostReader {
 			return nodeReaderSet;
 		}
 		
-		List<DeployedNodeType> deployedNodeList = host.getDeployedNodes().getNode();
-		for(DeployedNodeType dpn: deployedNodeList) {
+		List<DeployedNodeType> nodeElementList = host.getDeployedNodes().getNode();
+		for(DeployedNodeType deployedNodeElement: nodeElementList) {
 			// get the referenced node using an hash table
-			NodeType node = refTable.getNode(dpn.getNodeName());	
-			NodeReaderImpl nodeReader = new NodeReaderImpl(node, refTable);
+			NodeType nodeReference = refTable.getNode(deployedNodeElement.getNodeName());	
+			NodeReaderImpl nodeReader = new NodeReaderImpl(nodeReference, refTable);
 			nodeReaderSet.add(nodeReader);
 		}
 		return nodeReaderSet;

@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.02.09 alle 01:35:19 PM CET 
+// Generato il: 2018.03.09 alle 02:42:18 PM CET 
 //
 
 
@@ -27,19 +27,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="catalog" type="{http://www.example.org/nfv}catalogType"/>
+ *         &lt;element name="catalog" type="{http://www.example.com/nfv}catalogType"/>
  *         &lt;element name="nffg-list">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="nffg" type="{http://www.example.org/nfv}nffgType" maxOccurs="unbounded" minOccurs="0"/>
+ *                   &lt;element name="nffg" type="{http://www.example.com/nfv}nffgType" maxOccurs="unbounded" minOccurs="0"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="inf-net" type="{http://www.example.org/nfv}infrastructureType"/>
+ *         &lt;element name="inf-net" type="{http://www.example.com/nfv}infrastructureType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -147,7 +147,7 @@ public class NFV {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="nffg" type="{http://www.example.org/nfv}nffgType" maxOccurs="unbounded" minOccurs="0"/>
+     *         &lt;element name="nffg" type="{http://www.example.com/nfv}nffgType" maxOccurs="unbounded" minOccurs="0"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
