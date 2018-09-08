@@ -1,0 +1,6 @@
+/bin/
+/.settings/
+/.idea/
+/build/
+.classpath
+.project

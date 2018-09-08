@@ -43,38 +43,40 @@ public class NfvInfoDeserializer{
 			try(FileInputStream xmlSchema1 = new FileInputStream("xsd/nfvInfo.xsd")) {
 				// create a new schema factory for the XML validation with respect to the XML schema file
 				SchemaFactory sf = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);					
-				Schema XMLschema = sf.newSchema(new StreamSource(xmlSchema1));					// load the schema 
-				um.setSchema(XMLschema);														// set the reference schema for validation
-				
-			} catch(SAXException | FileNotFoundException e) {
-				e.printStackTrace();
-				throw new NfvReaderException();
-			} 
-			
-			unmarshalledNFV = (NFV) um.unmarshal(xmlFile);				// return an unmarshalled object, converted to NFV with a cast 
+				Schema schema = sf.newSchema(new StreamSource(xmlSchema1));					// load the schema
+				um.setSchema(schema);														// set the reference schema for validation
+			} catch (SAXException se)  {
+				throw new NfvReaderException("impossible to read the xml schema");
+			} catch (FileNotFoundException fne) {
+				//e.printStackTrace();
+				throw new NfvReaderException("impossible to find the xml schema file");
+			}
+
+			// return an unmarshalled object, converted to NFV with a cast
+			unmarshalledNFV = (NFV) um.unmarshal(xmlFile);
 			
 		} catch(UnmarshalException ue) {
-			System.err.print("Unmarshall error: ");
-			System.err.println(ue.getMessage());
+			/*System.err.print("Unmarshall error: ");
+			System.err.println(ue.getMessage());*/
 			ue.printStackTrace();
-			throw new NfvReaderException();
+			throw new NfvReaderException("impossible to unmarshall the XML file");
 		} catch(IllegalArgumentException | FileNotFoundException fe) {
-			System.err.print("file opening exception: ");
+			/*System.err.print("file opening exception: ");
 			System.err.println(fe.getMessage());
-			fe.printStackTrace();
-			throw new NfvReaderException();
+			fe.printStackTrace();*/
+			throw new NfvReaderException("impossible to find the file to be deserialized");
 		} catch(JAXBException je) {
-			System.err.print("JAXB error: ");
+			/*System.err.print("JAXB error: ");
 			System.err.println(je.getMessage());
-			je.printStackTrace();
-			throw new NfvReaderException();
+			je.printStackTrace();*/
+			throw new NfvReaderException("JAXB error");
 		} catch(IOException ioe) {
 			// quiet the io exception
 		}
 	}
 	
-	//  return null if the XML file isn't unmarshalled
-	public NFV getNFVobject() {								
+	// return null if the XML file isn't unmarshalled
+	protected NFV getNFVobject() {
 		return unmarshalledNFV;
 	}
 }

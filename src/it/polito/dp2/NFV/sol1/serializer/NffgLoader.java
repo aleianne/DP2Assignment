@@ -12,21 +12,20 @@ import it.polito.dp2.NFV.sol1.jaxb.*;
 public class NffgLoader {
 	
 	private NffgReader nfgr;
-	private NffgType nffgGraph;
 	private ObjectFactory objFactory;
 	
-	protected NffgLoader(NffgReader nfgr) {
+	protected NffgLoader(NffgReader nfgr, ObjectFactory objFactory) {
 		this.nfgr = nfgr;
-		objFactory = new ObjectFactory();
+		this.objFactory = objFactory;
 	}
 	
-	// generate an XML tree that contain the information about the nffg nffgGraph read from the nfv interface
+	// generate an XML tree that contain the information about the  nffgGraph read from the nfv interface
 	protected NffgType generateGraph() {
-		nffgGraph = objFactory.createNffgType();				// create a new nffg instance				
+		NffgType nffgGraph = objFactory.createNffgType();				// create a new nffg instance
 		
 		System.out.println("begin to create " + nfgr.getName() + " nffg element");
 		
-		// set Nffg element attribute
+		// set the graph deploy date, if is not possible to convert the value set a null value
 		try {
 			nffgGraph.setNffgName(nfgr.getName());																	
 			nffgGraph.setDeployTime(CalendarXMLconverter.toXMLGregorianCalendar(nfgr.getDeployTime()));			
@@ -35,7 +34,7 @@ public class NffgLoader {
 			nffgGraph.setDeployTime(null);
 		}
 		
-		// update the nffgGraph with the list of the node
+		// update the nffgGraph with the list of the nodes
 		Set<NodeReader> nodeSet = nfgr.getNodes();	
 		if(nodeSet.isEmpty()) 
 			return nffgGraph;
@@ -64,10 +63,12 @@ public class NffgLoader {
 			System.out.println("this node doesn't contain any link");
 			return newNode;
 		}
-		for(LinkReader lr: linkSet) {							// for each link reader element create a new linkType instance	
+
+		for(LinkReader lr: linkSet) {
 			System.out.println("begin to read the link information");
 			newNode.getLink().add(generateLink(lr));			// add the linkType instance into node's list of links
 		}
+
 		return newNode;
 	}
 	
@@ -94,7 +95,4 @@ public class NffgLoader {
 		
 		return newLink;
 	}
-	
-	 
-	
 }

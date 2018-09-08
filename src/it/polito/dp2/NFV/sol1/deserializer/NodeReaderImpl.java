@@ -22,7 +22,6 @@ public class NodeReaderImpl implements NodeReader {
 	protected NodeReaderImpl(NodeType node, XmlReferenceMap refTable) {
 		this.refTable = refTable;
 		this.nodeElement = node;
-		
 		linkSet = new HashSet<LinkReader> ();
 	}
 
@@ -34,28 +33,25 @@ public class NodeReaderImpl implements NodeReader {
 	@Override
 	public VNFTypeReader getFuncType() {
 		FunctionType VNFelement = refTable.getVNF(nodeElement.getVNF());			// search the VNF inside the hashMap 
-		VNFTypeReaderImpl vr = new VNFTypeReaderImpl(VNFelement);
-		return vr;
+		return new VNFTypeReaderImpl(VNFelement);
 	}
 
 	@Override
 	public HostReader getHost() {
 		HostType hostElement = refTable.getHost(nodeElement.getHostname());			// search the hostname inside the hashMap 
-		HostReaderImpl hr = new HostReaderImpl(hostElement, refTable);
-		return hr;
+		return new HostReaderImpl(hostElement, refTable);
 	}
 
 	@Override
 	public Set<LinkReader> getLinks() {
-		// multiple call optimization
-		if(!linkSet.isEmpty()) {
+
+		if(!linkSet.isEmpty())
 			return linkSet;
-		}
 		
 		List<LinkType> linkList = nodeElement.getLink();											// get the list of link inside the nodeElement passed as parameter		
-		for (LinkType linkElement: linkList) {														// for each element in the list create a new link reader implementation
-			LinkReaderImpl lr = new LinkReaderImpl(linkElement, refTable, nodeElement);
-			linkSet.add(lr);
+		for (LinkType linkElement: linkList) {
+			// for each element in the list create a new link reader implementation
+			linkSet.add(new LinkReaderImpl(linkElement, refTable, nodeElement));
 		}
 		return linkSet;
 	}
@@ -63,8 +59,7 @@ public class NodeReaderImpl implements NodeReader {
 	@Override
 	public NffgReader getNffg() {
 		NffgType nffgElement = refTable.getGraph(nodeElement.getNfFg());			// get the nffg node using the reference table
-		NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement, refTable);			// set the nffg reader interface
-		return nfgr;
+		return new NffgReaderImpl(nffgElement, refTable);			// set the nffg reader interface
 	}
 
 }

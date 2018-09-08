@@ -42,17 +42,15 @@ public class HostReaderImpl implements HostReader {
 
 	@Override
 	public Set<NodeReader> getNodes() {
-		// used for multiple calls optimization, in order to not recompute the set at every invocation
-		if(!nodeReaderSet.isEmpty()) {
+		// used for multiple call optimization, in order to not recompute the set at every invocation
+		if(!nodeReaderSet.isEmpty())
 			return nodeReaderSet;
-		}
-		
+
 		List<DeployedNodeType> nodeElementList = host.getDeployedNodes().getNode();
 		for(DeployedNodeType deployedNodeElement: nodeElementList) {
 			// get the referenced node using an hash table
-			NodeType nodeReference = refTable.getNode(deployedNodeElement.getNodeName());	
-			NodeReaderImpl nodeReader = new NodeReaderImpl(nodeReference, refTable);
-			nodeReaderSet.add(nodeReader);
+			NodeType nodeReference = refTable.getNode(deployedNodeElement.getNodeName());
+			nodeReaderSet.add(new NodeReaderImpl(nodeReference, refTable));
 		}
 		return nodeReaderSet;
 	}

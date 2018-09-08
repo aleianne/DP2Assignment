@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<NFV xmlns="http://www.example.org/nfv">
+<?xml version="1.0" encoding="UTF-8" ?>
+<nfv:NFV xmlns:nfv="http://www.example.com/nfv"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.example.com/nfv nfvInfo.xsd">
+
     <catalog>
         <function>
             <name>MAILCLIENTt</name>
@@ -57,7 +60,9 @@
         </function>
     </catalog>
     <nffg-list>
-        <nffg nffg-name="Nffg1" deploy-time="2016-09-27T01:33:20.000+02:00">
+        <nffg>
+            <nffg-name>Nffg1</nffg-name>
+            <deploy-time>2016-09-27T01:33:20.000+02:00</deploy-time>
             <node>
                 <link>
                     <link-name>Link31</link-name>
@@ -308,7 +313,9 @@
                 <nf-fg>Nffg1</nf-fg>
             </node>
         </nffg>
-        <nffg nffg-name="Nffg0" deploy-time="2016-09-28T10:46:20.000+02:00">
+        <nffg>
+            <nffg-name>Nffg0</nffg-name>
+            <deploy-time>2016-09-28T10:46:20.000+02:00</deploy-time>
             <node>
                 <link>
                     <link-name>Link6</link-name>
@@ -913,4 +920,4 @@
             </connection>
         </connections>
     </inf-net>
-</NFV>
+</nfv:NFV>

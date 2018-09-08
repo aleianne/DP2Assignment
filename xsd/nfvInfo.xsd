@@ -1,108 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.example.com/nfv"
-		xmlns:nfv="http://www.example.com/nfv"
-		elementFormDefault="qualified">
-	
+			xmlns:nfv="http://www.example.com/nfv"
+			targetNamespace="http://www.example.com/nfv">
+
 	<!-- declaration of the root element in the document  -->
 	<xsd:element name="NFV">
-	
+
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="catalog" type="nfv:catalogType" maxOccurs="1" />
-				
+				<xsd:element name="catalog" type="nfv:catalogType" maxOccurs="1"/>
 				<xsd:element name="nffg-list" maxOccurs="1">
 					<xsd:complexType>
 						<xsd:sequence>
 							<xsd:element  name="nffg" type="nfv:nffgType" minOccurs="0" maxOccurs="unbounded">
-					
+
 								<!-- key definition (unique inside the nf-fg) -->
 								<xsd:key name="unique_link">
-									<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:link-name"></xsd:selector>
-									<xsd:field xpath="."></xsd:field>
+									<xsd:selector xpath="node/link/link-name"/>
+									<xsd:field xpath="."/>
 								</xsd:key>
-		
+
 							</xsd:element>
 						</xsd:sequence>
 					</xsd:complexType>
 				</xsd:element>
-				
 				<xsd:element name="inf-net" type="nfv:infrastructureType"/>
 			</xsd:sequence>
 		</xsd:complexType>
-		
+
 		<!-- key definition (defined as unique inside NFV)  -->
-				
+
 		<xsd:key name="unique_host">
-			<xsd:selector xpath="nfv:host-group/nfv:host/nfv:hostname"/>
+			<xsd:selector xpath="inf-net/hosts/host/hostname"/>
 			<xsd:field xpath="."/>
-		</xsd:key>		
-		
+		</xsd:key>
+
 		<xsd:key name="unique_node">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:name"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/node/name"/>
+			<xsd:field xpath="."/>
 		</xsd:key>
-		
+
 		<xsd:key name="unique_nffg">
-			<xsd:selector xpath="nfv:nf-fg/nfv:name"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/nffg-name"/>
+			<xsd:field xpath="."/>
 		</xsd:key>
-		
+
 		<xsd:key name="unique_function">
-			<xsd:selector xpath="nfv:catalog/nfv:function/nfv:name"/>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="catalog/function/name"/>
+			<xsd:field xpath="."/>
 		</xsd:key>
-		
+
 		<!-- key ref definition -->
-		
+
 		<xsd:keyref name="node_nffg_ref" refer="nfv:unique_nffg">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:nf-fg"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/node/nf-fg"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="node_function_ref" refer="nfv:unique_function">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:VNF"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
-		</xsd:keyref> 
-		
+			<xsd:selector xpath="nffg-list/nffg/node/VNF"/>
+			<xsd:field xpath="."/>
+		</xsd:keyref>
+
 		<xsd:keyref name="node_host_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:hostname"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/node/hostname"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="inNode_link_ref" refer="nfv:unique_node">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:destinatioNode"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/node/link/destinationNode"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="outNode_link_ref" refer="nfv:unique_node">
-			<xsd:selector xpath="nfv:nf-fg/nfv:node/nfv:link/nfv:sourceNode"></xsd:selector>
-			<xsd:field xpath="sourceNode"></xsd:field>
+			<xsd:selector xpath="nffg-list/nffg/node/link/sourceNode"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="dep_node_ef" refer="nfv:unique_node">
-			<xsd:selector xpath="nfv:inf-net/nfv:host-group/nfv:host/nfv:deployed-nodes/nfv:node"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="inf-net/hosts/host/deployed-nodes/node/node-name"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="conn_host1_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="nfv:connections/nfv:connection/nfv:hostname1"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="inf-net/connections/connection/hostname1"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-		
+
 		<xsd:keyref name="conn_host2_ref" refer="nfv:unique_host">
-			<xsd:selector xpath="nfv:connections/nfv:connection"></xsd:selector>
-			<xsd:field xpath="."></xsd:field>
+			<xsd:selector xpath="inf-net/connections/connection/hostname2"/>
+			<xsd:field xpath="."/>
 		</xsd:keyref>
-			
+
 	</xsd:element>
-	
+
 	<xsd:annotation>
 		<xsd:documentation>
-			Declaration of all the datatypes need into the xml schema
+			Declaration of all the data types need into the xml schema
 		</xsd:documentation>
 	</xsd:annotation>
-	
+
 	<xsd:complexType name="functionType">
 		<xsd:sequence>
 			<xsd:element name="name" type="nfv:nfvName" maxOccurs="1"/>
@@ -111,42 +108,42 @@
 			<xsd:element name="requiredMemory" type="nfv:positiveInt" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="catalogType">
 		<xsd:sequence>
 			<xsd:element name="function" type="nfv:functionType" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:simpleType name="function_enumeration">
 		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="VPN"></xsd:enumeration>
-			<xsd:enumeration value="WEB_SERVER"></xsd:enumeration>
-			<xsd:enumeration value="WEB_CLIENT"></xsd:enumeration>
-			<xsd:enumeration value="SPAM"></xsd:enumeration>
-			<xsd:enumeration value="NAT"></xsd:enumeration>
-			<xsd:enumeration value="MAIL_SERVER"></xsd:enumeration>
-			<xsd:enumeration value="MAIL_CLIENT"></xsd:enumeration>
-			<xsd:enumeration value="FW"></xsd:enumeration>
-			<xsd:enumeration value="DPI"></xsd:enumeration>
-			<xsd:enumeration value="CACHE"></xsd:enumeration>
+			<xsd:enumeration value="VPN"/>
+			<xsd:enumeration value="WEB_SERVER"/>
+			<xsd:enumeration value="WEB_CLIENT"/>
+			<xsd:enumeration value="SPAM"/>
+			<xsd:enumeration value="NAT"/>
+			<xsd:enumeration value="MAIL_SERVER"/>
+			<xsd:enumeration value="MAIL_CLIENT"/>
+			<xsd:enumeration value="FW"/>
+			<xsd:enumeration value="DPI"/>
+			<xsd:enumeration value="CACHE"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	
+
 	<xsd:annotation>
 		<xsd:documentation>
 			declararion of the nffg element
 		</xsd:documentation>
 	</xsd:annotation>
-	
+
 	<xsd:complexType name="nffgType">
 		<xsd:sequence>
+			<xsd:element name="nffg-name" type="nfv:nfvName" maxOccurs="1"/>
+			<xsd:element name="deploy-time" type="xsd:dateTime" maxOccurs="1"/>
 			<xsd:element name="node" type="nfv:nodeType" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute name="nffg-name" type="nfv:nfvName" use="required"/>
-		<xsd:attribute name="deploy-time" type="xsd:dateTime"/>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="nodeType">
 		<xsd:sequence>
 			<xsd:element name="link" type="nfv:linkType" minOccurs="0" maxOccurs="unbounded"/>
@@ -156,7 +153,7 @@
 			<xsd:element name="nf-fg" type="nfv:nfvName" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="linkType">
 		<xsd:sequence>
 			<xsd:element name="link-name" type="nfv:nfvName" maxOccurs="1"/>
@@ -166,14 +163,14 @@
 			<xsd:element name="throughput" type="nfv:throughputType" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
-	
+
+
 	<xsd:annotation>
 		<xsd:documentation>
 			declaration of the instrastructure subtree of the model
 		</xsd:documentation>
 	</xsd:annotation>
-	
+
 	<xsd:complexType name="infrastructureType">
 		<xsd:sequence>
 			<xsd:element name="hosts">
@@ -193,7 +190,7 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="hostType">
 		<xsd:sequence>
 			<xsd:element name="deployed-nodes" maxOccurs="1">
@@ -209,7 +206,7 @@
 			<xsd:element name="hostname" type="nfv:nfvName" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="connectionType">
 		<xsd:sequence>
 			<xsd:element name="hostname1" type="nfv:nfvName" maxOccurs="1"/>
@@ -218,35 +215,35 @@
 			<xsd:element name="throughput" type="nfv:throughputType" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="deployedNodeType">
 		<xsd:sequence>
 			<xsd:element name="node-name" type="nfv:nfvName" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 	<xsd:annotation>
 		<xsd:documentation>
 			In this part are specified all the simple type used in the schema
 		</xsd:documentation>
 	</xsd:annotation>
-	
+
 	<xsd:simpleType name="throughputType">
 		<xsd:restriction base="xsd:float">
 			<xsd:minInclusive value="0.0"/>
 			<xsd:pattern value="\d+\.[0-9]+"/>
-		</xsd:restriction>	
+		</xsd:restriction>
 	</xsd:simpleType>
-	
+
 	<xsd:simpleType name="positiveInt">
 		<xsd:restriction base="xsd:integer">
 			<xsd:minInclusive value="0"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	
+
 	<xsd:simpleType name="nfvName">
 		<xsd:restriction base="xsd:string">
-			<xsd:pattern value="[a-zA-Z][a-zA-Z0-9]*"></xsd:pattern>
+			<xsd:pattern value="[a-zA-Z][a-zA-Z0-9]*"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 

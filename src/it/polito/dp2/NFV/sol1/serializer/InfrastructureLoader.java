@@ -13,29 +13,29 @@ class InfrastructureLoader {
 	private NfvReader nfvr;
 	private InfrastructureType infrastructure;
 	private ObjectFactory objFactory;
-	private List<HostType> hostList;
 	private List<ConnectionType> ConnList;
 	
-	protected InfrastructureLoader(NfvReader nfvr) {
+	protected InfrastructureLoader(NfvReader nfvr, ObjectFactory objFactory) {
 		this.nfvr = nfvr;
-		objFactory = new ObjectFactory();
+		this.objFactory = objFactory;
 	}
 	
 	// instantiate a new infrastructure network for the XML serialization
 	protected InfrastructureType generateNetwork() {
 		infrastructure = objFactory.createInfrastructureType();							// create a new inf net instance
-		Set<HostReader> hostSet = nfvr.getHosts();				
-		
 		infrastructure.setHosts(new InfrastructureType.Hosts());				// instantiate the hostGroup attribute inside InfNet
-		hostList = infrastructure.getHosts().getHost();							// get the host list reference used for insert new host element
+
+		Set<HostReader> hostSet = nfvr.getHosts();
+		List<HostType> hostList = infrastructure.getHosts().getHost();							// get the host list reference used for insert new host element
 		
 		System.out.println("begin to load the infrastructure network information");
 		
 		for(HostReader hr: hostSet) {
 			HostType newHost = objFactory.createHostType();					
+
 			getDeployedNode(hr, newHost);										// fill the list of deployed-node using the HostReader interface
 			
-			// set the information inside an hostType instance
+			// set the information inside an hostType class instance
 			newHost.setHostname(hr.getName());
 			newHost.setMaxVNF(BigInteger.valueOf(hr.getMaxVNFs()));
 			newHost.setAvailableStorage(BigInteger.valueOf(hr.getAvailableStorage()));
@@ -44,11 +44,11 @@ class InfrastructureLoader {
 		}
 		
 		infrastructure.setConnections(new InfrastructureType.Connections());			// instantiate the connections attribute inside InfNet
-		ConnList = infrastructure.getConnections().getConnection();				// get the list of connection reference 
+		ConnList = infrastructure.getConnections().getConnection();						// get the list of connection reference
 		
  		getConnectionPerformance(hostSet);
  		
- 		System.out.println("infrastructure network information read correclty!\n");
+ 		System.out.println("infrastructure network information read correctly!\n");
 		return infrastructure;													// return InfNet instace updated wth all the data read from the interface
 	}
 	
@@ -63,7 +63,8 @@ class InfrastructureLoader {
 		
 		hostElement.setDeployedNodes(new HostType.DeployedNodes());
 		List<DeployedNodeType> nodeList = hostElement.getDeployedNodes().getNode();
-		// for each node inside the node reader set put into the host element a new deployed node element
+
+		// for each node inside the set put the node name into the hos
 		for (NodeReader node: nrSet) {
 			DeployedNodeType newDeployedNodeElement = objFactory.createDeployedNodeType();
 			newDeployedNodeElement.setNodeName(node.getName());
@@ -75,21 +76,19 @@ class InfrastructureLoader {
 	private void getConnectionPerformance(Set<HostReader> hrSet) {
 		ConnectionPerformanceReader connPerf;							
 		
-		for(HostReader outer_host: hrSet) {												// for all the host check the connection performance reader 					
-			for(HostReader inner_host: hrSet) {
+		for(HostReader outerHost: hrSet) {												// for all the host check the connection performance reader
+			for(HostReader innerHost: hrSet) {
 				
-				if ((connPerf = nfvr.getConnectionPerformance(outer_host, inner_host)) != null) {
+				if ((connPerf = nfvr.getConnectionPerformance(outerHost, innerHost)) != null) {
 					ConnectionType newConn = objFactory.createConnectionType();			// create a new instance for the connection element
-					newConn.setHostname1(outer_host.getName());
-					newConn.setHostname2(inner_host.getName());
+					newConn.setHostname1(outerHost.getName());
+					newConn.setHostname2(innerHost.getName());
 					newConn.setLatency(BigInteger.valueOf(connPerf.getLatency()));
 					newConn.setThroughput(connPerf.getThroughput());
 					ConnList.add(newConn);												// add a new connection element into the connection lists
 				} 
 			}
 		}
-		
-		
 	}
 
 }

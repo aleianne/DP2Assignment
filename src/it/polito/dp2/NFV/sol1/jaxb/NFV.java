@@ -60,7 +60,7 @@ public class NFV {
     @XmlElement(required = true)
     protected CatalogType catalog;
     @XmlElement(name = "nffg-list", required = true)
-    protected NFV.NffgList nffgList;
+    protected NffgList nffgList;
     @XmlElement(name = "inf-net", required = true)
     protected InfrastructureType infNet;
 
@@ -93,10 +93,10 @@ public class NFV {
      * 
      * @return
      *     possible object is
-     *     {@link NFV.NffgList }
+     *     {@link NffgList }
      *     
      */
-    public NFV.NffgList getNffgList() {
+    public NffgList getNffgList() {
         return nffgList;
     }
 
@@ -105,10 +105,10 @@ public class NFV {
      * 
      * @param value
      *     allowed object is
-     *     {@link NFV.NffgList }
+     *     {@link NffgList }
      *     
      */
-    public void setNffgList(NFV.NffgList value) {
+    public void setNffgList(NffgList value) {
         this.nffgList = value;
     }
 

@@ -38,16 +38,14 @@ public class NfvReaderImpl implements NfvReader {
 
 	@Override
 	public ConnectionPerformanceReader getConnectionPerformance(HostReader host1, HostReader host2) {
-		if(host1 == null || host2 == null) {
+		if(host1 == null || host2 == null)
 			return null;
-		}
 		
 		ConnectionType connectionElement = refTable.getConnection(host1.getName(), host2.getName());		// get the  connection element
-		if(connectionElement == null) {
+		if(connectionElement == null)
 			return null;
-		} else {
-			return new ConnReaderImpl(connectionElement);
-		}
+
+		return new ConnReaderImpl(connectionElement);
 	}
 
 	@Override
@@ -57,26 +55,25 @@ public class NfvReaderImpl implements NfvReader {
 		
 		HostType hostElement = refTable.getHost(hostName);	
 		
-		// chek if the element exist or not
+		// check if the element exist or not
 		if (hostElement == null) 
 			return null;
 		
 		// create a new host reader interface
-		HostReaderImpl hr = new HostReaderImpl(hostElement, refTable);
-		return hr;																					// if no host object is found, null is returned
+		return new HostReaderImpl(hostElement, refTable);
 	}
 
 	@Override
 	public Set<HostReader> getHosts() {
-		if(!hostSet.isEmpty()) {
+		if(!hostSet.isEmpty())
 			return hostSet;
-		}
 		
-		List<HostType> hostList = newNfv.getInfNet().getHosts().getHost();							// get the list of host contained into the Infrastructure network	
+		List<HostType> hostList = newNfv.getInfNet().getHosts().getHost();		// get the list of host contained into the Infrastructure network
 		for(HostType hostElement: hostList) {
-			HostReaderImpl hr = new HostReaderImpl(hostElement, refTable);							// declaration of the interface for host info reading
-			hostSet.add(hr);
+			// declaration of the interface for host info reading
+			hostSet.add(new HostReaderImpl(hostElement, refTable));
 		}
+
 		return hostSet;																				// return the interface set
 	}
 
@@ -89,53 +86,50 @@ public class NfvReaderImpl implements NfvReader {
 		if (nffgElement == null) 
 			return null;
 		
-		NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement, refTable);
-		return nfgr;
+		return new NffgReaderImpl(nffgElement, refTable);
 	}
 
 	@Override
 	public Set<NffgReader> getNffgs(Calendar date) {											
 		List<NffgType> graphList = newNfv.getNffgList().getNffg();																// get the list of graph contained into the NFV element implementation
 		
-		if(date == null) {																							// if the argument is null return all nffg contained inside the nfv
-			for(NffgType nffgElement: graphList) {														
-				NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
-				graphSet.add(nfgr);
-			}
+		if(date == null) {
+			// if the argument is null return all nffg contained inside the nfv
+
+			for(NffgType nffgElement: graphList)
+				graphSet.add(new NffgReaderImpl(nffgElement, refTable));
+
 		} else {
-		
 			// if a date is specified, get all the nffgs that have been deployed before the date
-			for(NffgType nffgElement: graphList) {
-				
-				XMLGregorianCalendar XMLcalendar;
-				
-				try {
-					XMLcalendar = CalendarXMLconverter.toXMLGregorianCalendar(date);						// convert the calendar in gregorian calendar
-					if(nffgElement.getDeployTime().compare(XMLcalendar) ==  DatatypeConstants.GREATER) {	// check if the date is greater or lesser than the graph deploy date
-						NffgReaderImpl nfgr = new NffgReaderImpl(nffgElement,refTable);
-						graphSet.add(nfgr);
-					}
-				} catch(DatatypeConfigurationException de) {
-					System.err.print("the date cannot be converted into a XML calendar instance: ");
-					System.err.println(de.getMessage());
-					de.printStackTrace();
+
+			try {
+				XMLGregorianCalendar XMLcalendar = CalendarXMLconverter.toXMLGregorianCalendar(date);
+				for(NffgType nffgElement: graphList) {
+					if(nffgElement.getDeployTime().compare(XMLcalendar) ==  DatatypeConstants.GREATER) 		// check if the date is greater or lesser than the graph deploy date
+						graphSet.add(new NffgReaderImpl(nffgElement, refTable));
 				}
+			} catch(DatatypeConfigurationException de) {
+				System.err.print("the date cannot be converted into a XML calendar instance: ");
+				System.err.println(de.getMessage());
+				//de.printStackTrace();
+				return null;
 			}
 		}
+
 		return graphSet;
 	}
 
 	@Override
 	public Set<VNFTypeReader> getVNFCatalog() {
-		if(!functionSet.isEmpty()) {
+		if(!functionSet.isEmpty())
 			return functionSet;
-		}
 		
 		List<FunctionType> VNFElementList = newNfv.getCatalog().getFunction();												// get the list of VNF 
 		for(FunctionType VNFelement: VNFElementList) {
-			VNFTypeReaderImpl vtr = new VNFTypeReaderImpl(VNFelement);														// add the function interface into the set
-			functionSet.add(vtr);
+			// add the function interface into the set
+			functionSet.add(new VNFTypeReaderImpl(VNFelement));
 		}
+
 		return functionSet;																				
 	}
 

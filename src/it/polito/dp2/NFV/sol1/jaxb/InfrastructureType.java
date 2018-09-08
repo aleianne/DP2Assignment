@@ -64,19 +64,19 @@ import javax.xml.bind.annotation.XmlType;
 public class InfrastructureType {
 
     @XmlElement(required = true)
-    protected InfrastructureType.Hosts hosts;
+    protected Hosts hosts;
     @XmlElement(required = true)
-    protected InfrastructureType.Connections connections;
+    protected Connections connections;
 
     /**
      * Recupera il valore della proprietà hosts.
      * 
      * @return
      *     possible object is
-     *     {@link InfrastructureType.Hosts }
+     *     {@link Hosts }
      *     
      */
-    public InfrastructureType.Hosts getHosts() {
+    public Hosts getHosts() {
         return hosts;
     }
 
@@ -85,10 +85,10 @@ public class InfrastructureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link InfrastructureType.Hosts }
+     *     {@link Hosts }
      *     
      */
-    public void setHosts(InfrastructureType.Hosts value) {
+    public void setHosts(Hosts value) {
         this.hosts = value;
     }
 
@@ -97,10 +97,10 @@ public class InfrastructureType {
      * 
      * @return
      *     possible object is
-     *     {@link InfrastructureType.Connections }
+     *     {@link Connections }
      *     
      */
-    public InfrastructureType.Connections getConnections() {
+    public Connections getConnections() {
         return connections;
     }
 
@@ -109,10 +109,10 @@ public class InfrastructureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link InfrastructureType.Connections }
+     *     {@link Connections }
      *     
      */
-    public void setConnections(InfrastructureType.Connections value) {
+    public void setConnections(Connections value) {
         this.connections = value;
     }
 

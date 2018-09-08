@@ -1,8 +1,8 @@
 //
-// Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
-// Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.3.1-b171012.0423 
+// Vedere <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2018.03.09 alle 02:42:18 PM CET 
+// Generato il: 2018.08.21 alle 04:23:46 PM CEST 
 //
 
 
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -25,63 +24,36 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * 
  * <pre>
- * &lt;complexType name="nffgType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="node" type="{http://www.example.com/nfv}nodeType" maxOccurs="unbounded"/>
- *       &lt;/sequence>
- *       &lt;attribute name="nffg-name" use="required" type="{http://www.example.com/nfv}nfvName" />
- *       &lt;attribute name="deploy-time" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="nffgType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="nffg-name" type="{http://www.example.com/nfv}nfvName"/&gt;
+ *         &lt;element name="deploy-time" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *         &lt;element name="node" type="{http://www.example.com/nfv}nodeType" maxOccurs="unbounded"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "nffgType", propOrder = {
+    "nffgName",
+    "deployTime",
     "node"
 })
 public class NffgType {
 
-    @XmlElement(required = true)
-    protected List<NodeType> node;
-    @XmlAttribute(name = "nffg-name", required = true)
+    @XmlElement(name = "nffg-name", required = true)
     protected String nffgName;
-    @XmlAttribute(name = "deploy-time")
+    @XmlElement(name = "deploy-time", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar deployTime;
-
-    /**
-     * Gets the value of the node property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the node property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getNode().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link NodeType }
-     * 
-     * 
-     */
-    public List<NodeType> getNode() {
-        if (node == null) {
-            node = new ArrayList<NodeType>();
-        }
-        return this.node;
-    }
+    @XmlElement(required = true)
+    protected List<NodeType> node;
 
     /**
      * Recupera il valore della proprietà nffgName.
@@ -129,6 +101,35 @@ public class NffgType {
      */
     public void setDeployTime(XMLGregorianCalendar value) {
         this.deployTime = value;
+    }
+
+    /**
+     * Gets the value of the node property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the node property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getNode().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NodeType }
+     * 
+     * 
+     */
+    public List<NodeType> getNode() {
+        if (node == null) {
+            node = new ArrayList<NodeType>();
+        }
+        return this.node;
     }
 
 }

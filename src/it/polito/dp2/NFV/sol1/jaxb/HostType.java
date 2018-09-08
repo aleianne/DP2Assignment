@@ -61,7 +61,7 @@ import javax.xml.bind.annotation.XmlType;
 public class HostType {
 
     @XmlElement(name = "deployed-nodes", required = true)
-    protected HostType.DeployedNodes deployedNodes;
+    protected DeployedNodes deployedNodes;
     @XmlElement(required = true)
     protected BigInteger availableMemory;
     @XmlElement(required = true)
@@ -76,10 +76,10 @@ public class HostType {
      * 
      * @return
      *     possible object is
-     *     {@link HostType.DeployedNodes }
+     *     {@link DeployedNodes }
      *     
      */
-    public HostType.DeployedNodes getDeployedNodes() {
+    public DeployedNodes getDeployedNodes() {
         return deployedNodes;
     }
 
@@ -88,10 +88,10 @@ public class HostType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HostType.DeployedNodes }
+     *     {@link DeployedNodes }
      *     
      */
-    public void setDeployedNodes(HostType.DeployedNodes value) {
+    public void setDeployedNodes(DeployedNodes value) {
         this.deployedNodes = value;
     }
 

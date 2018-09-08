@@ -17,64 +17,62 @@ import it.polito.dp2.NFV.sol1.jaxb.NffgType;
 import it.polito.dp2.NFV.sol1.jaxb.NodeType;
 
 public class NffgReaderImpl implements NffgReader {
-	
-	private XmlReferenceMap refTable;
-	private NffgType nffgElement;
-	
-	private Set<NodeReader> nodeReaderSet;
 
-	protected NffgReaderImpl(NffgType nffg, XmlReferenceMap refTable) {
-		this.nffgElement = nffg;
-		this.refTable = refTable;
-		nodeReaderSet = new HashSet<NodeReader> ();
-	}
-	
-	@Override
-	public String getName() {
-		return nffgElement.getNffgName();
-	}
+    private XmlReferenceMap refTable;
+    private NffgType nffgElement;
 
-	@Override
-	public Calendar getDeployTime() {					// if is not possible to convert the data return null
-		try {
-			return CalendarXMLconverter.fromXMLGregorianCalendar(nffgElement.getDeployTime());			// convert the date from XMLGregorian Calendar to Calendar
-		} catch (DatatypeConfigurationException dce) {
-			dce.printStackTrace();
-			return null;
-		}
-	}
+    private Set<NodeReader> nodeReaderSet;
 
-	@Override
-	public NodeReader getNode(String nodeName) {
-		if(nodeName == null) {
-			System.out.println("the argument passed is null");
-			return null;
-		}
-		
-		NodeType nodeElement = refTable.getNode(nodeName);
-		if (nodeElement == null) {
-			System.out.println("there isn't a node called " + nodeName);
-			return null;								
-		}
-		
-		// create and return the node reader interface 
-		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);		
-		return nr;
-	}
+    protected NffgReaderImpl(NffgType nffg, XmlReferenceMap refTable) {
+        this.nffgElement = nffg;
+        this.refTable = refTable;
+        nodeReaderSet = new HashSet<NodeReader>();
+    }
 
-	@Override
-	public Set<NodeReader> getNodes() {
-		if(!nodeReaderSet.isEmpty()) 										// return the set, if is already filled, in order to optimize successive invokation of the method
-			return nodeReaderSet;
-		
-		List<NodeType> nodeElementList = nffgElement.getNode();									// get the list of nodes inside this graph
-		for (NodeType nodeElement: nodeElementList) {								
-			NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);	// create a new node reader interface
-			nodeReaderSet.add(nr);											// insert the interface inside the set
-		}
-		return nodeReaderSet;
-	}
-	
-	 
+    @Override
+    public String getName() {
+        return nffgElement.getNffgName();
+    }
 
+    @Override
+    public Calendar getDeployTime() {                    // if is not possible to convert the data return null
+        try {
+            return CalendarXMLconverter.fromXMLGregorianCalendar(nffgElement.getDeployTime());            // convert the date from XMLGregorian Calendar to Calendar
+        } catch (DatatypeConfigurationException dce) {
+            //dce.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public NodeReader getNode(String nodeName) {
+        if (nodeName == null) {
+            System.out.println("the argument passed is null");
+            return null;
+        }
+
+        NodeType nodeElement = refTable.getNode(nodeName);
+        if (nodeElement == null) {
+            System.out.println("there isn't a node called " + nodeName);
+            return null;
+        }
+
+        if (nodeElement.getNfFg().compareTo(nffgElement.getNffgName()) != 0)
+            return null;
+
+        // create and return the node reader interface
+        return new NodeReaderImpl(nodeElement, refTable);
+    }
+
+    @Override
+    public Set<NodeReader> getNodes() {
+        if (!nodeReaderSet.isEmpty())                                        // return the set, if is already filled, in order to optimize successive invokation of the method
+            return nodeReaderSet;
+
+        List<NodeType> nodeElementList = nffgElement.getNode();
+        for (NodeType nodeElement : nodeElementList)
+            nodeReaderSet.add(new NodeReaderImpl(nodeElement, refTable));
+
+        return nodeReaderSet;
+    }
 }

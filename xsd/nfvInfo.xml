@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!DOCTYPE xml>
-<NFV xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsd:SchemaLocation="nfvInfo.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<nfv:NFV xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:nfv="http://www.example.com/NFV"
+         xsi:schemaLocation="nfvInfo.xsd">
 
 	<!--  Declaration of the VNF catalog used inside the system -->
     <catalog>
@@ -143,4 +144,4 @@
             <connection hostname1="H5" hostname2="H5" latency="0" throughput="50.35"/>
         </connections>
     </inf-net>
-</NFV>
+</nfv:NFV>

@@ -9,9 +9,7 @@ public class NfvReaderFactory extends it.polito.dp2.NFV.NfvReaderFactory {
 
 	private XmlReferenceMap refTable;	
 	
-	public NfvReaderFactory() {
-		
-	}
+	public NfvReaderFactory() {}
 	
 	@Override
 	public NfvReader newNfvReader() throws NfvReaderException {

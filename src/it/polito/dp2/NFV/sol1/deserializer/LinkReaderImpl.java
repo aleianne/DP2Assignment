@@ -24,8 +24,7 @@ public class LinkReaderImpl implements LinkReader {
 	@Override
 	public NodeReader getDestinationNode() {
 		NodeType nodeElement = refTable.getNode(linkElement.getDestinationNode());			// get the node using as reference the outboundNode name		
-		NodeReaderImpl nr = new NodeReaderImpl(nodeElement, refTable);					
-		return nr;
+		return new NodeReaderImpl(nodeElement, refTable);
 	}
 
 	@Override
@@ -39,8 +38,7 @@ public class LinkReaderImpl implements LinkReader {
 	@Override
 	public NodeReader getSourceNode() {
 		// since the source node is the parent nodeElement, return the parent nodeElement
-		NodeReaderImpl nr = new NodeReaderImpl(parentNode, refTable);					
-		return nr;
+		return new NodeReaderImpl(parentNode, refTable);
 	}
 
 	@Override
